@@ -9,7 +9,11 @@ public interface TapahtumaDAO {
 
 	public abstract void talleta(Tapahtuma tapahtuma);
 
-	//public abstract Tapahtuma etsi(int id);
+	public abstract Tapahtuma haeTapahtuma(int id);
+	
+	public abstract void paivitaOsallistujat(int tapahtumaid, int osallistujat);
 
 	public abstract List<Tapahtuma> haeKaikki();
+	
+	
 }

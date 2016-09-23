@@ -32,10 +32,10 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		List<Tapahtuma> tapahtumat = jdbcTemplate.query(sql,mapper);
 		return tapahtumat;
 	}
-
-	public void paivitaOsallistujat(int id, int osallistujat) {
-		String sql = "UPDATE Tapahtuma SET osallistujat=? WHERE id=?";
-		Object[] parametrit = new Object[] { osallistujat, id };
+	
+	public void paivitaTapahtuma(Tapahtuma t) {
+		String sql = "UPDATE Tapahtuma SET nimi=?, pvm=?, aika=?, paikka=?, teema=?, osallistujat=?, isanta=?, kuvaus=? WHERE id=?";
+		Object[] parametrit = new Object[] { t.getNimi(), t.getPvm(), t.getAika(), t.getPaikka(), t.getTeema(), t.getOsallistujat(), t.getIsanta(), t.getKuvaus(), t.getId() };
 		
 		jdbcTemplate.update(sql , parametrit);
 	}

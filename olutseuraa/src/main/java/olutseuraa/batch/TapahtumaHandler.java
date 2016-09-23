@@ -35,10 +35,10 @@ public class TapahtumaHandler {
 		Tapahtuma t1 = dao.haeTapahtuma(1);
 		//haetaan alkuper‰inen osallistujam‰‰r‰ ja lis‰t‰‰n siihen yksi.
 		int osallistujamaara = t1.getOsallistujat() + 1;
-		//p‰ivitet‰‰n osallistujam‰‰r‰ tietokantaan
-		dao.paivitaOsallistujat(t1.getId(), osallistujamaara);
-		//p‰ivitet‰‰n tapahtuma serverill‰, eli haetaan p‰ivitetty tieto tietokannasta
-		t1 = dao.haeTapahtuma(1);
+		//asetetaan osallistujam‰‰r‰ oliolle
+		t1.setOsallistujat(osallistujamaara);
+		//p‰ivitet‰‰n tapahtuma tietokantaan
+		dao.paivitaTapahtuma(t1);
 		System.out.println("Tapahtuman " + t1.getNimi() + " osallistujam‰‰r‰ on nyt: " + t1.getOsallistujat());
 		System.out.println("-------------------");
 		

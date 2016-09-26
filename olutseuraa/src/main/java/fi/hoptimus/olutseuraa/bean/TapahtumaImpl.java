@@ -1,4 +1,4 @@
-package olutseuraa.bean;
+package fi.hoptimus.olutseuraa.bean;
 
 public class TapahtumaImpl implements Tapahtuma {
 

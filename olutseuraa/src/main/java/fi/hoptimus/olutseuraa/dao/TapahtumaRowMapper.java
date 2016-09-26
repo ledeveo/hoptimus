@@ -1,12 +1,12 @@
-package olutseuraa.dao;
+package fi.hoptimus.olutseuraa.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import olutseuraa.bean.Tapahtuma;
-import olutseuraa.bean.TapahtumaImpl;
-
 import org.springframework.jdbc.core.RowMapper;
+
+import fi.hoptimus.olutseuraa.bean.Tapahtuma;
+import fi.hoptimus.olutseuraa.bean.TapahtumaImpl;
 
 public class TapahtumaRowMapper implements RowMapper<Tapahtuma> {
 

@@ -1,11 +1,11 @@
-package olutseuraa.batch;
+package fi.hoptimus.olutseuraa.batch;
 
 import java.util.List;
 
-import olutseuraa.bean.Tapahtuma;
-import olutseuraa.dao.TapahtumaDAO;
-
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import fi.hoptimus.olutseuraa.bean.Tapahtuma;
+import fi.hoptimus.olutseuraa.dao.TapahtumaDAO;
 
 public class TapahtumaHandler {
 

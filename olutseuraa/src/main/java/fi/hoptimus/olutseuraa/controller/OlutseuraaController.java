@@ -1,4 +1,4 @@
-package olutseuraa.controller;
+package fi.hoptimus.olutseuraa.controller;
 
 import javax.inject.Inject;
 
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import olutseuraa.bean.Tapahtuma;
-import olutseuraa.dao.TapahtumaDAO;
+import fi.hoptimus.olutseuraa.bean.Tapahtuma;
+import fi.hoptimus.olutseuraa.dao.TapahtumaDAO;
 
 import java.util.List;
 
@@ -42,7 +42,7 @@ public class OlutseuraaController {
 		return "tapah/all";
 	}
 	
-	//HENKILÖN TIETOJEN NÄYTTÄMINEN
+	//TAPAHTUMAN TIETOJEN NÄYTTÄMINEN
 	@RequestMapping(value="{id}", method=RequestMethod.GET)
 	public String getView(@PathVariable Integer id, Model model) {
 		Tapahtuma tapahtuma = dao.haeTapahtuma(id);

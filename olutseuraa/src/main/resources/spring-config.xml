@@ -9,7 +9,7 @@
 
 	<context:property-placeholder location="db_connection.properties" />
 
-	<bean id="daoLuokka" class="fi.hoptimus.olutseuraa.dao.TapahtumaDAOSpringJdbcImpl">
+	<bean id="daoLuokka" class="olutseuraa.dao.TapahtumaDAOSpringJdbcImpl">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
 

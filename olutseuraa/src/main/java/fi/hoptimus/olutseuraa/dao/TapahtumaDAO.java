@@ -1,8 +1,8 @@
-package olutseuraa.dao;
+package fi.hoptimus.olutseuraa.dao;
 
 import java.util.List;
 
-import olutseuraa.bean.Tapahtuma;
+import fi.hoptimus.olutseuraa.bean.Tapahtuma;
 
 
 public interface TapahtumaDAO {

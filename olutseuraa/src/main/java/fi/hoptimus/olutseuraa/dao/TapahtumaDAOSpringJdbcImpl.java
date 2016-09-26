@@ -1,14 +1,19 @@
-package olutseuraa.dao;
+package fi.hoptimus.olutseuraa.dao;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
-import olutseuraa.bean.Tapahtuma;
+import fi.hoptimus.olutseuraa.bean.Tapahtuma;
 
+@Repository
 public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 
+	@Inject
 	private JdbcTemplate jdbcTemplate;
 	
 	public JdbcTemplate getJdbcTemplate() {

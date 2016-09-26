@@ -35,10 +35,8 @@ public class OlutseuraaController {
 	//TODO:TAPAHTUMIEN TIETOJEN NÄYTTÄMINEN | näytä kaikki tapahtumat
 	@RequestMapping(value="kaikki", method=RequestMethod.GET)
 	public String getView(Model model) {
-		System.out.println("HAETAAN KAIKKI TAPAHTUMAT TIETOKANNASTA");
 		List<Tapahtuma> tapahtumat = dao.haeKaikki();
 		model.addAttribute("tapahtumat", tapahtumat);
-		System.out.println("HAKU LOPPU.");
 		return "tapah/all";
 	}
 	

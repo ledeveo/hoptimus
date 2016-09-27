@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import fi.hoptimus.olutseuraa.bean.Henkilo;
 import fi.hoptimus.olutseuraa.bean.Tapahtuma;
 
 @Repository
@@ -43,6 +44,19 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		Object[] parametrit = new Object[] { t.getNimi(), t.getPvm(), t.getAika(), t.getPaikka(), t.getTeema(), t.getOsallistujat(), t.getIsanta(), t.getKuvaus(), t.getId() };
 		
 		jdbcTemplate.update(sql , parametrit);
+	}
+	
+	public void liityTapahtumaan(String enimi, String snimi, String sposti, String tapahtumaId){
+		
+		int tapahtumaIdInt = Integer.parseInt(tapahtumaId);
+		
+		System.out.println("LiityTapahtumaan -metodin saapui: " + enimi + snimi + sposti + tapahtumaId);
+		
+		String sql = "INSERT INTO tapahtuman_henkilo(etunimi, sukunimi, tapahtumaid) VALUES(?,?,?,?)";
+		Object[] parametrit = new Object[] {enimi, snimi, sposti, tapahtumaIdInt };
+		
+		jdbcTemplate.update(sql , parametrit);
+		System.out.println("Inserted into database!");
 	}
 
 	public Tapahtuma haeTapahtuma(int id) {

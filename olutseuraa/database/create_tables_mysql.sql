@@ -16,3 +16,10 @@ CREATE TABLE Tapahtuma (
 	isanta VARCHAR(255) NOT NULL,
 	kuvaus VARCHAR(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE tapahtuman_henkilo (
+etunimi VARCHAR(255) NOT NULL,
+sukunimi VARCHAR(255) NOT NULL,
+tapahtumaid SMALLINT NOT NULL,
+PRIMARY KEY(tapahtumaid)
+);

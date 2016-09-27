@@ -6,6 +6,15 @@ public class HenkiloImpl implements Henkilo {
 	private String etunimi;
 	private String sukunimi;
 	private String sahkoposti;
+	
+	
+
+	public HenkiloImpl(String etunimi, String sukunimi, String sahkoposti) {
+		super();
+		this.etunimi = etunimi;
+		this.sukunimi = sukunimi;
+		this.sahkoposti = sahkoposti;
+	}
 
 	public int getId() {
 		return id;

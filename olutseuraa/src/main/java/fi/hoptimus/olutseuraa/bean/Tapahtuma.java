@@ -1,5 +1,7 @@
 package fi.hoptimus.olutseuraa.bean;
 
+import java.util.List;
+
 public interface Tapahtuma {
 
 	public abstract int getId();
@@ -28,5 +30,8 @@ public interface Tapahtuma {
 	
 	public abstract String getKuvaus();
 	public abstract void setKuvaus(String kuvaus);
+	
+	public abstract int getMaxosallistujamaara();
+	public abstract void setMaxosallistujamaara(int maxMaara);
 	
 }

@@ -7,10 +7,10 @@
 	<packaging>war</packaging>
 	<name>olutseuraa Maven Webapp</name>
 	<url>http://maven.apache.org</url>
-	
-	
+
+
 	<properties>
-		<spring.version>4.0.0.RELEASE</spring.version>
+		<spring.version>4.3.3.RELEASE</spring.version>
 	</properties>
 
 	<dependencies>
@@ -89,6 +89,15 @@
 			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
+
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.0</version>
+		</dependency>
+		
+
 
 
 	</dependencies>

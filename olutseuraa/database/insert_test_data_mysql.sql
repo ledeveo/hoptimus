@@ -17,3 +17,4 @@ VALUES
 	(nimi, pvm, aika, paikka, teema, osallistujat, isanta, kuvaus)
 VALUES
 	('Testitapahtuma', '01.01.2017', '01:00', 'Nurkka', 'Ohjelmointi', 0, 'Erkki Esimerkki', 'Testitapahtuma, ei siis oikea tapahtuma.');
+	

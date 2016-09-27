@@ -1,5 +1,8 @@
 package fi.hoptimus.olutseuraa.bean;
 
+
+
+
 public class TapahtumaImpl implements Tapahtuma {
 
 	private int id;
@@ -9,6 +12,7 @@ public class TapahtumaImpl implements Tapahtuma {
 	private String paikka;
 	private String teema;
 	private int osallistujat;
+	private int maxOsallistujamaara;
 	private String isanta;
 	private String kuvaus;
 
@@ -83,5 +87,13 @@ public class TapahtumaImpl implements Tapahtuma {
 	public void setKuvaus(String kuvaus) {
 		this.kuvaus = kuvaus;
 	}
+
+	public int getMaxosallistujamaara() {
+		return maxOsallistujamaara;
+	}
+
+	public void setMaxosallistujamaara(int maxMaara) {
+		this.maxOsallistujamaara = maxMaara;
+	}	
 
 }

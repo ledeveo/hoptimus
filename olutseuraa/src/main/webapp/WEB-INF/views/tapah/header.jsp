@@ -12,18 +12,26 @@
 	</ul>
 </header>
 
- <c:if test="${not empty sessionScope.tervetuloa}">
-	<div id="success" class="callout success">
+<c:if test="${not empty tervehdittava}">
+	<div id="success" class="callout success" data-closable>
+		<div>
 		<p>
-			Tervetuloa kaljalle, <c:out value="${tervetuloa}" />!
-			<img id="beer" src="img/beer.png" alt="beer" /> 
+			Tervetuloa tapahtumaan <b><c:out value="${tapahtuma.nimi}" /></b>,
+			<c:out value="${tervehdittava.etunimi}" />!
+			<br> Lähetämme tapahtumasta vielä muistutuksen sähköpostiisi!
 		</p>
+		</div>
+		<div><button class="close-button" aria-label="Dismiss alert" type="button"
+			data-close>
+			<span aria-hidden="true">&times;</span>
+		</button></div>
 	</div>
 </c:if>
 
 
 
-	
+
 <div id="inputvirhe" class="callout warning">
-<p class="text-center">Lisää sekä etu- että sukunimi!<p>
+	<p class="text-center">Lisää sekä etu- että sukunimi!
+	<p>
 </div>

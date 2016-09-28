@@ -29,7 +29,6 @@ $(".event").click(function(e) {
 
 $(document).ready(function() {
 	$('#success').fadeIn("fast", function() {
-		$('#success').delay(1500).fadeOut();
 	});
 });
 

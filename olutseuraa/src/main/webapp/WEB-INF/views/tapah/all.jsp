@@ -65,6 +65,7 @@
 										value="${fn:length(osallistujat)}/${event.maxOsallistujamaara}" />
 								</span>
 							</h5>
+						
 
 							<h5>
 								Isäntä:

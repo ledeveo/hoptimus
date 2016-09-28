@@ -41,6 +41,10 @@ public class OlutseuraaController {
 	public String getView(Model model) {
 		List<Tapahtuma> tapahtumat = dao.haeKaikki();
 		List<Henkilo> osallistujat = dao.haeOsallistujat();
+		if(osallistujat.size() >= 1 && tapahtumat.size() >= 1){
+		model.addAttribute("tervehdittava", osallistujat.get(osallistujat.size()-1));
+		model.addAttribute("tapahtuma", tapahtumat.get(tapahtumat.size()-1));
+		}
 		model.addAttribute("tapahtumat", tapahtumat);
 		model.addAttribute("osallistujat", osallistujat);
 		return "tapah/all";

@@ -23,9 +23,7 @@ public class TapahtumaRowMapper implements RowMapper<Tapahtuma> {
 		t.setTeema(rs.getString("teema"));
 		t.setIsanta(rs.getString("isanta"));
 		t.setKuvaus(rs.getString("kuvaus"));
-		t.setMaxosallistujamaara(rs.getInt("maxOsallistujamaara"));
-		
-		System.out.println(t.getMaxosallistujamaara());
+		t.setmaxOsallistujamaara(rs.getInt("maxOsallistujamaara"));
 		
 		return t;
 	}

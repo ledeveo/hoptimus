@@ -70,7 +70,7 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 	}
 
 	public Tapahtuma haeTapahtuma(int id) {
-		String sql = "SELECT id, nimi, pvm, aika, paikka, teema, osallistujat, isanta, kuvaus FROM Tapahtuma WHERE id=?";
+		String sql = "SELECT id, nimi, pvm, aika, paikka, teema, osallistujat, isanta, kuvaus, maxOsallistujamaara FROM Tapahtuma WHERE id=?";
 		Object[] parametrit = new Object[] { id };
 		RowMapper<Tapahtuma> mapper = new TapahtumaRowMapper();
 		

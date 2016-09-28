@@ -34,9 +34,9 @@ public class TapahtumaHandler {
 		//haetaan ensin tapahtuma, id:ll‰
 		Tapahtuma t1 = dao.haeTapahtuma(1);
 		//haetaan alkuper‰inen osallistujam‰‰r‰ ja lis‰t‰‰n siihen yksi.
-		int osallistujamaara = t1.getOsallistujat() + 1;
+		//int osallistujamaara = t1.getOsallistujat();
 		//asetetaan osallistujam‰‰r‰ oliolle
-		t1.setOsallistujat(osallistujamaara);
+		//t1.setOsallistujat(osallistujamaara);
 		//p‰ivitet‰‰n tapahtuma tietokantaan
 		dao.paivitaTapahtuma(t1);
 		System.out.println("Tapahtuman " + t1.getNimi() + " osallistujam‰‰r‰ on nyt: " + t1.getOsallistujat());

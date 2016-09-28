@@ -12,6 +12,9 @@ $("#showFilters").click(function() {
 $(".tutustu").click(function(e) {
 	var id = $(this).attr('id');
 	$("#exp" + id).slideToggle("slow", function() {
+		$('html, body').animate({
+			scrollTop : $("#ilmo").offset().top
+		}, 2000);
 	});
 });
 
@@ -20,20 +23,15 @@ $("body, .peruuta").click(function() {
 	$(".expandable").slideUp('fast');
 });
 
-$(".event").click(function(e) { // Wont toggle on any click in the div
+$(".event").click(function(e) { 
 	e.stopPropagation();
 });
 
-
-
-
-	$(document).ready(function(){
+$(document).ready(function() {
 	$('#success').fadeIn("fast", function() {
-		$('#success').delay(1500).fadeOut();		
+		$('#success').delay(1500).fadeOut();
 	});
 });
-
-
 
 $(".subcheck").click(function(e) {
 	var id = $(this).attr('id');

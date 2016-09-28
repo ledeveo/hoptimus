@@ -32,7 +32,7 @@ public interface Tapahtuma {
 	public abstract String getKuvaus();
 	public abstract void setKuvaus(String kuvaus);
 	
-	public abstract int getMaxosallistujamaara();
-	public abstract void setMaxosallistujamaara(int maxOsallistujamaara);
+	public abstract int getmaxOsallistujamaara();
+	public abstract void setmaxOsallistujamaara(int maxOsallistujamaara);
 	
 }

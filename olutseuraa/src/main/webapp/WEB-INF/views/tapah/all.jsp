@@ -62,11 +62,9 @@
 									title="<c:if test="${empty osallistujat}" >Ole ensimmäinen tapahtumaan ilmoittautuva!</c:if>
 									<c:forEach items="${osallistujat}" varStatus="loop" var="i" ><c:out value="${i}"/><c:if test="${!loop.last}">, </c:if></c:forEach>">
 									<c:out
-										value="${fn:length(osallistujat)}/" />
+										value="${fn:length(osallistujat)}/${event.maxOsallistujamaara}" />
 								</span>
 							</h5>
-							<%--${event.maxOsallistujamaara} --%>
-							
 
 							<h5>
 								Isäntä:

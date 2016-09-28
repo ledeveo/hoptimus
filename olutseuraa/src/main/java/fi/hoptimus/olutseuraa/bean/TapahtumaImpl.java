@@ -90,11 +90,11 @@ public class TapahtumaImpl implements Tapahtuma {
 		this.kuvaus = kuvaus;
 	}
 
-	public int getMaxosallistujamaara() {
+	public int getmaxOsallistujamaara() {
 		return maxOsallistujamaara;
 	}
 
-	public void setMaxosallistujamaara(int maxOsallistujamaara) {
+	public void setmaxOsallistujamaara(int maxOsallistujamaara) {
 		this.maxOsallistujamaara = maxOsallistujamaara;
 	}	
 

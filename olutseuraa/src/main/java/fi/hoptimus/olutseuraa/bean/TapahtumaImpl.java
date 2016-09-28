@@ -1,5 +1,7 @@
 package fi.hoptimus.olutseuraa.bean;
 
+import java.util.List;
+
 
 
 
@@ -11,7 +13,7 @@ public class TapahtumaImpl implements Tapahtuma {
 	private String aika;
 	private String paikka;
 	private String teema;
-	private int osallistujat;
+	private List<Henkilo> osallistujat;
 	private int maxOsallistujamaara;
 	private String isanta;
 	private String kuvaus;
@@ -64,11 +66,11 @@ public class TapahtumaImpl implements Tapahtuma {
 		this.teema = teema;
 	}
 
-	public int getOsallistujat() {
+	public List<Henkilo> getOsallistujat() {
 		return osallistujat;
 	}
 
-	public void setOsallistujat(int osallistujat) {
+	public void setOsallistujat(List<Henkilo> osallistujat) {
 		this.osallistujat = osallistujat;
 	}
 
@@ -92,8 +94,8 @@ public class TapahtumaImpl implements Tapahtuma {
 		return maxOsallistujamaara;
 	}
 
-	public void setMaxosallistujamaara(int maxMaara) {
-		this.maxOsallistujamaara = maxMaara;
+	public void setMaxosallistujamaara(int maxOsallistujamaara) {
+		this.maxOsallistujamaara = maxOsallistujamaara;
 	}	
 
 }

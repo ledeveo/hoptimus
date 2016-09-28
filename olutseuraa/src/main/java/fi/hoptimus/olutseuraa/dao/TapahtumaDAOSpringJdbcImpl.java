@@ -33,11 +33,21 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 	}
 	
 	public List<Tapahtuma> haeKaikki() {
-		String sql  = "SELECT id, nimi, pvm, aika, paikka, teema, osallistujat, isanta, kuvaus FROM Tapahtuma";
+		//etunimi, sukunimi, tapahtumaId FROM Tapahtuma t INNER JOIN Tapahtuman_henkilo th ON t.id = tapahtumaId
+		String sql  = "SELECT id, nimi, pvm, aika, paikka, teema, isanta, kuvaus, maxOsallistujamaara from Tapahtuma";
 		RowMapper<Tapahtuma> mapper = new TapahtumaRowMapper();
 		List<Tapahtuma> tapahtumat = jdbcTemplate.query(sql,mapper);
 		return tapahtumat;
 	}
+	
+	public List<Henkilo> haeOsallistujat(){
+		String sql = "SELECT etunimi, sukunimi FROM randomOsallistuja WHERE tapahtumaId = 1";
+		RowMapper<Henkilo> mapper = new HenkiloRowMapper();
+		List<Henkilo> osallistujat = jdbcTemplate.query(sql,mapper);
+		return osallistujat;
+		
+	}
+
 	
 	public void paivitaTapahtuma(Tapahtuma t) {
 		String sql = "UPDATE Tapahtuma SET nimi=?, pvm=?, aika=?, paikka=?, teema=?, osallistujat=?, isanta=?, kuvaus=? WHERE id=?";
@@ -52,8 +62,8 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		
 		System.out.println("LiityTapahtumaan -metodin saapui: " + enimi + snimi + sposti + tapahtumaId);
 		
-		String sql = "INSERT INTO tapahtuman_henkilo(etunimi, sukunimi, tapahtumaid) VALUES(?,?,?,?)";
-		Object[] parametrit = new Object[] {enimi, snimi, sposti, tapahtumaIdInt };
+		String sql = "INSERT INTO randomOsallistuja(etunimi, sukunimi, sahkoposti, tapahtumaid) VALUES(?,?,?,?)";
+		Object[] parametrit = new Object[] { enimi, snimi, sposti, tapahtumaIdInt };
 		
 		jdbcTemplate.update(sql , parametrit);
 		System.out.println("Inserted into database!");

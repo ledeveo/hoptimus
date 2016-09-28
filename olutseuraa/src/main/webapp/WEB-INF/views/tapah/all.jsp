@@ -18,7 +18,7 @@
 
 						<article>
 							<div class="event-date">
-								<p class="event-month">Syyskuu</p>
+								<p class="event-month">Lokakuu</p>
 								<p class="event-day">
 									<c:out value="${fmtpaiva}" />
 								</p>
@@ -55,32 +55,30 @@
 								Teema:
 								<c:out value="${event.teema}" />
 							</h5>
-							<%--
+							
 							<h5>
-								Osallistujam‰‰r‰: <span data-tooltip aria-haspopup="true"
+								Osallistujat: <span data-tooltip aria-haspopup="true"
 									class="has-tip" data-disable-hover="false"
-									title="<c:if test="${empty event.osallistujalista}" >Ole ensimm‰inen tapahtumaan ilmoittautuva!</c:if>
-									<c:forEach items="${event.osallistujalista}" varStatus="loop" var="i" ><c:out value="${i}"/><c:if test="${!loop.last}">, </c:if></c:forEach>">
+									title="<c:if test="${empty osallistujat}" >Ole ensimm‰inen tapahtumaan ilmoittautuva!</c:if>
+									<c:forEach items="${osallistujat}" varStatus="loop" var="i" ><c:out value="${i}"/><c:if test="${!loop.last}">, </c:if></c:forEach>">
 									<c:out
-										value="${fn:length(event.osallistujalista)}/${event.maxOsallistujamaara}" />
+										value="${fn:length(osallistujat)}/" />
 								</span>
 							</h5>
-							--%>
+							<%--${event.maxOsallistujamaara} --%>
+							
 
 							<h5>
 								Is‰nt‰:
 								<c:out value="${event.isanta}" />
 							</h5>
 						</div>
-						<h4 class="text-center">
-							"
-							<c:out value="${event.kuvaus}" />
-							"
+						<h4 class="text-center">"<c:out value="${event.kuvaus}" />"
 						</h4>
 						<article class="row expandable"
 							id="<c:out value="${'exp'}${iteration.count}"/>">
 							<hr>
-							<h5>Ilmoittaudu tapahtumaan</h5>
+							<h5 id="ilmo">Ilmoittaudu tapahtumaan</h5>
 							<form:form method="POST" action="liity">
 								<div class="row">
 									<fieldset>
@@ -122,6 +120,8 @@
 
 		</div>
 	</div>	
+	
+
 
 	<%@ include file="footer.jsp"%>
 	

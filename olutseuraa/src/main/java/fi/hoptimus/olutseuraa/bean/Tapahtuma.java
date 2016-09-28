@@ -2,6 +2,7 @@ package fi.hoptimus.olutseuraa.bean;
 
 import java.util.List;
 
+
 public interface Tapahtuma {
 
 	public abstract int getId();
@@ -22,8 +23,8 @@ public interface Tapahtuma {
 	public abstract String getTeema();
 	public abstract void setTeema(String teema);
 	
-	public abstract int getOsallistujat();
-	public abstract void setOsallistujat(int osallistujat);
+	public abstract List<Henkilo> getOsallistujat();
+	public abstract void setOsallistujat(List<Henkilo> osallistujat);
 	
 	public abstract String getIsanta();
 	public abstract void setIsanta(String isanta);
@@ -32,6 +33,6 @@ public interface Tapahtuma {
 	public abstract void setKuvaus(String kuvaus);
 	
 	public abstract int getMaxosallistujamaara();
-	public abstract void setMaxosallistujamaara(int maxMaara);
+	public abstract void setMaxosallistujamaara(int maxOsallistujamaara);
 	
 }

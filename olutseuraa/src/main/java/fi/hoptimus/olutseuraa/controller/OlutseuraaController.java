@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import fi.hoptimus.olutseuraa.bean.Henkilo;
 import fi.hoptimus.olutseuraa.bean.Tapahtuma;
 import fi.hoptimus.olutseuraa.dao.TapahtumaDAO;
-import fi.hoptimus.olutseuraa.dao.TapahtumaDAOSpringJdbcImpl;
 
 @Controller
 @RequestMapping(value = "/tapahtumat")
@@ -40,7 +40,9 @@ public class OlutseuraaController {
 	@RequestMapping(value = "kaikki", method = RequestMethod.GET)
 	public String getView(Model model) {
 		List<Tapahtuma> tapahtumat = dao.haeKaikki();
+		List<Henkilo> osallistujat = dao.haeOsallistujat();
 		model.addAttribute("tapahtumat", tapahtumat);
+		model.addAttribute("osallistujat", osallistujat);
 		return "tapah/all";
 	}
 
@@ -62,8 +64,7 @@ public class OlutseuraaController {
 		System.out.println("Liity -servicessä hlo: " + enimi + ", " + snimi + ", sähköposti: " + sposti);
 		System.out.println("Haluaa liittyä tapahtumaan nro: " + eId);
 		
-		TapahtumaDAOSpringJdbcImpl daoi = new TapahtumaDAOSpringJdbcImpl();
-		daoi.liityTapahtumaan(enimi, snimi, sposti, eId);
+		dao.liityTapahtumaan(enimi, snimi, sposti, eId);
 		
 				
 		

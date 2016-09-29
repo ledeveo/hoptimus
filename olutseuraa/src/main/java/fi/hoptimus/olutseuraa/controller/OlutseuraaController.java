@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fi.hoptimus.olutseuraa.bean.Henkilo;
+import fi.hoptimus.olutseuraa.bean.HenkiloImpl;
 import fi.hoptimus.olutseuraa.bean.Tapahtuma;
 import fi.hoptimus.olutseuraa.dao.TapahtumaDAO;
 
@@ -36,20 +37,32 @@ public class OlutseuraaController {
 
 	// TODO:FORMIN TIETOJEN VASTAANOTTO & TALLETUS
 
-	// TODO:TAPAHTUMIEN TIETOJEN NÄYTTÄMINEN | näytä kaikki tapahtumat
-	@RequestMapping(value = "kaikki", method = RequestMethod.GET)
-	public String getView(Model model) {
+	// näytä liity sivun jälkeen tapahtumat tervehdyksellä
+	@RequestMapping(value = "kaikki/{id}", method = RequestMethod.GET)
+	public String getView(@PathVariable Integer id, Model model) {
 		List<Tapahtuma> tapahtumat = dao.haeKaikki();
 		List<Henkilo> osallistujat = dao.haeOsallistujat();
-		if(osallistujat.size() >= 1 && tapahtumat.size() >= 1){
-		model.addAttribute("tervehdittava", osallistujat.get(osallistujat.size()-1));
-		model.addAttribute("tapahtuma", tapahtumat.get(tapahtumat.size()-1));
+		if(id != null){
+			model.addAttribute("tervehdittava", osallistujat.get(id));
+			model.addAttribute("tapahtuma", tapahtumat.get(tapahtumat.size()-1));
 		}
 		model.addAttribute("tapahtumat", tapahtumat);
 		model.addAttribute("osallistujat", osallistujat);
 		return "tapah/all";
 	}
+	
+	// TODO:TAPAHTUMIEN TIETOJEN NÄYTTÄMINEN | näytä kaikki tapahtumat
+	@RequestMapping(value = "kaikki", method = RequestMethod.GET)
+	public String getView( Model model) {
+		List<Tapahtuma> tapahtumat = dao.haeKaikki();
+		List<Henkilo> osallistujat = dao.haeOsallistujat();
 
+		model.addAttribute("tapahtumat", tapahtumat);
+		model.addAttribute("osallistujat", osallistujat);
+		
+		return "tapah/all";
+	}
+/*
 	// TAPAHTUMAN TIETOJEN NÄYTTÄMINEN
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
 	public String getView(@PathVariable Integer id, Model model) {
@@ -57,7 +70,7 @@ public class OlutseuraaController {
 		model.addAttribute("tapahtuma", tapahtuma);
 		return "tapah/view";
 	}
-
+*/
 	@PostMapping("/liity")
 	public String liita(@RequestParam Map<String,String> requestParams) {
 		String enimi = requestParams.get("etunimi");
@@ -68,11 +81,16 @@ public class OlutseuraaController {
 		System.out.println("Liity -servicessä hlo: " + enimi + ", " + snimi + ", sähköposti: " + sposti);
 		System.out.println("Haluaa liittyä tapahtumaan nro: " + eId);
 		
-		dao.liityTapahtumaan(enimi, snimi, sposti, eId);
+		Henkilo h = new HenkiloImpl();
+		h.setEtunimi(enimi);
+		h.setSukunimi(snimi);
+		h.setSahkoposti(sposti);
 		
-				
+		h = dao.talleta(h); //tallettaa henkilon tietokantaan ja palauttaa sen id:llä
 		
-		return "redirect:kaikki";
+		dao.liityTapahtumaan(h, eId);
+		
+		return "redirect:/tapahtumat/kaikki/" + h.getId();
 
 	}
 

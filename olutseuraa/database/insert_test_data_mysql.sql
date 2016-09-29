@@ -18,3 +18,9 @@ VALUES
 VALUES
 	('Testitapahtuma', '01.01.2017', '01:00', 'Nurkka', 'Ohjelmointi', 0, 'Erkki Esimerkki', 'Testitapahtuma, ei siis oikea tapahtuma.');
 	
+
+	
+INSERT INTO 
+	randomOsallistuja (henkiloId, tapahtumaId)
+VALUES
+	(1, 1);

@@ -26,3 +26,10 @@ CREATE TABLE randomOsallistuja (
 	FOREIGN KEY (tapahtumaId) REFERENCES Tapahtuma(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE tapOsallistuja (
+	id SMALLINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	henkiloId SMALLINT NOT NULL,
+	tapahtumaId SMALLINT NOT NULL,
+	FOREIGN KEY (henkiloId) REFERENCES Henkilo(id),
+	FOREIGN KEY (tapahtumaId) REFERENCES Tapahtuma(id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;

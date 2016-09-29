@@ -46,17 +46,28 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		String sql = "SELECT id, nimi, pvm, aika, paikka, teema, isanta, kuvaus, maxOsallistujamaara from Tapahtuma";
 		RowMapper<Tapahtuma> mapper = new TapahtumaRowMapper();
 		List<Tapahtuma> tapahtumat = jdbcTemplate.query(sql, mapper);
+		
+		//aseta osallistujat tapahtumiin
+		for(int i=0; i< tapahtumat.size(); i++) {
+			List<Henkilo> osallistujat = haeOsallistujat(tapahtumat.get(i).getId());
+			tapahtumat.get(i).setOsallistujat(osallistujat);
+		}
+		
 		return tapahtumat;
 	}
 
-	public List<Henkilo> haeOsallistujat() {
-		String sql = "SELECT h.etunimi, h.sukunimi, h.sahkoposti, h.id as henkId, t.id as TapId"
-				+ "FROM Henkilo h"
-				+ "LEFT JOIN randomOsallistuja o ON h.id = o.henkiloId"
-				+ "LEFT JOIN Tapahtuma t ON t.id = o.tapahtumaId "
-				+ "WHERE o.tapahtumaId = ?";
+	public List<Henkilo> haeOsallistujat(int tapId) {
+		//hakee tapahtuman kaikki osallistujat
+		String sql = "SELECT h.etunimi, h.sukunimi, h.sahkoposti, h.id as henkiloId, t.id as tapahtumaId"
+				+ " FROM Henkilo h"
+				+ " LEFT JOIN tapOsallistuja o ON h.id = o.henkiloId"
+				+ " LEFT JOIN Tapahtuma t ON t.id = o.tapahtumaId "
+				+ " WHERE o.tapahtumaId = ?";
+
 		RowMapper<Henkilo> mapper = new HenkiloRowMapper();
-		List<Henkilo> osallistujat = jdbcTemplate.query(sql, mapper);
+		Object[] parametrit = new Object[] { tapId };
+		List<Henkilo> osallistujat = jdbcTemplate.query(sql, parametrit, mapper);
+		
 		return osallistujat;
 
 	}
@@ -71,7 +82,7 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 	}
 
 	public Henkilo talleta(Henkilo h) {
-		final String sql = "insert into henkilo(etunimi, sukunimi, sahkoposti) values(?,?,?)";
+		final String sql = "insert into Henkilo(etunimi, sukunimi, sahkoposti) values(?,?,?)";
 
 		// anonyymi sis‰luokka tarvitsee vakioina v‰litett‰v‰t arvot,
 		// jotta roskien keruu onnistuu t‰m‰n metodin suorituksen p‰‰ttyess‰.
@@ -108,7 +119,7 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 
 		final int tapahtumaIdInt = Integer.parseInt(tapahtumaid);
 		final int henkId = h.getId();
-		final String sql = "INSERT INTO randomOsallistuja(henkiloId, tapahtumaid) VALUES(?,?)";
+		final String sql = "INSERT INTO tapOsallistuja(henkiloId, tapahtumaid) VALUES(?,?)";
 
 		// jdbc pist‰‰ generoidun id:n t‰nne talteen
 		KeyHolder idHolder = new GeneratedKeyHolder();
@@ -119,10 +130,10 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 			public PreparedStatement createPreparedStatement(
 					Connection connection) throws SQLException {
 				PreparedStatement ps = connection.prepareStatement(sql,
-						new String[] { "id" });
-				ps.setInt(1, henkId);
-				ps.setInt(2, tapahtumaIdInt);
-				return ps;
+				new String[] { "id" });
+					ps.setInt(1, henkId);
+					ps.setInt(2, tapahtumaIdInt);
+					return ps;
 			}
 		}, idHolder);
 

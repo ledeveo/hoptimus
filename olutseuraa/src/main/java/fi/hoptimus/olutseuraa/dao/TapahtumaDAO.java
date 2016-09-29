@@ -18,7 +18,7 @@ public interface TapahtumaDAO {
 	
 	public abstract void liityTapahtumaan(Henkilo h, String tapahtumaid);
 	
-	public abstract List<Henkilo> haeOsallistujat();
+	public abstract List<Henkilo> haeOsallistujat(int tapahtumaid);
 	
 	public abstract Henkilo talleta(Henkilo h);
 }

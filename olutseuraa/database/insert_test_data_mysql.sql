@@ -21,6 +21,6 @@ VALUES
 
 	
 INSERT INTO 
-	randomOsallistuja (henkiloId, tapahtumaId)
+	tapOsallistuja (henkiloId, tapahtumaId)
 VALUES
 	(1, 1);

@@ -36,33 +36,34 @@ public class OlutseuraaController {
 	// TODO:FORMIN TEKEMINEN | Tapahtuman luonti formi
 
 	// TODO:FORMIN TIETOJEN VASTAANOTTO & TALLETUS
-
-	// näytä liity sivun jälkeen tapahtumat tervehdyksellä
+	
+/*
+	// näytä kaikki tapahtumat liittymisen jälkeen ja laita tervehdys
 	@RequestMapping(value = "kaikki/{id}", method = RequestMethod.GET)
 	public String getView(@PathVariable Integer id, Model model) {
+		
 		List<Tapahtuma> tapahtumat = dao.haeKaikki();
-		List<Henkilo> osallistujat = dao.haeOsallistujat();
+		
 		if(id != null){
-			model.addAttribute("tervehdittava", osallistujat.get(id));
 			model.addAttribute("tapahtuma", tapahtumat.get(tapahtumat.size()-1));
 		}
+		
 		model.addAttribute("tapahtumat", tapahtumat);
-		model.addAttribute("osallistujat", osallistujat);
-		return "tapah/all";
-	}
-	
-	// TODO:TAPAHTUMIEN TIETOJEN NÄYTTÄMINEN | näytä kaikki tapahtumat
-	@RequestMapping(value = "kaikki", method = RequestMethod.GET)
-	public String getView( Model model) {
-		List<Tapahtuma> tapahtumat = dao.haeKaikki();
-		List<Henkilo> osallistujat = dao.haeOsallistujat();
-
-		model.addAttribute("tapahtumat", tapahtumat);
-		model.addAttribute("osallistujat", osallistujat);
 		
 		return "tapah/all";
 	}
-/*
+*/
+	// näytä kaikki tapahtumat
+	@RequestMapping(value = "kaikki", method = RequestMethod.GET)
+	public String getView( Model model) {
+		
+		List<Tapahtuma> tapahtumat = dao.haeKaikki();
+		
+		model.addAttribute("tapahtumat", tapahtumat);
+		
+		return "tapah/all";
+	}
+
 	// TAPAHTUMAN TIETOJEN NÄYTTÄMINEN
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
 	public String getView(@PathVariable Integer id, Model model) {
@@ -70,7 +71,7 @@ public class OlutseuraaController {
 		model.addAttribute("tapahtuma", tapahtuma);
 		return "tapah/view";
 	}
-*/
+
 	@PostMapping("/liity")
 	public String liita(@RequestParam Map<String,String> requestParams) {
 		String enimi = requestParams.get("etunimi");
@@ -90,7 +91,7 @@ public class OlutseuraaController {
 		
 		dao.liityTapahtumaan(h, eId);
 		
-		return "redirect:/tapahtumat/kaikki/" + h.getId();
+		return "redirect:kaikki/" + h.getId();
 
 	}
 

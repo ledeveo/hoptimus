@@ -1,0 +1,8 @@
+korjattavaa:
+ääkköset
+validointi (sähköposti, nimissä injektion esto)
+
+lisättävää:
+tapahtuman lisäys sivu
+timestamp - ajannäyttö Dateksi, kuukauduen nimi dynaamiseksi
+sähköpostin käyttö osallistujan lisäämiseksi, poistamiseksi

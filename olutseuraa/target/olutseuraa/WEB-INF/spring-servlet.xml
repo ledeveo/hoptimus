@@ -22,7 +22,7 @@
 	<!-- Configures the @Controller programming model -->
 	<mvc:annotation-driven />
 
-	<!-- Forwards requests to the "/" resource to the "index" view -->
+	<!-- Forwards requests to the "/" resource to the "etusivu" view -->
 	<mvc:view-controller path="/" view-name="etusivu" />
 	
 	<!-- location of static content (images, js and css files) -->

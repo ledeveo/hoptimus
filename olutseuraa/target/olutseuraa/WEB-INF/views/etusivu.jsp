@@ -5,8 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Olutseuraa - Hoptimus</title>
-<link rel="stylesheet" type="text/css"
-	href="resources/styles/tyylit.css">
+<link rel="stylesheet" type="text/css" href="resources/styles/tyylit.css">
 </head>
 <body>
 

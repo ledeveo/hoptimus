@@ -7,6 +7,19 @@ h1, h2, h3, h4, h5, h6 {
 html, body {
 	background: #7F9BB1;
 	overflow: auto;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+.container {
+	min-height: 100%;
+	position: relative;
+}
+
+.body {
+	padding: 10px;
+	padding-bottom: 6rem;
 }
 
 .header {
@@ -157,8 +170,136 @@ html, body {
 	text-align: center;
 	font-size: 1.2rem;
 	padding: 1rem;
-	width:100%;
-	margin-bottom:0px;
+	position: absolute;
+	width: 100%;
+	bottom: 0px;
+	height: 6rem;
+}
+
+.footer
+ 
+.inline-list
+ 
+a {
+	display: inline-block;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 2px;
+	font-size: 1.5rem;
+	color: #fff;
+	text-align: center;
+	line-height: 35px;
+	margin: 0 3px 0 0;
+}
+
+.footer
+ 
+.contact {
+	list-style-type: none;
+	margin: 0;
+	text-align: left;
+	color: #fff;
+}
+
+.footer
+ 
+.contact
+ 
+li {
+	margin-bottom: 2rem;
+}
+
+.footer
+ 
+.contact
+ 
+li
+ 
+p {
+	padding-left: 5rem;
+}
+
+.footer
+ 
+.contact
+ 
+i {
+	position: absolute;
+	color: #fff;
+	font-size: 2rem;
+	border-radius: 50%;
+	line-height: 1;
+	margin: 0 0 0 -4rem;
+	vertical-align: middle;
+	padding: .25em .45em;
+}
+
+.footer
+ 
+.copywrite {
+	color: #8f9296;
+	font-size: 0.875rem;
+	margin: 0 0 1rem 0;
+}
+
+.footer
+ 
+.about {
+	color: #92999f;
+	font-size: 0.875rem;
+	margin: 0 0 1rem 0;
+}
+
+.footer
+ 
+.footer-links
+ 
+a {
+	list-style: none;
+	font-weight: normal;
+	color: #fff;
+	padding: 3rem 0 2rem;
+	margin: 0;
+	font-size: 0.875rem;
+}
+
+.footer
+ 
+.footer-links
+ 
+a
+:
+:after {
+	content: "ò";
+	padding: 0 0.2rem 0 0.4rem;
+}
+
+.footer
+ 
+.footer-links
+ 
+a
+:last-child
+:
+:after {
+	content: "";
+	padding: 0 0.4rem 0 0.8rem;
+}
+
+@media only screen and (min-width: 40.063em) {
+	.footer p {
+		text-align: left;
+	}
+	.footer .social {
+		text-align: left;
+		margin: 0;
+	}
+	.footer .contact {
+		text-align: left;
+	}
+	.footer .contact>i {
+		margin-right: 1rem;
+	}
 }
 
 .footer .inline-list a {
@@ -231,25 +372,27 @@ html, body {
 }
 
 @media only screen and (min-width: 40.063em) {
-	.footer p {
+	.footer
+ 
+p {
 		text-align: left;
 	}
-	.footer .social {
+	.footer
+ 
+.social {
 		text-align: left;
 		margin: 0;
 	}
-	.footer .contact {
+	.footer
+ 
+.contact {
 		text-align: left;
 	}
-	.footer .contact>i {
+	.footer
+ 
+.contact>i {
 		margin-right: 1rem;
 	}
-}
-
-#myModal {
-	border-radius: 0.2rem;
-	background: #7F9BB1;
-	border: none;
 }
 
 #filtterit {
@@ -264,15 +407,7 @@ html, body {
 	border-radius: 0.3rem;
 	padding-right: 2.5rem;
 	padding-bottom: 0rem;
-	width:20%;
-}
-
-#osallistujat {
-	display: none;
-	position: fixed;
-	width: 10%;
-	right: 10%;
-	top: 5%;
+	width: 20%;
 }
 
 #beer {

@@ -1,4 +1,4 @@
-
+<div class="container">
 <header class="header show-for-medium">
 	<h1 class="headline">
 		Olutseuraa <small>by HoptimusPrime</small>
@@ -11,6 +11,9 @@
 					Kirjaudu</small></a></li>
 	</ul>
 </header>
+<div class="body">
+
+
 
 <c:if test="${not empty tervehdittava}">
 	<div id="success" class="callout success" data-closable>
@@ -35,3 +38,6 @@
 	<p class="text-center">Lisää sekä etu- että sukunimi!
 	<p>
 </div>
+
+
+

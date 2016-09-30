@@ -4,9 +4,10 @@
 		Olutseuraa <small>by HoptimusPrime</small>
 	</h1>
 	<ul class="header-subnav">
-		<li class="small-offset-1"><a href="#" class="is-active">Etsi
-				tapahtumia</a></li>
-		<li><a>Luo tapahtuma</a></li>
+		<li class="small-offset-1">
+			<a href="kaikki" class="is-active">Etsi tapahtumia</a></li>
+		<li>
+			<a href="uusi">Luo tapahtuma</a></li>
 		<li class="float-right"><a><i class="fi-arrow-right"></i><small>
 					Kirjaudu</small></a></li>
 	</ul>

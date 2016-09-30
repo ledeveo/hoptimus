@@ -32,12 +32,46 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 	}
 
 	public void talleta(Tapahtuma t) {
-		String sql = "INSERT INTO Tapahtuma(nimi, pvm, aika, paikka, teema, osallistujat, isanta, kuvaus) VALUES(?,?,?,?,?,?,?,?)";
-		Object[] parametrit = new Object[] { t.getNimi(), t.getPvm(),
-				t.getAika(), t.getPaikka(), t.getTeema(), t.getOsallistujat(),
-				t.getIsanta(), t.getKuvaus() };
 
-		jdbcTemplate.update(sql, parametrit);
+		final String sql = "INSERT INTO Tapahtuma(nimi, pvm, aika, paikka, teema, isanta, kuvaus, maxOsallistujamaara) VALUES(?,?,?,?,?,?,?,?)";
+
+		final String nimi, pvm, aika, paikka, teema, isanta, kuvaus;
+		final int maxOsallistujamaara;
+		nimi = t.getNimi();
+		pvm = t.getPvm();
+		aika = t.getPaikka();
+		paikka = t.getPaikka();
+		teema = t.getTeema();
+		isanta = t.getIsanta();
+		kuvaus = t.getKuvaus();
+		maxOsallistujamaara = t.getmaxOsallistujamaara();
+
+		// jdbc pist‰‰ generoidun id:n t‰nne talteen
+		KeyHolder idHolder = new GeneratedKeyHolder();
+
+		// suoritetaan p‰ivitys itse m‰‰ritellyll‰ PreparedStatementCreatorilla
+		// ja KeyHolderilla
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			public PreparedStatement createPreparedStatement(
+					Connection connection) throws SQLException {
+				PreparedStatement ps = connection.prepareStatement(sql,
+						new String[] { "id" });
+				ps.setString(1, nimi);
+				ps.setString(2, pvm);
+				ps.setString(3, aika);
+				ps.setString(4, paikka);
+				ps.setString(5, teema);
+				ps.setString(6, isanta);
+				ps.setString(7, kuvaus);
+				ps.setInt(8, maxOsallistujamaara);
+				return ps;
+			}
+		}, idHolder);
+
+		// tallennetaan id takaisin beaniin, koska
+		// kutsujalla pit‰isi olla viittaus samaiseen olioon
+		t.setId(idHolder.getKey().intValue());
+
 	}
 
 	public List<Tapahtuma> haeKaikki() {
@@ -46,18 +80,19 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		String sql = "SELECT id, nimi, pvm, aika, paikka, teema, isanta, kuvaus, maxOsallistujamaara from Tapahtuma";
 		RowMapper<Tapahtuma> mapper = new TapahtumaRowMapper();
 		List<Tapahtuma> tapahtumat = jdbcTemplate.query(sql, mapper);
-		
-		//aseta osallistujat tapahtumiin
-		for(int i=0; i< tapahtumat.size(); i++) {
-			List<Henkilo> osallistujat = haeOsallistujat(tapahtumat.get(i).getId());
+
+		// aseta osallistujat tapahtumiin
+		for (int i = 0; i < tapahtumat.size(); i++) {
+			List<Henkilo> osallistujat = haeOsallistujat(tapahtumat.get(i)
+					.getId());
 			tapahtumat.get(i).setOsallistujat(osallistujat);
 		}
-		
+
 		return tapahtumat;
 	}
 
 	public List<Henkilo> haeOsallistujat(int tapId) {
-		//hakee tapahtuman kaikki osallistujat
+		// hakee tapahtuman kaikki osallistujat
 		String sql = "SELECT h.etunimi, h.sukunimi, h.sahkoposti, h.id as henkiloId, t.id as tapahtumaId"
 				+ " FROM Henkilo h"
 				+ " LEFT JOIN tapOsallistuja o ON h.id = o.henkiloId"
@@ -66,8 +101,9 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 
 		RowMapper<Henkilo> mapper = new HenkiloRowMapper();
 		Object[] parametrit = new Object[] { tapId };
-		List<Henkilo> osallistujat = jdbcTemplate.query(sql, parametrit, mapper);
-		
+		List<Henkilo> osallistujat = jdbcTemplate
+				.query(sql, parametrit, mapper);
+
 		return osallistujat;
 
 	}
@@ -81,7 +117,7 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		jdbcTemplate.update(sql, parametrit);
 	}
 
-	public Henkilo talleta(Henkilo h) {
+	public void talleta(Henkilo h) {
 		final String sql = "insert into Henkilo(etunimi, sukunimi, sahkoposti) values(?,?,?)";
 
 		// anonyymi sis‰luokka tarvitsee vakioina v‰litett‰v‰t arvot,
@@ -110,9 +146,6 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		// tallennetaan id takaisin beaniin, koska
 		// kutsujalla pit‰isi olla viittaus samaiseen olioon
 		h.setId(idHolder.getKey().intValue());
-
-		return h;
-
 	}
 
 	public void liityTapahtumaan(Henkilo h, String tapahtumaid) {
@@ -130,10 +163,10 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 			public PreparedStatement createPreparedStatement(
 					Connection connection) throws SQLException {
 				PreparedStatement ps = connection.prepareStatement(sql,
-				new String[] { "id" });
-					ps.setInt(1, henkId);
-					ps.setInt(2, tapahtumaIdInt);
-					return ps;
+						new String[] { "id" });
+				ps.setInt(1, henkId);
+				ps.setInt(2, tapahtumaIdInt);
+				return ps;
 			}
 		}, idHolder);
 

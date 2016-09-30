@@ -1,20 +1,10 @@
-<%@page contentType="text/html;charset=UTF-8"%>
-<%@page pageEncoding="UTF-8"%>
-<%@ page session="false" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Olutseuraa - Hoptimus</title>
-<link rel="stylesheet" type="text/css" href="resources/styles/tyylit.css">
-</head>
+
+<%@ include file="head-include.jsp"%>
 <body>
+<%@ include file="header.jsp"%>
 
 	<h1>Olutseuraa - Hoptimus</h1>
-	<p>Olutseuraa vuodesta 2016 lÃ¤htien</p>
+	<p>Olutseuraa vuodesta 2016 lähtien</p>
 
 	<table>
 		<caption>Tapahtuma</caption>
@@ -45,5 +35,9 @@
 				</tr>
 		</tbody>
 	</table>
-</body>
-</html>
+	
+	
+	
+	
+		<%@ include file="footer.jsp"%>
+

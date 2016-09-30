@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fi.hoptimus.olutseuraa.bean.Henkilo;
+import fi.hoptimus.olutseuraa.bean.HenkiloImpl;
 import fi.hoptimus.olutseuraa.bean.Tapahtuma;
 import fi.hoptimus.olutseuraa.dao.TapahtumaDAO;
 
@@ -35,14 +36,31 @@ public class OlutseuraaController {
 	// TODO:FORMIN TEKEMINEN | Tapahtuman luonti formi
 
 	// TODO:FORMIN TIETOJEN VASTAANOTTO & TALLETUS
-
-	// TODO:TAPAHTUMIEN TIETOJEN NÄYTTÄMINEN | näytä kaikki tapahtumat
-	@RequestMapping(value = "kaikki", method = RequestMethod.GET)
-	public String getView(Model model) {
+	
+/*
+	// näytä kaikki tapahtumat liittymisen jälkeen ja laita tervehdys
+	@RequestMapping(value = "kaikki/{id}", method = RequestMethod.GET)
+	public String getView(@PathVariable Integer id, Model model) {
+		
 		List<Tapahtuma> tapahtumat = dao.haeKaikki();
-		List<Henkilo> osallistujat = dao.haeOsallistujat();
+		
+		if(id != null){
+			model.addAttribute("tapahtuma", tapahtumat.get(tapahtumat.size()-1));
+		}
+		
 		model.addAttribute("tapahtumat", tapahtumat);
-		model.addAttribute("osallistujat", osallistujat);
+		
+		return "tapah/all";
+	}
+*/
+	// näytä kaikki tapahtumat
+	@RequestMapping(value = "kaikki", method = RequestMethod.GET)
+	public String getView( Model model) {
+		
+		List<Tapahtuma> tapahtumat = dao.haeKaikki();
+		
+		model.addAttribute("tapahtumat", tapahtumat);
+		
 		return "tapah/all";
 	}
 
@@ -64,11 +82,16 @@ public class OlutseuraaController {
 		System.out.println("Liity -servicessä hlo: " + enimi + ", " + snimi + ", sähköposti: " + sposti);
 		System.out.println("Haluaa liittyä tapahtumaan nro: " + eId);
 		
-		dao.liityTapahtumaan(enimi, snimi, sposti, eId);
+		Henkilo h = new HenkiloImpl();
+		h.setEtunimi(enimi);
+		h.setSukunimi(snimi);
+		h.setSahkoposti(sposti);
 		
-				
+		h = dao.talleta(h); //tallettaa henkilon tietokantaan ja palauttaa sen id:llä
 		
-		return "redirect:kaikki";
+		dao.liityTapahtumaan(h, eId);
+		
+		return "redirect:kaikki"; // + "/" + h.getId();
 
 	}
 

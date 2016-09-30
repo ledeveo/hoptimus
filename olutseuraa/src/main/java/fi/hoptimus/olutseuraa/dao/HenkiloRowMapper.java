@@ -12,11 +12,12 @@ public class HenkiloRowMapper implements RowMapper<Henkilo>{
 
 
 	public Henkilo mapRow(ResultSet rs, int rowNum) throws SQLException {
-		Henkilo t = new HenkiloImpl();
-		t.setEtunimi(rs.getString("etunimi"));
-		t.setSukunimi(rs.getString("sukunimi"));		
-		
-		return t;
+		Henkilo h = new HenkiloImpl();
+		h.setEtunimi(rs.getString("h.etunimi"));
+		h.setSukunimi(rs.getString("h.sukunimi"));
+		h.setSukunimi(rs.getString("h.sahkoposti"));		
+		h.setId(rs.getInt("henkiloId"));
+		return h;
 	}
 
 }

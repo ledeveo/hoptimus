@@ -59,12 +59,13 @@
 							<h5>
 								Osallistujat: <span data-tooltip aria-haspopup="true"
 									class="has-tip" data-disable-hover="false"
-									title="<c:if test="${empty osallistujat}" >Ole ensimmäinen tapahtumaan ilmoittautuva!</c:if>
-									<c:forEach items="${osallistujat}" varStatus="loop" var="i" ><c:out value="${i}"/><c:if test="${!loop.last}">, </c:if></c:forEach>">
+									title="<c:if test="${empty event.osallistujat}" >Ole ensimmäinen tapahtumaan ilmoittautuva!</c:if>
+									<c:forEach items="${event.osallistujat}" varStatus="loop" var="i" ><c:out value="${i}"/><c:if test="${!loop.last}">, </c:if></c:forEach>">
 									<c:out
-										value="${fn:length(osallistujat)}/${event.maxOsallistujamaara}" />
+										value="${fn:length(event.osallistujat)}/${event.maxOsallistujamaara}" />
 								</span>
 							</h5>
+						
 
 							<h5>
 								Isäntä:

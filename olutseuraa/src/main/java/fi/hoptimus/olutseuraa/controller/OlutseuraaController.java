@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import fi.hoptimus.olutseuraa.bean.Henkilo;
 import fi.hoptimus.olutseuraa.bean.HenkiloImpl;
 import fi.hoptimus.olutseuraa.bean.Tapahtuma;
+import fi.hoptimus.olutseuraa.bean.TapahtumaImpl;
 import fi.hoptimus.olutseuraa.dao.TapahtumaDAO;
 
 @Controller
@@ -33,34 +35,32 @@ public class OlutseuraaController {
 		this.dao = dao;
 	}
 
-	// TODO:FORMIN TEKEMINEN | Tapahtuman luonti formi
+	// FORMIN TEKEMINEN | Tapahtuman luonti formi
+	@RequestMapping(value = "uusi", method = RequestMethod.GET)
+	public String getCreateForm(Model model) {
+		Tapahtuma tyhjaTapahtuma = new TapahtumaImpl();
+		// tyhjaTapahtuma.setNimi("halleluja");
 
-	// TODO:FORMIN TIETOJEN VASTAANOTTO & TALLETUS
-	
-/*
-	// näytä kaikki tapahtumat liittymisen jälkeen ja laita tervehdys
-	@RequestMapping(value = "kaikki/{id}", method = RequestMethod.GET)
-	public String getView(@PathVariable Integer id, Model model) {
-		
-		List<Tapahtuma> tapahtumat = dao.haeKaikki();
-		
-		if(id != null){
-			model.addAttribute("tapahtuma", tapahtumat.get(tapahtumat.size()-1));
-		}
-		
-		model.addAttribute("tapahtumat", tapahtumat);
-		
-		return "tapah/all";
+		model.addAttribute("tapahtuma", tyhjaTapahtuma);
+		return "tapah/luoTapahtuma";
 	}
-*/
+
+	// FORMIN TIETOJEN VASTAANOTTO & TALLETUS
+	@RequestMapping(value = "uusi", method = RequestMethod.POST)
+	public String create(
+			@ModelAttribute(value = "tapahtuma") TapahtumaImpl tapahtuma) {
+		dao.talleta(tapahtuma);
+		return "redirect:/tapahtumat/" + tapahtuma.getId();
+	}
+
 	// näytä kaikki tapahtumat
 	@RequestMapping(value = "kaikki", method = RequestMethod.GET)
-	public String getView( Model model) {
-		
+	public String getView(Model model) {
+
 		List<Tapahtuma> tapahtumat = dao.haeKaikki();
-		
+
 		model.addAttribute("tapahtumat", tapahtumat);
-		
+
 		return "tapah/all";
 	}
 
@@ -73,25 +73,27 @@ public class OlutseuraaController {
 	}
 
 	@PostMapping("/liity")
-	public String liita(@RequestParam Map<String,String> requestParams) {
+	public String liita(@RequestParam Map<String, String> requestParams) {
 		String enimi = requestParams.get("etunimi");
 		String snimi = requestParams.get("sukunimi");
 		String sposti = requestParams.get("sposti");
 		String eId = requestParams.get("eventid");
-		
-		System.out.println("Liity -servicessä hlo: " + enimi + ", " + snimi + ", sähköposti: " + sposti);
+
+		System.out.println("Liity -servicessä hlo: " + enimi + ", " + snimi
+				+ ", sähköposti: " + sposti);
 		System.out.println("Haluaa liittyä tapahtumaan nro: " + eId);
-		
+
 		Henkilo h = new HenkiloImpl();
 		h.setEtunimi(enimi);
 		h.setSukunimi(snimi);
 		h.setSahkoposti(sposti);
-		
-		h = dao.talleta(h); //tallettaa henkilon tietokantaan ja palauttaa sen id:llä
-		
+
+		dao.talleta(h); // tallettaa henkilon tietokantaan ja palauttaa sen
+						// id:llä
+
 		dao.liityTapahtumaan(h, eId);
-		
-		return "redirect:kaikki"; // + "/" + h.getId();
+
+		return "redirect:kaikki";
 
 	}
 

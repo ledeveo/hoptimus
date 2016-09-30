@@ -91,7 +91,7 @@ public class OlutseuraaController {
 		
 		dao.liityTapahtumaan(h, eId);
 		
-		return "redirect:kaikki/" + h.getId();
+		return "redirect:kaikki"; // + "/" + h.getId();
 
 	}
 

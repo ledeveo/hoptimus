@@ -3,12 +3,15 @@
  */
 
 // Hakufilttereiden togglaaminen
+$(document).ready(function() {
 $("#showFilters").click(function() {
 	$("#filtterit").toggle("slow", function() {
 	});
 });
+});
 
 // Togglaa liittymisformia
+$(document).ready(function() {
 $(".tutustu").click(function(e) {
 	var id = $(this).attr('id');
 	$("#exp" + id).slideToggle("slow", function() {
@@ -17,8 +20,10 @@ $(".tutustu").click(function(e) {
 		}, 2000);
 	});
 });
+});
 
 // sulkee liittymisformin
+$(document).ready(function() {
 $("body, .peruuta").click(function() {
 	$(".expandable").slideUp('fast');
 });
@@ -26,12 +31,14 @@ $("body, .peruuta").click(function() {
 $(".event").click(function(e) { 
 	e.stopPropagation();
 });
+});
 
 $(document).ready(function() {
 	$('#success').fadeIn("fast", function() {
 	});
 });
 
+$(document).ready(function() {
 $(".subcheck").click(function(e) {
 	var id = $(this).attr('id');
 	var enimi = $.trim($("#enimi" + id).val());
@@ -41,9 +48,9 @@ $(".subcheck").click(function(e) {
 		event.preventDefault();
 		$("#inputvirhe").fadeIn("fast").delay(1500).fadeOut("slow");
 	}
-})
+});
+});
 
-// window.onload = function (event) {
-// window.location.hash = "#testi";
-// };
+
+
 

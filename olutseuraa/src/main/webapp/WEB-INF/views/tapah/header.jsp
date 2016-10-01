@@ -1,17 +1,18 @@
-
+<div class="container">
 <header class="header show-for-medium">
-	<h1 class="headline">
-		Olutseuraa <small>by HoptimusPrime</small>
+	<h1 class="headline"><a href="../">
+		Olutseuraa <small>by HoptimusPrime</small></a>
 	</h1>
 	<ul class="header-subnav">
 		<li class="small-offset-1">
-			<a href="kaikki" class="is-active">Etsi tapahtumia</a></li>
+			<a href="kaikki" id="et">Etsi tapahtumia</a></li>
 		<li>
-			<a href="uusi">Luo tapahtuma</a></li>
+			<a href="uusi" id="lt">Luo tapahtuma</a></li>
 		<li class="float-right"><a><i class="fi-arrow-right"></i><small>
 					Kirjaudu</small></a></li>
 	</ul>
 </header>
+<div class="body">
 
 <c:if test="${not empty tervehdittava}">
 	<div id="success" class="callout success" data-closable>
@@ -29,10 +30,13 @@
 	</div>
 </c:if>
 
-
-
-
 <div id="inputvirhe" class="callout warning">
 	<p class="text-center">Lis‰‰ sek‰ etu- ett‰ sukunimi!
 	<p>
 </div>
+
+<script>
+$(document).ready(function() {
+	$("#lt").addClass("is-active");
+});
+</script>

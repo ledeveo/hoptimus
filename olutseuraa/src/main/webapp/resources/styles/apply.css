@@ -7,7 +7,20 @@ h1, h2, h3, h4, h5, h6 {
 html, body {
 	background: #7F9BB1;
 	overflow: auto;
+	margin: 0;
+	padding: 0;
+	height: 100%;
 }
+
+.container {
+	min-height: 100%;
+	position: relative;
+}
+
+.body {
+	padding-top: 3rem;
+	padding-bottom: 8rem;
+ }
 
 .header {
 	font-family: "Anonymous Pro", monospace;
@@ -20,10 +33,11 @@ html, body {
 	padding-bottom: 4.9rem;
 }
 
-.header .headline {
+.header .headline a{
 	color: #ffe;
 	font-family: "Press Start 2P", cursive;
 	font-size: 1.5rem;
+	color: #ffe;
 }
 
 .header-subnav {
@@ -158,7 +172,9 @@ html, body {
 	font-size: 1.2rem;
 	padding: 1rem;
 	width:100%;
-	margin-bottom:0px;
+	position:absolute;
+	bottom:0px;
+	height: 6rem;
 }
 
 .footer .inline-list a {
@@ -246,12 +262,6 @@ html, body {
 	}
 }
 
-#myModal {
-	border-radius: 0.2rem;
-	background: #7F9BB1;
-	border: none;
-}
-
 #filtterit {
 	display: none;
 }
@@ -265,14 +275,6 @@ html, body {
 	padding-right: 2.5rem;
 	padding-bottom: 0rem;
 	width:20%;
-}
-
-#osallistujat {
-	display: none;
-	position: fixed;
-	width: 10%;
-	right: 10%;
-	top: 5%;
 }
 
 #beer {
@@ -290,10 +292,6 @@ html, body {
 	background: #EE8A8A;
 	width: 100%;
 	color: white;
-}
-
-.main-content {
-	margin-top: 50px;
 }
 
 * {

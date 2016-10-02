@@ -29,4 +29,3 @@
 <link rel="shortcut icon" href="img/beer.png" />
 </head>
 
-<body>

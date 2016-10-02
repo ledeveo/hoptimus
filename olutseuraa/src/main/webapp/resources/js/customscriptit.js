@@ -14,11 +14,7 @@ $("#showFilters").click(function() {
 $(document).ready(function() {
 $(".tutustu").click(function(e) {
 	var id = $(this).attr('id');
-	$("#exp" + id).slideToggle("slow", function() {
-		$('html, body').animate({
-			scrollTop : $("#ilmo").offset().top
-		}, 2000);
-	});
+	$("#exp" + id).slideToggle("slow")
 });
 });
 

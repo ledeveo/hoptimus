@@ -1,11 +1,11 @@
 <div class="container">
 <header class="header show-for-medium">
-	<h1 class="headline"><a href="../">
+	<h1 class="headline  pressStart"><a href="../">
 		Olutseuraa <small>by HoptimusPrime</small></a>
 	</h1>
 	<ul class="header-subnav">
 		<li class="small-offset-1">
-			<a href="kaikki" id="et">Etsi tapahtumia</a></li>
+			<a href="kaikki" id="et">Hae tapahtumia</a></li>
 		<li>
 			<a href="uusi" id="lt">Luo tapahtuma</a></li>
 		<li class="float-right"><a><i class="fi-arrow-right"></i><small>
@@ -35,8 +35,4 @@
 	<p>
 </div>
 
-<script>
-$(document).ready(function() {
-	$("#lt").addClass("is-active");
-});
-</script>
+

@@ -7,6 +7,7 @@
 	font-family: "Press Start 2P", cursive;
 	color: #ffe;
 	font-size: 1.5rem;
+	padding-bottom:1.5rem;
 }
 
 html, body {
@@ -16,7 +17,7 @@ html, body {
 	height: 100%;
 }
 
-/*
+/*Tällä sai scrollbarin piiloon, jos haluaa
 ::-webkit-scrollbar { 
 display: none; 
 }*/

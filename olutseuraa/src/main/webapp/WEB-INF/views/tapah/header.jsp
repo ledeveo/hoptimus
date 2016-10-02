@@ -5,9 +5,9 @@
 	</h1>
 	<ul class="header-subnav">
 		<li class="small-offset-1">
-			<a href="kaikki" id="et">Hae tapahtumia</a></li>
+			<a href="kaikki" id="kaikki">Hae tapahtumia</a></li>
 		<li>
-			<a href="uusi" id="lt">Luo tapahtuma</a></li>
+			<a href="uusi" id="uusi">Luo tapahtuma</a></li>
 		<li class="float-right"><a><i class="fi-arrow-right"></i><small>
 					Kirjaudu</small></a></li>
 	</ul>

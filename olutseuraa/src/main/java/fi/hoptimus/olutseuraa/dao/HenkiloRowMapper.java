@@ -15,7 +15,7 @@ public class HenkiloRowMapper implements RowMapper<Henkilo>{
 		Henkilo h = new HenkiloImpl();
 		h.setEtunimi(rs.getString("h.etunimi"));
 		h.setSukunimi(rs.getString("h.sukunimi"));
-		h.setSukunimi(rs.getString("h.sahkoposti"));		
+		h.setSahkoposti(rs.getString("h.sahkoposti"));		
 		h.setId(rs.getInt("henkiloId"));
 		return h;
 	}

@@ -1,5 +1,6 @@
 package fi.hoptimus.olutseuraa.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -40,7 +41,7 @@ public class OlutseuraaController {
 	public String getCreateForm(Model model) {
 		Tapahtuma tyhjaTapahtuma = new TapahtumaImpl();
 		// tyhjaTapahtuma.setNimi("halleluja");
-
+		initModelList(model);
 		model.addAttribute("tapahtuma", tyhjaTapahtuma);
 		return "tapah/luoTapahtuma";
 	}
@@ -94,6 +95,18 @@ public class OlutseuraaController {
 		dao.liityTapahtumaan(h, eId);
 
 		return "redirect:kaikki";
+
+	}
+
+	private void initModelList(Model model) {
+
+		List<Integer> osallistujat = new ArrayList<Integer>();
+		osallistujat.add(5);
+		osallistujat.add(10);
+		osallistujat.add(20);
+		osallistujat.add(50);
+		osallistujat.add(100);
+		model.addAttribute("osallistujat", osallistujat);
 
 	}
 

@@ -27,7 +27,7 @@ display: none;
 	position: relative;
 }
 
-.body {
+#body {
 	padding-top: 1.5rem;
 	padding-bottom: 7rem;
 }
@@ -278,10 +278,12 @@ display: none;
 	position: relative;
 	width: 100%;
 	margin: 0;
-	padding: 2rem 0 2rem 0;
 	list-style: none;
 	/*background: url("../img/beer.jpg") no-repeat center center;*/
 	text-align: center;
+	 position: relative;
+  top: 25%;
+  transform: translateY(-25%);
 }
 
 .overlay-menu li {

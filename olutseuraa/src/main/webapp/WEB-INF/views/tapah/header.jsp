@@ -12,7 +12,7 @@
 					Kirjaudu</small></a></li>
 	</ul>
 </header>
-<div class="body">
+<div id="body">
 
 <c:if test="${not empty tervehdittava}">
 	<div id="success" class="callout success" data-closable>

@@ -29,7 +29,7 @@
 					<td><c:out value="${tapahtuma.aika}" /></td>
 					<td><c:out value="${tapahtuma.paikka}" /></td>
 					<td><c:out value="${tapahtuma.teema}" /></td>
-					<td><c:out value="${tapahtuma.osallistujat}" /></td>
+					<td><c:out value="${tapahtuma.maxOsallistujamaara}" /></td>
 					<td><c:out value="${tapahtuma.isanta}" /></td>
 					<td><c:out value="${tapahtuma.kuvaus}" /></td>
 				</tr>

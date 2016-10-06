@@ -6,7 +6,6 @@
 <div class="row">
 		<div class="small-12 medium-8 medium-offset-2 columns main-content">
 
-
 			<c:forEach items="${tapahtumat}" var="event" varStatus="iteration">
 
 				<c:set var="paiva" value="${event.pvm}" />
@@ -104,7 +103,7 @@
 										</div>
 									</fieldset>
 								</div>
-								<button type="submit" class="button success center subcheck"
+								<button type="submit" class="button success float-center subcheck"
 									id="<c:out value="${iteration.count}" /> ">
 									Ilmoittaudu <i class="fi-check"></i>
 								</button>

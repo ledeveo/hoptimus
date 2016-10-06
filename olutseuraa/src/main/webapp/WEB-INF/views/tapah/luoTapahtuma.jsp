@@ -16,11 +16,11 @@
 					<div class="row">
 						<p class="small-6 columns">
 							<form:label class="lead" path="pvm">P‰iv‰m‰‰r‰</form:label>
-							<form:input path="pvm" />
+							<form:input type="date" path="pvm" />
 						</p>
 						<p class="small-6 columns">
 							<form:label class="lead" path="aika">Kellonaika</form:label>
-							<form:input path="aika" />
+							<form:input type="time" path="aika" />
 						</p>
 					</div>
 					<div class="row">

@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -59,7 +61,9 @@ public class OlutseuraaController {
 	public String getView(Model model) {
 
 		List<Tapahtuma> tapahtumat = dao.haeKaikki();
+		Henkilo tyhjaHenkilo = new HenkiloImpl();
 
+		model.addAttribute("henkilo", tyhjaHenkilo);
 		model.addAttribute("tapahtumat", tapahtumat);
 
 		return "tapah/all";
@@ -74,27 +78,36 @@ public class OlutseuraaController {
 	}
 
 	@PostMapping("/liity")
-	public String liita(@RequestParam Map<String, String> requestParams) {
-		String enimi = requestParams.get("etunimi");
-		String snimi = requestParams.get("sukunimi");
-		String sposti = requestParams.get("sposti");
+	public String liita(
+			@ModelAttribute(value = "henkilo") @Valid HenkiloImpl henkilo,
+			BindingResult result,
+			@RequestParam Map<String, String> requestParams) {
+
 		String eId = requestParams.get("eventid");
 
-		System.out.println("Liity -servicessä hlo: " + enimi + ", " + snimi
-				+ ", sähköposti: " + sposti);
-		System.out.println("Haluaa liittyä tapahtumaan nro: " + eId);
+		/*
+		 * String enimi = requestParams.get("etunimi"); String snimi =
+		 * requestParams.get("sukunimi"); String sposti =
+		 * requestParams.get("sposti");
+		 * 
+		 * System.out.println("Liity -servicessä hlo: " + enimi + ", " + snimi +
+		 * ", sähköposti: " + sposti);
+		 * System.out.println("Haluaa liittyä tapahtumaan nro: " + eId);
+		 * 
+		 * Henkilo h = new HenkiloImpl(); h.setEtunimi(enimi);
+		 * h.setSukunimi(snimi); h.setSahkoposti(sposti);
+		 */
+		if (result.hasErrors()) {
+			return "redirect:kaikki";
+		} else {
+			dao.talleta(henkilo); // tallettaa henkilon tietokantaan ja
+									// palauttaa sen
+			// id:llä
 
-		Henkilo h = new HenkiloImpl();
-		h.setEtunimi(enimi);
-		h.setSukunimi(snimi);
-		h.setSahkoposti(sposti);
+			dao.liityTapahtumaan(henkilo, eId);
 
-		dao.talleta(h); // tallettaa henkilon tietokantaan ja palauttaa sen
-						// id:llä
-
-		dao.liityTapahtumaan(h, eId);
-
-		return "redirect:kaikki";
+			return "redirect:kaikki";
+		}
 
 	}
 

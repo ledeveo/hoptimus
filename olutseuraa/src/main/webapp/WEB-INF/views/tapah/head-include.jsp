@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://www.springframework.org/tags"  prefix="spring"%>
 
 <!DOCTYPE html>
 <html class="no-js" lang="en" dir="ltr">
@@ -25,6 +26,8 @@
 	href="../resources/styles/apply.css">
 <link rel="stylesheet" type="text/css"
 	href="../resources/styles/tyylit.css">
+	<link rel="stylesheet" type="text/css"
+	href="../resources/styles/form.css">
 <title>Olutseuraa</title>
 <link rel="shortcut icon" href="img/beer.png" />
 </head>

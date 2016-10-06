@@ -1,10 +1,21 @@
 
 <%@ include file="head-include.jsp"%>
 <body>
-<%@ include file="header.jsp"%>
+	<%@ include file="header.jsp"%>
 
-<div class="row">
+	<div class="row">
 		<div class="small-12 medium-8 medium-offset-2 columns main-content">
+		
+		
+								<spring:hasBindErrors name="henkilo">
+									<p class="Virheotsikko">
+										<spring:message code="henk.create.errors" />
+										:
+									</p>
+									<div class="Virheblokki">
+										<form:errors path="*" />
+									</div>
+								</spring:hasBindErrors>
 
 			<c:forEach items="${tapahtumat}" var="event" varStatus="iteration">
 
@@ -54,7 +65,7 @@
 								Teema:
 								<c:out value="${event.teema}" />
 							</h5>
-							
+
 							<h5>
 								Osallistujat: <span data-tooltip aria-haspopup="true"
 									class="has-tip" data-disable-hover="false"
@@ -64,46 +75,86 @@
 										value="${fn:length(event.osallistujat)}/${event.maxOsallistujamaara}" />
 								</span>
 							</h5>
-						
+
 
 							<h5>
 								Isäntä:
 								<c:out value="${event.isanta}" />
 							</h5>
 						</div>
-						<h4 class="text-center">"<c:out value="${event.kuvaus}" />"
+						<h4 class="text-center">
+							"
+							<c:out value="${event.kuvaus}" />
+							"
 						</h4>
 						<article class="row expandable"
 							id="<c:out value="${'exp'}${iteration.count}"/>">
 							<hr>
 							<h5 id="ilmo">Ilmoittaudu tapahtumaan</h5>
-							<form:form method="POST" action="liity">
+							<form:form method="POST" action="liity" modelAttribute="henkilo">
+
+
+
 								<div class="row">
 									<fieldset>
 										<div class="medium-6 columns">
 
+											<form:label path="etunimi">
+												<spring:message code="henk.create.firstname" />
+											</form:label>
+											<br />
+											<form:input path="etunimi" cssErrorClass="VirheellinenKentta" />
+											<form:errors path="etunimi" cssClass="Virheteksti" />
+
+											<!-- 
 											<label>Etunimi <input type="text" name="etunimi"
 												id="<c:out value="${'snimi'}${iteration.count}"/>"
 												placeholder="Kirjoita tähän etunimesi">
 											</label>
+											-->
 										</div>
 										<div class="medium-6 columns">
-											<label>Sukunimi <input type="text" name="sukunimi"
+											<p>
+											<form:label path="sukunimi">
+												<spring:message code="henk.create.lastname" />
+											</form:label>
+											</p>
+											<br />
+											<p>
+											<form:input path="sukunimi"
+												cssErrorClass="VirheellinenKentta" />
+											<form:errors path="sukunimi" cssClass="Virheteksti" />
+											</p>
+
+											<!--  <label>Sukunimi <input type="text" name="sukunimi"
 												id="<c:out value="${'enimi'}${iteration.count}"/>"
 												placeholder="...ja tähän sukunimesi">
 											</label>
+											-->
 										</div>
 
 										<div class="medium-12 columns">
-											<label>Sähköposti <input type="text" name="sposti"
+
+											<form:label path="sahkoposti">
+												<spring:message code="henk.create.email" />
+											</form:label>
+											<br />
+											<form:input path="sahkoposti"
+												cssErrorClass="VirheellinenKentta" />
+											<form:errors path="sahkoposti" cssClass="Virheteksti" />
+
+											<!-- <label>Sähköposti <input type="text" name="sposti"
 												placeholder="...sähköpostiosoitteesi">
-											</label> <input type="hidden" name="eventid"
+											</label>-->
+
+											<input type="hidden" name="eventid"
 												value="<c:out value="${event.id}"/>" />
+
 
 										</div>
 									</fieldset>
 								</div>
-								<button type="submit" class="button success float-center subcheck"
+								<button type="submit" class="button success float-center"
 									id="<c:out value="${iteration.count}" /> ">
 									Ilmoittaudu <i class="fi-check"></i>
 								</button>
@@ -117,9 +168,8 @@
 
 
 		</div>
-	</div>	
-	
+	</div>
+
 
 
 	<%@ include file="footer.jsp"%>
-	

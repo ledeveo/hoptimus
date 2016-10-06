@@ -1,10 +1,27 @@
 package fi.hoptimus.olutseuraa.bean;
 
-public class HenkiloImpl implements Henkilo {
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
+
+
+@Entity
+@Table(name = "Henkilo")
+public class HenkiloImpl implements Henkilo {
+	
 	private int id;
+	
+	
+	@Size(min = 1, max = 255)
 	private String etunimi;
+	
+	@Size(min = 1, max = 255)
 	private String sukunimi;
+	
+	@Size(min = 1, max = 255)
+	@Email
 	private String sahkoposti;
 	
 

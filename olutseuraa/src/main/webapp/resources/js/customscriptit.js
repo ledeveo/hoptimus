@@ -2,6 +2,15 @@
  * sekalaisia scriptejä sivuston eri toimintoja varten
  */
 
+//Togglaa liittymisformia
+$(document).ready(function() {
+$(".tutustu").click(function(e) {
+	var id = $(this).attr('id');
+	$("#exp" + id).slideToggle("slow")
+});
+});
+
+
 //Korostaa aktiivisen tabin subnavissa, urlin perusteella
 $(document).ready(function() {
     var x = document.URL;
@@ -19,13 +28,7 @@ $("#showFilters").click(function() {
 });
 });
 
-// Togglaa liittymisformia
-$(document).ready(function() {
-$(".tutustu").click(function(e) {
-	var id = $(this).attr('id');
-	$("#exp" + id).slideToggle("slow")
-});
-});
+
 
 // sulkee avoimet liittymisformit
 $(document).ready(function() {
@@ -59,6 +62,7 @@ $(".subcheck").click(function(e) {
 	}
 });
 });
+
 
 
 

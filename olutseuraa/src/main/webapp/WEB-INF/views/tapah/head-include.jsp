@@ -29,10 +29,7 @@
 	href="../resources/styles/apply.css">
 <link rel="stylesheet" type="text/css"
 	href="../resources/styles/tyylit.css">
-<<<<<<< HEAD
-=======
-	
->>>>>>> 9a25cca6a05e3198fdb63d7ede3975cbbf53b32e
+
 <title>Olutseuraa</title>
 <link rel="shortcut icon" href="img/beer.png" />
 </head>

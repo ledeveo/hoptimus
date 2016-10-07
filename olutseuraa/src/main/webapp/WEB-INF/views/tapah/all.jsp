@@ -74,14 +74,13 @@
 									<c:out
 										value="${fn:length(event.osallistujat)}/${event.maxOsallistujamaara}" />
 								</span>
-							</h5>
-							</div>
-							
+							</h5>											
 							
 							<h5>
 								Isäntä:
 								<c:out value="${event.isanta}" />
 							</h5>
+									</div>
 						
 						<div class="small-12 columns">
 						<h4 class="text-center">

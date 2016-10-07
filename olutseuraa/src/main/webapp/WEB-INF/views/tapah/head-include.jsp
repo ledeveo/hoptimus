@@ -1,16 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+	<%@page pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://www.springframework.org/tags"  prefix="spring"%>
+<%@ page session="false" %>
 
 <!DOCTYPE html>
 <html class="no-js" lang="en" dir="ltr">
 <head>
 
-<meta charset="UTF-8">
+
+
+<!--  <meta charset="UTF-8">-->
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css?family=Press+Start+2P"
@@ -26,6 +29,10 @@
 	href="../resources/styles/apply.css">
 <link rel="stylesheet" type="text/css"
 	href="../resources/styles/tyylit.css">
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 9a25cca6a05e3198fdb63d7ede3975cbbf53b32e
 <title>Olutseuraa</title>
 <link rel="shortcut icon" href="img/beer.png" />
 </head>

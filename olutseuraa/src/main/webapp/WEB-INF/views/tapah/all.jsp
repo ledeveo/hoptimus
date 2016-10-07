@@ -5,8 +5,10 @@
 
 	<div class="row">
 		<div class="small-12 medium-8 medium-offset-2 columns main-content">
-		
-		
+
+			<c:forEach items="${tapahtumat}" var="event" varStatus="iteration">
+			
+			
 								<spring:hasBindErrors name="henkilo">
 									<p class="Virheotsikko">
 										<spring:message code="henk.create.errors" />
@@ -16,8 +18,6 @@
 										<form:errors path="*" />
 									</div>
 								</spring:hasBindErrors>
-
-			<c:forEach items="${tapahtumat}" var="event" varStatus="iteration">
 
 				<c:set var="paiva" value="${event.pvm}" />
 				<c:set var="fmtpaiva" value="${fn:substring(paiva, 0, 2)}" />
@@ -74,35 +74,36 @@
 									<c:out
 										value="${fn:length(event.osallistujat)}/${event.maxOsallistujamaara}" />
 								</span>
-							</h5>
-
-
+							</h5>											
+							
 							<h5>
 								Isäntä:
 								<c:out value="${event.isanta}" />
 							</h5>
-						</div>
+									</div>
+						
+						<div class="small-12 columns">
 						<h4 class="text-center">
 							"
 							<c:out value="${event.kuvaus}" />
 							"
 						</h4>
-						<article class="row expandable"
+						</div>	
+											
+						
+						<article class="expandable"
 							id="<c:out value="${'exp'}${iteration.count}"/>">
 							<hr>
-							<h5 id="ilmo">Ilmoittaudu tapahtumaan</h5>
+							<h5>Ilmoittaudu tapahtumaan</h5>
 							<form:form method="POST" action="liity" modelAttribute="henkilo">
-
-
-
 								<div class="row">
 									<fieldset>
-										<div class="medium-6 columns">
+										<div class="small-6 columns">
 
 											<form:label path="etunimi">
 												<spring:message code="henk.create.firstname" />
 											</form:label>
-											<br />
+											
 											<form:input path="etunimi" cssErrorClass="VirheellinenKentta" />
 											<form:errors path="etunimi" cssClass="Virheteksti" />
 
@@ -113,18 +114,31 @@
 											</label>
 											-->
 										</div>
+<<<<<<< HEAD
 										<div class="medium-6 columns">
 											
+=======
+										<div class="small-6 columns"> 
+										
+>>>>>>> 9a25cca6a05e3198fdb63d7ede3975cbbf53b32e
 											<form:label path="sukunimi">
 												<spring:message code="henk.create.lastname" />
 											</form:label>
 											
+<<<<<<< HEAD
 											<br />
 											
 											<form:input path="sukunimi"
 												cssErrorClass="VirheellinenKentta" />
 											<form:errors path="sukunimi" cssClass="Virheteksti" />
 											
+=======
+											
+												<form:input path="sukunimi"
+												cssErrorClass="VirheellinenKentta" />
+											<form:errors path="sukunimi" cssClass="Virheteksti" />
+										
+>>>>>>> 9a25cca6a05e3198fdb63d7ede3975cbbf53b32e
 
 											<!--  <label>Sukunimi <input type="text" name="sukunimi"
 												id="<c:out value="${'enimi'}${iteration.count}"/>"
@@ -133,12 +147,12 @@
 											-->
 										</div>
 
-										<div class="medium-12 columns">
+										<div class="small-12 columns">
 
 											<form:label path="sahkoposti">
 												<spring:message code="henk.create.email" />
 											</form:label>
-											<br />
+											
 											<form:input path="sahkoposti"
 												cssErrorClass="VirheellinenKentta" />
 											<form:errors path="sahkoposti" cssClass="Virheteksti" />

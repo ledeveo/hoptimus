@@ -98,7 +98,7 @@ public class OlutseuraaController {
 		 * h.setSukunimi(snimi); h.setSahkoposti(sposti);
 		 */
 		if (result.hasErrors()) {
-			return "tapah/all";
+			return "redirect:kaikki";
 		} else {
 			dao.talleta(henkilo); // tallettaa henkilon tietokantaan ja
 									// palauttaa sen

@@ -114,17 +114,17 @@
 											-->
 										</div>
 										<div class="medium-6 columns">
-											<p>
+											
 											<form:label path="sukunimi">
 												<spring:message code="henk.create.lastname" />
 											</form:label>
-											</p>
+											
 											<br />
-											<p>
+											
 											<form:input path="sukunimi"
 												cssErrorClass="VirheellinenKentta" />
 											<form:errors path="sukunimi" cssClass="Virheteksti" />
-											</p>
+											
 
 											<!--  <label>Sukunimi <input type="text" name="sukunimi"
 												id="<c:out value="${'enimi'}${iteration.count}"/>"

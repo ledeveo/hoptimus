@@ -332,7 +332,8 @@ display: none;
 
 .expandable {
 	display: none;
-	padding:2rem;
+	width:inherit;
+	padding:0.2rem;
 	border-radius: 0.3rem;
 }
 

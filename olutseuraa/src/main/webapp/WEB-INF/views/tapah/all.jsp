@@ -83,7 +83,7 @@
 									</div>
 						
 						<div class="small-12 columns">
-						<h4 class="text-center">
+						<h4 class="text-center" style="margin:0;padding:0;">
 							"
 							<c:out value="${event.kuvaus}" />
 							"
@@ -91,7 +91,7 @@
 						</div>	
 											
 						
-						<article class="expandable"
+						<article class="expandable small-12 columns"
 							id="<c:out value="${'exp'}${iteration.count}"/>">
 							<hr>
 							<h5>Ilmoittaudu tapahtumaan</h5>
@@ -113,39 +113,25 @@
 												placeholder="Kirjoita tähän etunimesi">
 											</label>
 											-->
-										</div>
-<<<<<<< HEAD
-										<div class="medium-6 columns">
-											
-=======
-										<div class="small-6 columns"> 
-										
->>>>>>> 9a25cca6a05e3198fdb63d7ede3975cbbf53b32e
+										</div>							
+
+										<div class="small-6 columns">								
+
 											<form:label path="sukunimi">
 												<spring:message code="henk.create.lastname" />
-											</form:label>
-											
-<<<<<<< HEAD
-											<br />
+											</form:label>							
 											
 											<form:input path="sukunimi"
 												cssErrorClass="VirheellinenKentta" />
-											<form:errors path="sukunimi" cssClass="Virheteksti" />
+											<form:errors path="sukunimi" cssClass="Virheteksti" />													
 											
-=======
-											
-												<form:input path="sukunimi"
-												cssErrorClass="VirheellinenKentta" />
-											<form:errors path="sukunimi" cssClass="Virheteksti" />
-										
->>>>>>> 9a25cca6a05e3198fdb63d7ede3975cbbf53b32e
-
+											</div>
 											<!--  <label>Sukunimi <input type="text" name="sukunimi"
 												id="<c:out value="${'enimi'}${iteration.count}"/>"
 												placeholder="...ja tähän sukunimesi">
 											</label>
 											-->
-										</div>
+										
 
 										<div class="small-12 columns">
 
@@ -163,11 +149,10 @@
 
 											<input type="hidden" name="eventid"
 												value="<c:out value="${event.id}"/>" />
-
-
 										</div>
 									</fieldset>
 								</div>
+								
 								<button type="submit" class="button success float-center"
 									id="<c:out value="${iteration.count}" /> ">
 									Ilmoittaudu <i class="fi-check"></i>

@@ -18,6 +18,15 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
+	<!-- Configures the @Controller programming model -->
+	<mvc:annotation-driven />
+
+	<!-- Forwards requests to the "/" resource to the "etusivu" view -->
+	<mvc:view-controller path="/" view-name="etusivu" />
+	
+	<!-- location of static content (images, js and css files) -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basename" value="classpath:messages" />
@@ -34,15 +43,5 @@
 			<property name="paramName" value="lang" />
 		</bean>
 	</mvc:interceptors>
-
-
-	<!-- Configures the @Controller programming model -->
-	<mvc:annotation-driven />
-
-	<!-- Forwards requests to the "/" resource to the "etusivu" view -->
-	<mvc:view-controller path="/" view-name="etusivu" />
-	
-	<!-- location of static content (images, js and css files) -->
-	<mvc:resources mapping="/resources/**" location="/resources/" />
 
 </beans>

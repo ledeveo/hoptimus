@@ -88,17 +88,14 @@
 							<c:out value="${event.kuvaus}" />
 							"
 						</h4>
-						</div>
+						</div>	
+											
 						
-						
-						<article class="row expandable"
+						<article class="expandable"
 							id="<c:out value="${'exp'}${iteration.count}"/>">
 							<hr>
-							<h5 id="ilmo">Ilmoittaudu tapahtumaan</h5>
+							<h5>Ilmoittaudu tapahtumaan</h5>
 							<form:form method="POST" action="liity" modelAttribute="henkilo">
-
-
-
 								<div class="row">
 									<fieldset>
 										<div class="small-6 columns">

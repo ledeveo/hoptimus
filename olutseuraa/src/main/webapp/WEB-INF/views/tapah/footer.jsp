@@ -17,8 +17,11 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+	<script src="../resources/js/form-validation.js"></script>
 <script src="../resources/js/vendor/modernizr.js"></script>
-	<script src="../resources/js/vendor/jquery.js"></script>
+	<!-- Alla jQuery ver. 2.2, form-validation toimii vain 1.x -versioilla -->
+	<!--<script src="../resources/js/vendor/jquery.js"></script>-->
 	<script src="../resources/js/vendor/what-input.js"></script>
 	<script src="../resources/js/vendor/foundation.js"></script>
 	<script src="../resources/js/foundation/foundation.reveal.js"></script>

@@ -63,7 +63,7 @@
 								<c:out value="${event.paikka}" />
 							</h5>
 						</div>
-						<div class="small-6 columns">
+						<div class="small-12 medium-6 columns">
 							<h5>
 								Teema:
 								<c:out value="${event.teema}" />
@@ -108,14 +108,7 @@
 											</form:label>
 											
 											<form:input path="etunimi" id="etunimi"/>
-											
-
-											<!-- 
-											<label>Etunimi <input type="text" name="etunimi"
-												id="<c:out value="${'snimi'}${iteration.count}"/>"
-												placeholder="Kirjoita tähän etunimesi">
-											</label>
-											-->
+																						
 										</div>							
 
 										<div class="small-6 columns">								
@@ -128,12 +121,7 @@
 																								
 											
 											</div>
-											<!--  <label>Sukunimi <input type="text" name="sukunimi"
-												id="<c:out value="${'enimi'}${iteration.count}"/>"
-												placeholder="...ja tähän sukunimesi">
-											</label>
-											-->
-										
+																					
 
 										<div class="small-12 columns">
 
@@ -143,17 +131,12 @@
 											
 											<form:input path="sahkoposti" id="sahkoposti" />
 											
-
-											<!-- <label>Sähköposti <input type="text" name="sposti"
-												placeholder="...sähköpostiosoitteesi">
-											</label>-->
-
 											<input type="hidden" name="eventid"
 												value="<c:out value="${event.id}"/>" />
 										</div>
 									</fieldset>
 								</div>
-								
+								<br>
 								<button type="submit" class="button success float-center"
 									id="<c:out value="${iteration.count}" /> ">
 									Ilmoittaudu <i class="fi-check"></i>

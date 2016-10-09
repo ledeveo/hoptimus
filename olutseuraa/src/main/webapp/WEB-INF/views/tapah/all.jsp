@@ -4,18 +4,18 @@
 	<%@ include file="header.jsp"%>
 
 	<div class="row">
-		<div class="small-12 medium-8 medium-offset-2 columns main-content">
+		<div class="small-12 medium-10 medium-offset-1 columns main-content">
 
 			<c:forEach items="${tapahtumat}" var="event" varStatus="iteration">
 
 				<c:set var="paiva" value="${event.pvm}" />
 				<c:set var="fmtpaiva" value="${fn:substring(paiva, 0, 2)}" />
 				<c:set var="osallistujat" value="${fn:length(event.osallistujat)}" />
-								<c:set var="maxMaara" value="${event.maxOsallistujamaara}" />
+				<c:set var="maxMaara" value="${event.maxOsallistujamaara}" />
 
-				<div class="small-12 medium-9 small-centered">
+				<div class="small-12 medium-8 small-centered event">
 
-					<div class="event small-12 medium-12 columns">
+					
 
 						<article>
 							<div class="event-date">
@@ -93,14 +93,15 @@
 						</h4>
 						</div>	
 											
-						
+						<div class="row">
 						<article class="expandable small-12 columns"
 							id="<c:out value="${'exp'}${iteration.count}"/>">
 							<hr>
 							<h5>Ilmoittaudu tapahtumaan</h5>
 							<form:form method="POST" action="liity" modelAttribute="henkilo" id="liityform${iteration.count}" >
-								<div class="row">
-									<fieldset>
+								<fieldset>
+								
+									
 										<div class="small-6 columns">
 
 											<form:label path="etunimi">
@@ -121,8 +122,8 @@
 																								
 											
 											</div>
-																					
-
+												
+											
 										<div class="small-12 columns">
 
 											<form:label path="sahkoposti">
@@ -134,8 +135,10 @@
 											<input type="hidden" name="eventid"
 												value="<c:out value="${event.id}"/>" />
 										</div>
+											
+										
 									</fieldset>
-								</div>
+								
 								<br>
 								<button type="submit" class="button success float-center"
 									id="<c:out value="${iteration.count}" /> ">
@@ -144,8 +147,9 @@
 							</form:form>
 
 						</article>
+						</div>
 					</div>
-				</div>
+				
 			</c:forEach>
 
 

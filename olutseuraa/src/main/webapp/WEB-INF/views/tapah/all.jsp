@@ -7,20 +7,11 @@
 		<div class="small-12 medium-8 medium-offset-2 columns main-content">
 
 			<c:forEach items="${tapahtumat}" var="event" varStatus="iteration">
-			
-			
-								<spring:hasBindErrors name="henkilo">
-									<p class="Virheotsikko">
-										<spring:message code="henk.create.errors" />
-										:
-									</p>
-									<div class="Virheblokki">
-										<form:errors path="*" />
-									</div>
-								</spring:hasBindErrors>
 
 				<c:set var="paiva" value="${event.pvm}" />
 				<c:set var="fmtpaiva" value="${fn:substring(paiva, 0, 2)}" />
+				<c:set var="osallistujat" value="${fn:length(event.osallistujat)}" />
+								<c:set var="maxMaara" value="${event.maxOsallistujamaara}" />
 
 				<div class="small-12 medium-9 small-centered">
 
@@ -41,8 +32,20 @@
 								<p class="event-desc-detail">
 									<span class="event-desc-time"></span>${event.paikka}
 								</p>
+								
+								<c:choose>																
+								<c:when test="${osallistujat == maxMaara}">
+									<button type="button" id="<c:out value="${iteration.count}" />"
+									class="button small alert" data-tooltip aria-haspopup="true"
+									class="has-tip" data-disable-hover="false"
+									title="Tämä tapahtuma on täynnä!" >D'oh!</button>									
+									</c:when>
+								
+								<c:otherwise>
 								<button type="button" id="<c:out value="${iteration.count}" />"
 									class="button small success tutustu">Beer me, Marge!</button>
+									</c:otherwise>
+									</c:choose>
 							</div>
 						</article>
 
@@ -95,7 +98,7 @@
 							id="<c:out value="${'exp'}${iteration.count}"/>">
 							<hr>
 							<h5>Ilmoittaudu tapahtumaan</h5>
-							<form:form method="POST" action="liity" modelAttribute="henkilo">
+							<form:form method="POST" action="liity" modelAttribute="henkilo" id="liityform${iteration.count}" >
 								<div class="row">
 									<fieldset>
 										<div class="small-6 columns">
@@ -104,8 +107,8 @@
 												<spring:message code="henk.create.firstname" />
 											</form:label>
 											
-											<form:input path="etunimi" cssErrorClass="VirheellinenKentta" />
-											<form:errors path="etunimi" cssClass="Virheteksti" />
+											<form:input path="etunimi" id="etunimi"/>
+											
 
 											<!-- 
 											<label>Etunimi <input type="text" name="etunimi"
@@ -121,9 +124,8 @@
 												<spring:message code="henk.create.lastname" />
 											</form:label>							
 											
-											<form:input path="sukunimi"
-												cssErrorClass="VirheellinenKentta" />
-											<form:errors path="sukunimi" cssClass="Virheteksti" />													
+											<form:input path="sukunimi" id="sukunimi"/>
+																								
 											
 											</div>
 											<!--  <label>Sukunimi <input type="text" name="sukunimi"
@@ -139,9 +141,8 @@
 												<spring:message code="henk.create.email" />
 											</form:label>
 											
-											<form:input path="sahkoposti"
-												cssErrorClass="VirheellinenKentta" />
-											<form:errors path="sahkoposti" cssClass="Virheteksti" />
+											<form:input path="sahkoposti" id="sahkoposti" />
+											
 
 											<!-- <label>Sähköposti <input type="text" name="sposti"
 												placeholder="...sähköpostiosoitteesi">

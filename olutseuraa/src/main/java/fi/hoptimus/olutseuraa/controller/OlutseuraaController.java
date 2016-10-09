@@ -5,11 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
-import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -59,6 +57,8 @@ public class OlutseuraaController {
 	// näytä kaikki tapahtumat
 	@RequestMapping(value = "kaikki", method = RequestMethod.GET)
 	public String getView(Model model) {
+		
+		System.out.println();
 
 		List<Tapahtuma> tapahtumat = dao.haeKaikki();
 		Henkilo tyhjaHenkilo = new HenkiloImpl();
@@ -79,27 +79,15 @@ public class OlutseuraaController {
 
 	@PostMapping("/liity")
 	public String liita(
-			@ModelAttribute(value = "henkilo") @Valid HenkiloImpl henkilo,
-			BindingResult result,
+			@ModelAttribute(value = "henkilo") HenkiloImpl henkilo,
 			@RequestParam Map<String, String> requestParams) {
 
 		String eId = requestParams.get("eventid");
 
-		/*
-		 * String enimi = requestParams.get("etunimi"); String snimi =
-		 * requestParams.get("sukunimi"); String sposti =
-		 * requestParams.get("sposti");
-		 * 
-		 * System.out.println("Liity -servicessä hlo: " + enimi + ", " + snimi +
-		 * ", sähköposti: " + sposti);
-		 * System.out.println("Haluaa liittyä tapahtumaan nro: " + eId);
-		 * 
-		 * Henkilo h = new HenkiloImpl(); h.setEtunimi(enimi);
-		 * h.setSukunimi(snimi); h.setSahkoposti(sposti);
-		 */
-		if (result.hasErrors()) {
+		if(henkilo.getEtunimi().isEmpty() || henkilo.getSukunimi().isEmpty() || henkilo.getSahkoposti().isEmpty()){
 			return "redirect:kaikki";
-		} else {
+		}
+		
 			dao.talleta(henkilo); // tallettaa henkilon tietokantaan ja
 									// palauttaa sen
 			// id:llä
@@ -108,8 +96,7 @@ public class OlutseuraaController {
 
 			return "redirect:kaikki";
 		}
-
-	}
+	
 
 	private void initModelList(Model model) {
 

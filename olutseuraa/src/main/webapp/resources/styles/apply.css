@@ -337,10 +337,8 @@ display: none;
 	border-radius: 0.3rem;
 }
 
-.cancel-button {
-	background: #EE8A8A;
-	width: 100%;
-	color: white;
+form .error {
+  font-weight: bold;
 }
 
 * {

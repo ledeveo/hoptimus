@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,23 +51,34 @@ public class OlutseuraaController {
 	// FORMIN TIETOJEN VASTAANOTTO & TALLETUS
 	@RequestMapping(value = "uusi", method = RequestMethod.POST)
 	public String create(
-			@ModelAttribute(value = "tapahtuma") TapahtumaImpl tapahtuma) {
-		dao.talleta(tapahtuma);
-		return "redirect:/tapahtumat/" + tapahtuma.getId();
+			Model model, @ModelAttribute(value = "tapahtuma") @Valid TapahtumaImpl tapahtuma, BindingResult result) {
+		
+		if (result.hasErrors()) {
+			model.addAttribute("submitError", "true"); //vie tieto jsp:hen ettÃ¤ virhe lisÃ¤ttÃ¤essÃ¤ tapahtumaa.
+			return "redirect:/tapahtumat/uusi";
+		} else {
+			dao.talleta(tapahtuma);
+			return "redirect:/tapahtumat/" + tapahtuma.getId();
+		}
 	}
 
-	// näytä kaikki tapahtumat
+	// nï¿½ytï¿½ kaikki tapahtumat
 	@RequestMapping(value = "kaikki", method = RequestMethod.GET)
 	public String getView(Model model) {
+		
+		System.out.println();
 
 		List<Tapahtuma> tapahtumat = dao.haeKaikki();
+		Henkilo tyhjaHenkilo = new HenkiloImpl();
+		tuoKuukaudet(model);
 
+		model.addAttribute("henkilo", tyhjaHenkilo);
 		model.addAttribute("tapahtumat", tapahtumat);
 
 		return "tapah/all";
 	}
 
-	// TAPAHTUMAN TIETOJEN NÄYTTÄMINEN
+	// TAPAHTUMAN TIETOJEN Nï¿½YTTï¿½MINEN
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
 	public String getView(@PathVariable Integer id, Model model) {
 		Tapahtuma tapahtuma = dao.haeTapahtuma(id);
@@ -74,29 +87,45 @@ public class OlutseuraaController {
 	}
 
 	@PostMapping("/liity")
-	public String liita(@RequestParam Map<String, String> requestParams) {
-		String enimi = requestParams.get("etunimi");
-		String snimi = requestParams.get("sukunimi");
-		String sposti = requestParams.get("sposti");
+	public String liita(
+			@ModelAttribute(value = "henkilo") @Valid HenkiloImpl henkilo,
+			@RequestParam Map<String, String> requestParams) {
+
 		String eId = requestParams.get("eventid");
 
-		System.out.println("Liity -servicessä hlo: " + enimi + ", " + snimi
-				+ ", sähköposti: " + sposti);
-		System.out.println("Haluaa liittyä tapahtumaan nro: " + eId);
+		if(henkilo.getEtunimi().isEmpty() || henkilo.getSukunimi().isEmpty() || henkilo.getSahkoposti().isEmpty()){
+			return "redirect:kaikki";
+		}
+		
+			dao.talleta(henkilo); // tallettaa henkilon tietokantaan ja
+									// palauttaa sen
+			// id:llï¿½
 
-		Henkilo h = new HenkiloImpl();
-		h.setEtunimi(enimi);
-		h.setSukunimi(snimi);
-		h.setSahkoposti(sposti);
+			dao.liityTapahtumaan(henkilo, eId);
 
-		dao.talleta(h); // tallettaa henkilon tietokantaan ja palauttaa sen
-						// id:llä
-
-		dao.liityTapahtumaan(h, eId);
-
-		return "redirect:kaikki";
-
+			return "redirect:kaikki";
+		}
+	
+	private void tuoKuukaudet(Model model){
+		
+		List<String> kuukaudet = new ArrayList<String>();
+		kuukaudet.add("Tammikuu");
+		kuukaudet.add("Helmikuu");
+		kuukaudet.add("Maaliskuu");
+		kuukaudet.add("Huhtikuu");
+		kuukaudet.add("Toukokuu");
+		kuukaudet.add("Kesï¿½kuu");
+		kuukaudet.add("Heinï¿½kuu");
+		kuukaudet.add("Elokuu");
+		kuukaudet.add("Syyskuu");
+		kuukaudet.add("Lokakuu");
+		kuukaudet.add("Marraskuu");
+		kuukaudet.add("Joulukuu");
+		
+		model.addAttribute("kuukaudet", kuukaudet);
+		
 	}
+	
 
 	private void initModelList(Model model) {
 
@@ -106,7 +135,8 @@ public class OlutseuraaController {
 		osallistujat.add(20);
 		osallistujat.add(50);
 		osallistujat.add(100);
-		model.addAttribute("osallistujat", osallistujat);
+		
+		model.addAttribute("osallistujat", osallistujat);		
 
 	}
 

@@ -2,6 +2,27 @@
  * sekalaisia scriptejä sivuston eri toimintoja varten
  */
 
+// sulkee avoimet liittymisformit
+$(document).ready(function() {
+$("body, .peruuta").click(function() {
+	$(".expandable").slideUp('fast');
+});
+
+$(".event").click(function(e) { 
+	e.stopPropagation();
+});
+});
+
+
+//Togglaa liittymisformia
+$(document).ready(function() {
+$(".tutustu").click(function(e) {
+	var id = $(this).attr('id');
+	$("#exp" + id).slideToggle("slow")
+});
+});
+
+
 //Korostaa aktiivisen tabin subnavissa, urlin perusteella
 $(document).ready(function() {
     var x = document.URL;
@@ -19,24 +40,8 @@ $("#showFilters").click(function() {
 });
 });
 
-// Togglaa liittymisformia
-$(document).ready(function() {
-$(".tutustu").click(function(e) {
-	var id = $(this).attr('id');
-	$("#exp" + id).slideToggle("slow")
-});
-});
 
-// sulkee avoimet liittymisformit
-$(document).ready(function() {
-$("body, .peruuta").click(function() {
-	$(".expandable").slideUp('fast');
-});
 
-$(".event").click(function(e) { 
-	e.stopPropagation();
-});
-});
 
 
 //Tervehdysviesti liittyjälle, tästä luovuttaneen
@@ -47,18 +52,19 @@ $(".event").click(function(e) {
 
 
 //Valittaa nimien puutteesta formissa, tästäkin luovuttaneen
-$(document).ready(function() {
-$(".subcheck").click(function(e) {
-	var id = $(this).attr('id');
-	var enimi = $.trim($("#enimi" + id).val());
-	var snimi = $.trim($("#snimi" + id).val());
+//$(document).ready(function() {
+//$(".subcheck").click(function(e) {
+//	var id = $(this).attr('id');
+//	var enimi = $.trim($("#enimi" + id).val());
+//	var snimi = $.trim($("#snimi" + id).val());
+//
+//	if (enimi.length < 1 || snimi.length < 1) {
+//		event.preventDefault();
+//		$("#inputvirhe").fadeIn("fast").delay(1500).fadeOut("slow");
+//	}
+//});
+//});
 
-	if (enimi.length < 1 || snimi.length < 1) {
-		event.preventDefault();
-		$("#inputvirhe").fadeIn("fast").delay(1500).fadeOut("slow");
-	}
-});
-});
 
 
 

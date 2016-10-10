@@ -1,5 +1,6 @@
 package fi.hoptimus.olutseuraa.bean;
 
+import java.sql.Date;
 import java.util.List;
 
 
@@ -9,7 +10,7 @@ public class TapahtumaImpl implements Tapahtuma {
 
 	private int id;
 	private String nimi;
-	private String pvm;
+	private Date pvm;
 	private String aika;
 	private String paikka;
 	private String teema;
@@ -34,11 +35,11 @@ public class TapahtumaImpl implements Tapahtuma {
 		this.nimi = nimi;
 	}
 
-	public String getPvm() {
+	public Date getPvm() {
 		return pvm;
 	}
 
-	public void setPvm(String pvm) {
+	public void setPvm(Date pvm) {
 		this.pvm = pvm;
 	}
 

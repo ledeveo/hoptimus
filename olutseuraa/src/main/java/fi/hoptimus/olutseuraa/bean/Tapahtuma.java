@@ -1,5 +1,6 @@
 package fi.hoptimus.olutseuraa.bean;
 
+import java.sql.Date;
 import java.util.List;
 
 
@@ -11,8 +12,8 @@ public interface Tapahtuma {
 	public abstract String getNimi();
 	public abstract void setNimi(String nimi);
 
-	public abstract String getPvm();
-	public abstract void setPvm(String pvm);
+	public abstract Date getPvm();
+	public abstract void setPvm(Date pvm);
 	
 	public abstract String getAika();
 	public abstract void setAika(String aika);

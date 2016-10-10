@@ -6,6 +6,10 @@
 		<div
 			class="event small-12 medium-8 medium-offset-2 columns main-content">
 
+			<c:if test="${param.submitError eq true}">
+				<p class="submitError">Tapahtui virhe lisättäessä tapahtumaa. Tarkista kaikki kentät!</p>
+			</c:if>
+
 			<form:form modelAttribute="tapahtuma" method="POST">
 				<fieldset>
 					<h4 class="text-center">Tapahtuman tiedot</h4>

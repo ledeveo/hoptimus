@@ -9,14 +9,14 @@ VALUES
 	('Tiina', 'Tikolainen', 'touhutiina@roskaposti.fi');
 	
 INSERT INTO Tapahtuma
-	(nimi, pvm, aika, paikka, teema, osallistujat, isanta, kuvaus)
+	(nimi, pvm, aika, paikka, teema, osallistujat, isanta, kuvaus, maxOsallistujamaara)
 VALUES
-	('Korjaussarja', '22.9.2016', '13:00', 'Nurkka', 'IT', 0, 'Joonas Heikkinen', 'Sillä se lähtee millä se on tulluki');
+	('Korjaussarja', '2016-11-07', '13:00', 'Nurkka', 'IT', 0, 'Heimo Vesa', 'Sillä se lähtee millä se on tulluki', 5);
 
 	INSERT INTO Tapahtuma
-	(nimi, pvm, aika, paikka, teema, osallistujat, isanta, kuvaus)
+	(nimi, pvm, aika, paikka, teema, osallistujat, isanta, kuvaus, maxOsallistujamaara)
 VALUES
-	('Testitapahtuma', '01.01.2017', '01:00', 'Nurkka', 'Ohjelmointi', 0, 'Erkki Esimerkki', 'Testitapahtuma, ei siis oikea tapahtuma.');
+	('Testitapahtuma', '2016-11-12', '01:00', 'Nurkka', 'Ohjelmointi', 0, 'Erkki Esimerkki', 'Testitapahtuma, ei siis oikea tapahtuma.', 10);
 	
 
 	

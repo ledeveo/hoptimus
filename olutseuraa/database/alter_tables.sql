@@ -7,5 +7,11 @@ ALTER TABLE tablename CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE randomOsallistuja;
 SELECT @@character_set_database, @@collation_database;
 
+ALTER TABLE Tapahtuma
+MODIFY COLUMN pvm DATE NOT NULL;
+
+ALTER TABLE Tapahtuma 
+AUTO_INCREMENT = 1;
+
 
 

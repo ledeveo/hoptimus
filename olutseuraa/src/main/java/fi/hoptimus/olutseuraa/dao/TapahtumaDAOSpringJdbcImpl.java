@@ -1,6 +1,7 @@
 package fi.hoptimus.olutseuraa.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
@@ -35,7 +36,8 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 
 		final String sql = "INSERT INTO Tapahtuma(nimi, pvm, aika, paikka, teema, isanta, kuvaus, maxOsallistujamaara) VALUES(?,?,?,?,?,?,?,?)";
 
-		final String nimi, pvm, aika, paikka, teema, isanta, kuvaus;
+		final String nimi, aika, paikka, teema, isanta, kuvaus;
+		final Date pvm;
 		final int maxOsallistujamaara;
 		nimi = t.getNimi();
 		pvm = t.getPvm();
@@ -57,7 +59,7 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 				PreparedStatement ps = connection.prepareStatement(sql,
 						new String[] { "id" });
 				ps.setString(1, nimi);
-				ps.setString(2, pvm);
+				ps.setDate(2, pvm);
 				ps.setString(3, aika);
 				ps.setString(4, paikka);
 				ps.setString(5, teema);

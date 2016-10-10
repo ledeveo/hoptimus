@@ -6,6 +6,8 @@ table, th, td {
     border: 1px solid black;
 }
 
-
-
-
+/* virhe viesti */
+.submitError {
+	color: red;
+	text-align: center;	
+}

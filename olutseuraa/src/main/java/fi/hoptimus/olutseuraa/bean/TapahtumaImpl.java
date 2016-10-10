@@ -1,21 +1,37 @@
 package fi.hoptimus.olutseuraa.bean;
 
+import java.sql.Date;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 
 
+@Entity
+@Table(name = "Tapahtuma")
 public class TapahtumaImpl implements Tapahtuma {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	@Size(min = 1, max = 255)
 	private String nimi;
-	private String pvm;
+	private Date pvm;
 	private String aika;
+	@Size(min = 1, max = 255)
 	private String paikka;
+	@Size(min = 1, max = 255)
 	private String teema;
 	private List<Henkilo> osallistujat;
 	private int maxOsallistujamaara;
+	@Size(min = 1, max = 255)
 	private String isanta;
+	@Size(min = 1, max = 255)
 	private String kuvaus;
 
 	public int getId() {
@@ -34,11 +50,11 @@ public class TapahtumaImpl implements Tapahtuma {
 		this.nimi = nimi;
 	}
 
-	public String getPvm() {
+	public Date getPvm() {
 		return pvm;
 	}
 
-	public void setPvm(String pvm) {
+	public void setPvm(Date pvm) {
 		this.pvm = pvm;
 	}
 

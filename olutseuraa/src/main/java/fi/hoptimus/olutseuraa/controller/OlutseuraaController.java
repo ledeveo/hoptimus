@@ -62,6 +62,7 @@ public class OlutseuraaController {
 
 		List<Tapahtuma> tapahtumat = dao.haeKaikki();
 		Henkilo tyhjaHenkilo = new HenkiloImpl();
+		tuoKuukaudet(model);
 
 		model.addAttribute("henkilo", tyhjaHenkilo);
 		model.addAttribute("tapahtumat", tapahtumat);
@@ -97,6 +98,26 @@ public class OlutseuraaController {
 			return "redirect:kaikki";
 		}
 	
+	private void tuoKuukaudet(Model model){
+		
+		List<String> kuukaudet = new ArrayList<String>();
+		kuukaudet.add("Tammikuu");
+		kuukaudet.add("Helmikuu");
+		kuukaudet.add("Maaliskuu");
+		kuukaudet.add("Huhtikuu");
+		kuukaudet.add("Toukokuu");
+		kuukaudet.add("Kesäkuu");
+		kuukaudet.add("Heinäkuu");
+		kuukaudet.add("Elokuu");
+		kuukaudet.add("Syyskuu");
+		kuukaudet.add("Lokakuu");
+		kuukaudet.add("Marraskuu");
+		kuukaudet.add("Joulukuu");
+		
+		model.addAttribute("kuukaudet", kuukaudet);
+		
+	}
+	
 
 	private void initModelList(Model model) {
 
@@ -106,7 +127,8 @@ public class OlutseuraaController {
 		osallistujat.add(20);
 		osallistujat.add(50);
 		osallistujat.add(100);
-		model.addAttribute("osallistujat", osallistujat);
+		
+		model.addAttribute("osallistujat", osallistujat);		
 
 	}
 

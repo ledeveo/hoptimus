@@ -7,7 +7,11 @@ table, th, td {
 }
 
 /* virhe viesti */
-.submitError {
+.submitError , .Virheteksti{
 	color: red;
 	text-align: center;	
+}
+
+.VirheellinenKentta {
+	border: 2px solid red;
 }

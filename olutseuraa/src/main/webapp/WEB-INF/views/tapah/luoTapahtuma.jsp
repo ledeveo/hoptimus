@@ -7,15 +7,28 @@
 			class="event small-12 medium-8 medium-offset-2 columns main-content">
 
 			<c:if test="${param.submitError eq true}">
-				<p class="submitError">Tapahtui virhe lisättäessä tapahtumaa. Tarkista kaikki kentät!</p>
+				<p class="submitError">Tapahtui virhe lisättäessä tapahtumaa.
+					Tarkista kaikki kentät!</p>
 			</c:if>
 
 			<form:form modelAttribute="tapahtuma" method="POST">
 				<fieldset>
+
+					<spring:hasBindErrors name="tapahtuma">
+						<p class="Virheotsikko">
+							<spring:message code="tapah.create.errors" />
+							:
+						</p>
+						<div class="Virheblokki">
+							<form:errors path="*" />
+						</div>
+					</spring:hasBindErrors>
+
 					<h4 class="text-center">Tapahtuman tiedot</h4>
 					<p>
 						<form:label class="lead" path="nimi">Tapahtuman nimi</form:label>
-						<form:input path="nimi" />
+						<form:input path="nimi"  cssErrorClass="VirheellinenKentta"/>
+						<form:errors path="nimi" cssClass="Virheteksti" />
 					</p>
 					<div class="row">
 						<p class="small-6 columns">

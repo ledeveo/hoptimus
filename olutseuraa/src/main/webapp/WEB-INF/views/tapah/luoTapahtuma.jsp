@@ -33,8 +33,9 @@
 					<div class="row">
 						<p class="small-6 columns">
 							<form:label class="lead" path="pvm">P‰iv‰m‰‰r‰</form:label>
-							<form:input type="date" path="pvm" />
+							<form:input type="text" id="datepicker" path="pvm"/>
 						</p>
+						
 						<p class="small-6 columns">
 							<form:label class="lead" path="aika">Kellonaika</form:label>
 							<form:input type="time" path="aika" />
@@ -77,6 +78,7 @@
 				</fieldset>
 			</form:form>
 
+ 
 		</div>
 	</div>
 

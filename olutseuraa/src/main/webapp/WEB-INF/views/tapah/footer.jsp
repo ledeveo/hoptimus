@@ -15,8 +15,9 @@
 
 
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!--  <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+	
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
 	<script src="../resources/js/form-validation.js"></script>
 <script src="../resources/js/vendor/modernizr.js"></script>
@@ -29,5 +30,13 @@
 	<script src="../resources/js/foundation/foundation.reveal.js"></script>
 	<script src="../resources/js/customscriptit.js"></script>
 	<script src="../resources/js/app.js"></script>
+	
+	    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script>
 </body>
 </html>

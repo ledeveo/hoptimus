@@ -6,3 +6,15 @@ lisättävää:
 tapahtuman lisäys sivu
 timestamp - ajannäyttö Dateksi, kuukauduen nimi dynaamiseksi
 sähköpostin käyttö osallistujan lisäämiseksi, poistamiseksi
+
+
+
+
+
+
+
+4. Sprintin tavoite:
+
+login adminille
+sähköpostin käyttö hyväksi vahvistuksessa
+loginin kautta tapahtuman lisääminen/poisto/muokkaus

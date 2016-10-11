@@ -26,8 +26,9 @@ $(".tutustu").click(function(e) {
 //Korostaa aktiivisen tabin subnavissa, urlin perusteella
 $(document).ready(function() {
     var x = document.URL;
-    var parts = x.split("/");
-    var result = parts[parts.length - 1];
+    var parts = x.replace(/\?.*/,'');
+    var x = parts.split("/");
+    var result = x[x.length - 1];
     $("#"+result).addClass("is-active");
 });
 

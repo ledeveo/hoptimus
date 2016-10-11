@@ -28,7 +28,6 @@
 	<script src="../resources/js/vendor/what-input.js"></script>
 	<script src="../resources/js/vendor/foundation.js"></script>
 	<script src="../resources/js/foundation/foundation.reveal.js"></script>
-	<script src="../resources/js/customscriptit.js"></script>
 	<script src="../resources/js/app.js"></script>
 	
 	    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -38,5 +37,7 @@
     $( "#datepicker" ).datepicker();
   } );
   </script>
+  <script src="../resources/js/customscriptit.js"></script>
+  
 </body>
 </html>

@@ -54,6 +54,7 @@ public class OlutseuraaController {
 			Model model, @ModelAttribute(value = "tapahtuma") @Valid TapahtumaImpl tapahtuma, BindingResult result) {
 		
 		if (result.hasErrors()) {
+			System.out.println(result);
 			model.addAttribute("submitError", "true"); //vie tieto jsp:hen että virhe lisättäessä tapahtumaa.
 			return "redirect:/tapahtumat/uusi";
 		} else {

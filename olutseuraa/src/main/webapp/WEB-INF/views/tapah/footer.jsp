@@ -32,11 +32,15 @@
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="../resources/js/jquery.timepicker.js"></script>
+
+
 <script>
 	$(function() {
-		$("#datepicker").datepicker();
+		dateFormat: "dd/MM/yyyy"
+		$("#datepicker").datepicker("option", "dateFormat" );
 	});
 </script>
+
 
 <script>
 	$(function() {

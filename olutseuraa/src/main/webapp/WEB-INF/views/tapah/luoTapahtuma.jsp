@@ -38,7 +38,7 @@
 						
 						<p class="small-6 columns">
 							<form:label class="lead" path="aika">Kellonaika</form:label>
-							<form:input type="time" path="aika" />
+							<form:input type="text" id="eventTime" class="time ui-timepicker-input" path="aika" />
 						</p>
 					</div>
 					<div class="row">

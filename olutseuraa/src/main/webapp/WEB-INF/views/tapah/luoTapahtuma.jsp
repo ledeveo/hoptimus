@@ -33,7 +33,7 @@
 					<div class="row">
 						<p class="small-6 columns">
 							<form:label class="lead" path="pvm">P‰iv‰m‰‰r‰</form:label>
-							<form:input type="text" id="datepicker" path="pvm"/>
+							<form:input type="date" id="datepicker" path="pvm"/>
 						</p>
 						
 						<p class="small-6 columns">

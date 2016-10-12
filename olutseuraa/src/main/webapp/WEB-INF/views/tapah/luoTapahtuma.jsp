@@ -38,13 +38,13 @@
 						
 						<p class="small-6 columns">
 							<form:label class="lead" path="aika">Kellonaika</form:label>
-							<form:input type="text" id="eventTime" class="time ui-timepicker-input" path="aika" />
+							<form:input type="text" id="eventTime" path="aika" class="time ui-timepicker-input"  />
 						</p>
 					</div>
 					<div class="row">
 						<p class="small-6 columns">
 							<form:label class="lead" path="paikka">Paikka</form:label>
-							<form:input path="paikka" />
+							<form:input type="text" path="paikka" />
 						</p>
 						<p class="small-6 columns">
 							<form:label class="lead" path="teema">Teema</form:label>
@@ -54,7 +54,7 @@
 					<div class="row">
 						<p class="small-6 columns">
 							<form:label class="lead" path="isanta">Is‰nt‰</form:label>
-							<form:input path="isanta" />
+							<form:input type="text" path="isanta" />
 						</p>
 						<p class="small-6 columns">
 							<form:label class="lead" path="maxOsallistujamaara">Enint‰‰n osallistujia</form:label>

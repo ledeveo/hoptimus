@@ -34,6 +34,8 @@
 <script src="../resources/js/jquery.timepicker.js"></script>
 
 
+
+<!-- Määrittelee patternin Pvm -kentän inputille -->
 <script>
 	$(function() {
 		dateFormat: "dd/MM/yyyy"
@@ -41,7 +43,7 @@
 	});
 </script>
 
-
+<!-- Timepicker -plugini Aika -kentälle -->
 <script>
 	$(function() {
 		$('#eventTime').timepicker({
@@ -49,6 +51,20 @@
 		});
 	});
 </script>
+
+<!-- Estää kirjainten kirjoittamisen Aika -kenttään -->
+<script>
+document.querySelector("#eventTime").addEventListener("keypress", function (evt) {
+    if (evt.which < 48 || evt.which > 57)
+    {
+        evt.preventDefault();
+    }
+});
+
+</script>
+
+
+
 
 
 <script src="../resources/js/customscriptit.js"></script>

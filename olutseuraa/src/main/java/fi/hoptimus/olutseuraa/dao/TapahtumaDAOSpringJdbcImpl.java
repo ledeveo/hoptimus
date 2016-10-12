@@ -41,7 +41,7 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		final int maxOsallistujamaara;
 		nimi = t.getNimi();
 		pvm = t.getPvm();
-		aika = t.getPaikka();
+		aika = t.getAika();
 		paikka = t.getPaikka();
 		teema = t.getTeema();
 		isanta = t.getIsanta();

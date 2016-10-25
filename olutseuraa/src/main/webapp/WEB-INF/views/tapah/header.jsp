@@ -1,6 +1,6 @@
 <div class="container">
 <header class="header show-for-medium">
-	<h1 class="headline  pressStart"><a href="../">
+	<h1 class="headline  pressStart"><a href="/olutseuraa">
 		Olutseuraa <small>by HoptimusPrime</small></a>
 	</h1>
 	<ul class="header-subnav">

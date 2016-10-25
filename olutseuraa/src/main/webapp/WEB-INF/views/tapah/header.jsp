@@ -6,10 +6,21 @@
 	<ul class="header-subnav">
 		<li class="small-offset-1">
 			<a href="kaikki" id="kaikki">Hae tapahtumia</a></li>
-		<li>
-			<a href="uusi" id="uusi">Luo tapahtuma</a></li>
-		<li class="float-right"><a><i class="fi-arrow-right"></i><small>
-					Kirjaudu</small></a></li>
+		
+			<sec:authorize access="hasRole('ROLE_ADMIN')">
+				<li><a href="uusi" id="uusi">Luo tapahtuma</a></li>
+			</sec:authorize>
+			
+			
+			<sec:authorize access="!hasRole('ROLE_USER')">
+				<li class="float-right"><a href="../loginpage"><i class="fi-arrow-right"></i><small>Kirjaudu</small></a></li>
+			</sec:authorize>
+			
+			<sec:authorize access="hasRole('ROLE_USER')">
+			<li style="color: white;">Sisäänkirjautuneena: <sec:authentication property="principal.username"/></a></li>
+				<li class="float-right"><a href="../j_spring_security_logout"><i class="fi-arrow-right"></i><small>Kirjaudu ulos</small></a></li>
+			</sec:authorize>
+
 	</ul>
 </header>
 <div id="body">

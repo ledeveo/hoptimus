@@ -39,7 +39,7 @@
 			default-target-url="/tapahtumat/kaikki"
 			authentication-failure-url="/loginfail" />
 			
-		<sec:logout logout-success-url="/logout" />
+		<sec:logout logout-success-url="/tapahtumat/kaikki" />
 		
 	</sec:http>
 	

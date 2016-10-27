@@ -21,17 +21,17 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
-<script src="../resources/js/form-validation.js"></script>
+<script src="resources/js/form-validation.js"></script>
 
 
 <!-- Alla jQuery ver. 2.2, form-validation toimii vain 1.x -versioilla -->
 <!--<script src="../resources/js/vendor/jquery.js"></script>-->
 
-<script src="../resources/js/vendor/what-input.js"></script>
-<script src="../resources/js/vendor/foundation.js"></script>
+<script src="resources/js/vendor/what-input.js"></script>
+<script src="resources/js/vendor/foundation.js"></script>
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="../resources/js/jquery.timepicker.js"></script>
+<script src="resources/js/jquery.timepicker.js"></script>
 
 
 
@@ -67,9 +67,9 @@ document.querySelector("#eventTime").addEventListener("keypress", function (evt)
 
 
 
-<script src="../resources/js/customscriptit.js"></script>
+<script src="resources/js/customscriptit.js"></script>
 
-<script src="../resources/js/app.js"></script>
+<script src="resources/js/app.js"></script>
 
 </body>
 </html>

@@ -19,7 +19,7 @@
 </head>
 
 <body>
-<c:redirect url="tapahtumat/kaikki"></c:redirect>
+<c:redirect url="tapahtumat"></c:redirect>
 <%@ include file="firstpageheader.jsp"%>
  
 	<ul id="menu" class="overlay-menu">

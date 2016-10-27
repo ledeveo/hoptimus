@@ -79,9 +79,10 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 	public List<Tapahtuma> haeKaikki() {
 		// etunimi, sukunimi, tapahtumaId FROM Tapahtuma t INNER JOIN
 		// Tapahtuman_henkilo th ON t.id = tapahtumaId	
+		//WHERE pvm >= CURDATE()AND aika > CURTIME()
 		
 		
-		String sql = "SELECT id, nimi, pvm, aika, paikka, teema, isanta, kuvaus, maxOsallistujamaara from Tapahtuma WHERE pvm >= CURDATE()AND aika > CURTIME() ORDER BY pvm ASC";
+		String sql = "SELECT id, nimi, pvm, aika, paikka, teema, isanta, kuvaus, maxOsallistujamaara from Tapahtuma WHERE pvm >= CURDATE() ORDER BY pvm ASC";
 		RowMapper<Tapahtuma> mapper = new TapahtumaRowMapper();
 		List<Tapahtuma> tapahtumat = jdbcTemplate.query(sql, mapper);
 

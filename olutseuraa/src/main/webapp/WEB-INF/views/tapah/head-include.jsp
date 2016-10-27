@@ -25,13 +25,13 @@
 <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro"
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css"
-	href="../resources/styles/foundation.css">
+	href="resources/styles/foundation.css">
 <link rel="stylesheet" type="text/css"
-	href="../resources/styles/apply.css">
+	href="resources/styles/apply.css">
 <link rel="stylesheet" type="text/css"
-	href="../resources/styles/tyylit.css">
+	href="resources/styles/tyylit.css">
 	<link rel="stylesheet" type="text/css"
-	href="../resources/styles/jquery.timepicker.css">
+	href="resources/styles/jquery.timepicker.css">
 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">

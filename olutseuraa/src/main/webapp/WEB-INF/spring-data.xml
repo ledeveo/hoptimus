@@ -36,10 +36,10 @@
 
 		<sec:form-login
 			login-page="/loginpage"
-			default-target-url="/tapahtumat/kaikki"
+			default-target-url="/tapahtumat"
 			authentication-failure-url="/loginfail" />
 			
-		<sec:logout logout-success-url="/tapahtumat/kaikki" />
+		<sec:logout logout-success-url="/tapahtumat" />
 		
 	</sec:http>
 	

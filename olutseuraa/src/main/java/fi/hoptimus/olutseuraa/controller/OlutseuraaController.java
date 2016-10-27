@@ -24,7 +24,7 @@ import fi.hoptimus.olutseuraa.bean.TapahtumaImpl;
 import fi.hoptimus.olutseuraa.dao.TapahtumaDAO;
 
 @Controller
-@RequestMapping(value = "/tapahtumat")
+@RequestMapping(value = "/")
 public class OlutseuraaController {
 
 	@Inject
@@ -58,22 +58,28 @@ public class OlutseuraaController {
 		if (result.hasErrors()) {
 			System.out.println(result);
 			model.addAttribute("submitError", "true"); //vie tieto jsp:hen että virhe lisättäessä tapahtumaa.
-			return "redirect:/tapahtumat/uusi";
+			return "redirect:tapahtumat/uusi";
 		} else {
 			dao.talleta(tapahtuma);
-			return "redirect:/tapahtumat/" + tapahtuma.getId();
+			return "redirect:tapahtumat";
 		}
 	}
 
 	// n�yt� kaikki tapahtumat
-	@RequestMapping(value = "kaikki", method = RequestMethod.GET)
+	@RequestMapping(value = "tapahtumat", method = RequestMethod.GET)
 	public String getView(Model model) {
 		
-		System.out.println();
+		System.out.println("Kaikki tapahtumat!!!");
 
 		List<Tapahtuma> tapahtumat = dao.haeKaikki();
 		Henkilo tyhjaHenkilo = new HenkiloImpl();
 		tuoKuukaudet(model);
+		
+		
+		for (int i = 0; i < tapahtumat.size(); i++) {
+			System.out.println(tapahtumat.get(i));
+		}
+		
 
 		model.addAttribute("henkilo", tyhjaHenkilo);
 		model.addAttribute("tapahtumat", tapahtumat);
@@ -97,7 +103,7 @@ public class OlutseuraaController {
 		String eId = requestParams.get("eventid");
 
 		if(henkilo.getEtunimi().isEmpty() || henkilo.getSukunimi().isEmpty() || henkilo.getSahkoposti().isEmpty()){
-			return "redirect:kaikki";
+			return "redirect:tapahtumat";
 		}
 		
 			dao.talleta(henkilo); // tallettaa henkilon tietokantaan ja
@@ -106,7 +112,7 @@ public class OlutseuraaController {
 
 			dao.liityTapahtumaan(henkilo, eId);
 
-			return "redirect:kaikki";
+			return "redirect:tapahtumat";
 		}
 	
 	private void tuoKuukaudet(Model model){

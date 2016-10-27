@@ -1,11 +1,11 @@
 <div class="container">
 <header class="header show-for-medium">
-	<h1 class="headline  pressStart"><a href="/olutseuraa">
+	<h1 class="headline  pressStart"><a href="/olutseuraa/tapahtumat">
 		Olutseuraa <small>by HoptimusPrime</small></a>
 	</h1>
 	<ul class="header-subnav">
 		<li class="small-offset-1">
-			<a href="../tapahtumat/kaikki" id="kaikki">Hae tapahtumia</a></li>
+			<a href="tapahtumat" id="kaikki">Hae tapahtumia</a></li>
 		
 			<sec:authorize access="hasRole('ROLE_ADMIN')">
 				<li><a href="uusi" id="uusi">Luo tapahtuma</a></li>
@@ -13,12 +13,12 @@
 			
 			
 			<sec:authorize access="!hasRole('ROLE_USER')">
-				<li class="float-right"><a href="../login/loginpage"><i class="fi-arrow-right"></i><small>Kirjaudu</small></a></li>
+				<li class="float-right"><a href="login"><i class="fi-arrow-right"></i><small>Kirjaudu</small></a></li>
 			</sec:authorize>
 			
 			<sec:authorize access="hasRole('ROLE_USER')">
 			<li style="color: white;">Sisäänkirjautuneena: <sec:authentication property="principal.username"/></a></li>
-				<li class="float-right"><a href="../j_spring_security_logout"><i class="fi-arrow-right"></i><small>Kirjaudu ulos</small></a></li>
+				<li class="float-right"><a href="j_spring_security_logout"><i class="fi-arrow-right"></i><small>Kirjaudu ulos</small></a></li>
 			</sec:authorize>
 
 	</ul>

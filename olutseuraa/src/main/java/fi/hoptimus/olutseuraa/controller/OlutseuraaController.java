@@ -58,7 +58,7 @@ public class OlutseuraaController {
 		if (result.hasErrors()) {
 			System.out.println(result);
 			model.addAttribute("submitError", "true"); //vie tieto jsp:hen että virhe lisättäessä tapahtumaa.
-			return "redirect:tapahtumat/uusi";
+			return "redirect:uusi";
 		} else {
 			dao.talleta(tapahtuma);
 			return "redirect:tapahtumat";

@@ -5,7 +5,7 @@
 	</h1>
 	<ul class="header-subnav">
 		<li class="small-offset-1">
-			<a href="kaikki" id="kaikki">Hae tapahtumia</a></li>
+			<a href="../tapahtumat/kaikki" id="kaikki">Hae tapahtumia</a></li>
 		
 			<sec:authorize access="hasRole('ROLE_ADMIN')">
 				<li><a href="uusi" id="uusi">Luo tapahtuma</a></li>
@@ -13,7 +13,7 @@
 			
 			
 			<sec:authorize access="!hasRole('ROLE_USER')">
-				<li class="float-right"><a href="../loginpage"><i class="fi-arrow-right"></i><small>Kirjaudu</small></a></li>
+				<li class="float-right"><a href="../login/loginpage"><i class="fi-arrow-right"></i><small>Kirjaudu</small></a></li>
 			</sec:authorize>
 			
 			<sec:authorize access="hasRole('ROLE_USER')">

@@ -14,13 +14,13 @@ public class EmailTesteri {
 		// Spring Bean file you specified in /src/main/resources folder
 		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("spring-email-config.xml");
  
-		SimpleMailMessage mail = new SimpleMailMessage();
-		// @Service("crunchifyEmail") <-- same annotation you specified in CrunchifyEmailAPI.java
+		
 		MailSender mailer = (MailSender) context.getBean("mailSender");
-
+		SimpleMailMessage mail = new SimpleMailMessage();
+		
 		mail.setFrom("testimeilihoptimus@gmail.com");
 		mail.setTo("testimeilihoptimus@gmail.com");
-		mail.setSubject("Hei! Tämä on automaattinen viesti, jonka testimeileri lähetti!");
+		mail.setSubject("Hei! Tämä on automaattinen TESTI-viesti, jonka EmailTesteri lähetti!");
 		mail.setText("Tähän viestiin on turha vastata. hihi :D - Hoptimus Team.");
 		
 		mailer.send(mail);

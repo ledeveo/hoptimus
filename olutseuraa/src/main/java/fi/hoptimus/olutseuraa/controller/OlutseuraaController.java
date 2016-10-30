@@ -7,6 +7,8 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,6 +38,16 @@ public class OlutseuraaController {
 
 	public void setDao(TapahtumaDAO dao) {
 		this.dao = dao;
+	}
+	
+	@Inject MailSender mailer;
+	
+	public MailSender getMailer() {
+		return mailer;
+	}
+	
+	public void setMailer(MailSender mailer) {
+		this.mailer = mailer;
 	}
 
 	// FORMIN TEKEMINEN | Tapahtuman luonti formi
@@ -95,6 +107,35 @@ public class OlutseuraaController {
 		return "tapah/view";
 	}
 
+	// Aktivointilomakkeen näyttäminen
+	@RequestMapping(value = "/aktivoi{id}", method = RequestMethod.GET)
+	public String naytaAktivointiSivu(@PathVariable Integer id, Model model) {
+		
+		return "tapah/aktivointi";
+	}
+	
+	// TODO: tallenna salasanat käyttäjille, luo daohon dao.haeHenkilo(id:llä) ja dao.aktivoiHenkilo(henkilo).
+	/*
+	// Aktivointilomakkeen näyttäminen
+	@RequestMapping(value = "/aktivoi{id}", method = RequestMethod.POST)
+	public String AktivoiTunnus(@PathVariable Integer id, Model model, @ModelAttribute(value = "henkilo") HenkiloImpl henkilo) {
+		
+		Henkilo oikeahenkilo = dao.haeHenkilo(id);
+		//vertaa että onko annettu sähköposti oikea
+		if(henkilo.getSahkoposti().equals(oikeahenkilo.getSahkoposti())) {
+			model.addAttribute("SubmitSuccess", true);
+			oikeahenkilo.setSalasana(henkilo.getSalasana());
+			dao.aktivoiHenkilo(oikeahenkilo);
+			
+		} else {
+			model.addAttribute("SubmitError", true);
+		}
+		
+		return "tapah/aktivointi";
+		
+	}
+	*/
+	
 	@PostMapping("/liity")
 	public String liita(
 			@ModelAttribute(value = "henkilo") @Valid HenkiloImpl henkilo,
@@ -112,6 +153,21 @@ public class OlutseuraaController {
 
 			dao.liityTapahtumaan(henkilo, eId);
 
+			//luodaan simple message
+			SimpleMailMessage mail = new SimpleMailMessage();
+			mail.setFrom("testimeilihoptimus@gmail.com");
+			mail.setTo(henkilo.getSahkoposti());
+			mail.setSubject("Hei " + henkilo.getEtunimi() +"! Aktivoi tunnuksesi olutseuran sivuille!");
+			
+			//linkki
+			//String linkki = "http://proto285:8080/olutseuraa/aktivoi?id=" + henkilo.getId(); //protolle ohjaus
+			String linkki  ="http://localhost:8080/olutseuraa/aktivoi?id=" + henkilo.getId(); //localhostilla kikkailua varten
+			
+			mail.setText("Hei " + henkilo.getEtunimi() + "! Olet osallistunut tapahtumaan Olutseuraa-sivuilla. Mene tähän linkkiin aktivoidaksesi tunnuksesi: " + linkki + " - Hoptimus Team.");
+			
+			//lähetetään se käyttäjän sähköpostiin
+			mailer.send(mail);
+			
 			return "redirect:tapahtumat";
 		}
 	

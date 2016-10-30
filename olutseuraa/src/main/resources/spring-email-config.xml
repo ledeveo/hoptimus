@@ -7,8 +7,9 @@
        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd 
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
-
-	<context:property-placeholder location="mail_connection.properties" />
+       
+<context:component-scan base-package="fi.hoptimus.olutseuraa.mail.EmailTesteri.java" />
+ 	<context:property-placeholder location="mail_connection.properties" /> 
 
 	<!-- EMAILER -->
 

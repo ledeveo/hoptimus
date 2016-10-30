@@ -25,22 +25,22 @@ public class TapahtumaHandler {
 			System.out.println("paikka: " + t.getPaikka());
 			System.out.println("teema: " + t.getTeema());
 			System.out.println("osallistujat: " + t.getOsallistujat());
-			System.out.println("isäntä: " + t.getIsanta());
+			System.out.println("isï¿½ntï¿½: " + t.getIsanta());
 			System.out.println("kuvaus: " + t.getKuvaus());
 		}
 		System.out.println("-------------------");
 		
-		System.out.println("Päivitetään tapahtuma, jonka id on 1.");
-		//haetaan ensin tapahtuma, id:llä
-		Tapahtuma t1 = dao.haeTapahtuma(1);
-		//haetaan alkuperäinen osallistujamäärä ja lisätään siihen yksi.
+		//System.out.println("Pï¿½ivitetï¿½ï¿½n tapahtuma, jonka id on 1.");
+		//haetaan ensin tapahtuma, id:llï¿½
+		//Tapahtuma t1 = dao.haeTapahtuma(1);
+		//haetaan alkuperï¿½inen osallistujamï¿½ï¿½rï¿½ ja lisï¿½tï¿½ï¿½n siihen yksi.
 		//int osallistujamaara = t1.getOsallistujat();
-		//asetetaan osallistujamäärä oliolle
+		//asetetaan osallistujamï¿½ï¿½rï¿½ oliolle
 		//t1.setOsallistujat(osallistujamaara);
-		//päivitetään tapahtuma tietokantaan
-		dao.paivitaTapahtuma(t1);
-		System.out.println("Tapahtuman " + t1.getNimi() + " osallistujamäärä on nyt: " + t1.getOsallistujat());
-		System.out.println("-------------------");
+		//pï¿½ivitetï¿½ï¿½n tapahtuma tietokantaan
+		//dao.paivitaTapahtuma(t1);
+		//System.out.println("Tapahtuman " + t1.getNimi() + " osallistujamï¿½ï¿½rï¿½ on nyt: " + t1.getOsallistujat());
+		//System.out.println("-------------------");
 		
 		System.out.println("Haetaan tapahtumat");
 		System.out.println("-------------------");
@@ -53,7 +53,7 @@ public class TapahtumaHandler {
 			System.out.println("paikka: " + t.getPaikka());
 			System.out.println("teema: " + t.getTeema());
 			System.out.println("osallistujat: " + t.getOsallistujat());
-			System.out.println("isäntä: " + t.getIsanta());
+			System.out.println("isï¿½ntï¿½: " + t.getIsanta());
 			System.out.println("kuvaus: " + t.getKuvaus());
 		}
 		System.out.println("-------------------");

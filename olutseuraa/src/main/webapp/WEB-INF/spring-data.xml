@@ -10,7 +10,8 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security.xsd">
 	
-	<context:property-placeholder location="classpath*:/db_connection.properties" />
+	<context:property-placeholder location="classpath*:/db_connection.properties,
+											classpath*:/mail_connection.properties" />
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
@@ -26,6 +27,8 @@
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 			<property name="dataSource" ref="dataSource"/>
 	</bean>
+	
+	
 <!-- SPRING SECURITY -->
 
 	<sec:http auto-config="true" use-expressions="true">
@@ -71,5 +74,24 @@
 	<sec:global-method-security pre-post-annotations="enabled" />
 
 
+<!-- EMAILER -->
+	<!-- Production implementation of the JavaMailSender interface, supporting 
+		both JavaMail MimeMessages and Spring SimpleMailMessages -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="${mail.smtp}" />
+		<property name="port" value="${mail.port}" />
+		<property name="username" value="${mail.username}" />
+		<property name="password" value="${mail.password}" />
+
+		<!-- The name of the property, following JavaBean naming conventions -->
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
 
 </beans>

@@ -23,7 +23,7 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 
 	@Inject
 	private JdbcTemplate jdbcTemplate;
-
+	
 	public JdbcTemplate getJdbcTemplate() {
 		return jdbcTemplate;
 	}
@@ -31,7 +31,7 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
-
+	
 	public void talleta(Tapahtuma t) {
 
 		final String sql = "INSERT INTO Tapahtuma(nimi, pvm, aika, paikka, teema, isanta, kuvaus, maxOsallistujamaara) VALUES(?,?,?,?,?,?,?,?)";
@@ -48,10 +48,10 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		kuvaus = t.getKuvaus();
 		maxOsallistujamaara = t.getmaxOsallistujamaara();
 
-		// jdbc pistää generoidun id:n tänne talteen
+		// jdbc pistï¿½ï¿½ generoidun id:n tï¿½nne talteen
 		KeyHolder idHolder = new GeneratedKeyHolder();
 
-		// suoritetaan päivitys itse määritellyllä PreparedStatementCreatorilla
+		// suoritetaan pï¿½ivitys itse mï¿½ï¿½ritellyllï¿½ PreparedStatementCreatorilla
 		// ja KeyHolderilla
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(
@@ -71,7 +71,7 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		}, idHolder);
 
 		// tallennetaan id takaisin beaniin, koska
-		// kutsujalla pitäisi olla viittaus samaiseen olioon
+		// kutsujalla pitï¿½isi olla viittaus samaiseen olioon
 		t.setId(idHolder.getKey().intValue());
 
 	}
@@ -125,16 +125,16 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 	public void talleta(Henkilo h) {
 		final String sql = "insert into Henkilo(etunimi, sukunimi, sahkoposti) values(?,?,?)";
 
-		// anonyymi sisäluokka tarvitsee vakioina välitettävät arvot,
-		// jotta roskien keruu onnistuu tämän metodin suorituksen päättyessä.
+		// anonyymi sisï¿½luokka tarvitsee vakioina vï¿½litettï¿½vï¿½t arvot,
+		// jotta roskien keruu onnistuu tï¿½mï¿½n metodin suorituksen pï¿½ï¿½ttyessï¿½.
 		final String etunimi = h.getEtunimi();
 		final String sukunimi = h.getSukunimi();
 		final String sahkoposti = h.getSahkoposti();
 
-		// jdbc pistää generoidun id:n tänne talteen
+		// jdbc pistï¿½ï¿½ generoidun id:n tï¿½nne talteen
 		KeyHolder idHolder = new GeneratedKeyHolder();
 
-		// suoritetaan päivitys itse määritellyllä PreparedStatementCreatorilla
+		// suoritetaan pï¿½ivitys itse mï¿½ï¿½ritellyllï¿½ PreparedStatementCreatorilla
 		// ja KeyHolderilla
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(
@@ -149,7 +149,7 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		}, idHolder);
 
 		// tallennetaan id takaisin beaniin, koska
-		// kutsujalla pitäisi olla viittaus samaiseen olioon
+		// kutsujalla pitï¿½isi olla viittaus samaiseen olioon
 		h.setId(idHolder.getKey().intValue());
 	}
 
@@ -159,10 +159,10 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		final int henkId = h.getId();
 		final String sql = "INSERT INTO tapOsallistuja(henkiloId, tapahtumaid) VALUES(?,?)";
 
-		// jdbc pistää generoidun id:n tänne talteen
+		// jdbc pistï¿½ï¿½ generoidun id:n tï¿½nne talteen
 		KeyHolder idHolder = new GeneratedKeyHolder();
 
-		// suoritetaan päivitys itse määritellyllä PreparedStatementCreatorilla
+		// suoritetaan pï¿½ivitys itse mï¿½ï¿½ritellyllï¿½ PreparedStatementCreatorilla
 		// ja KeyHolderilla
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(
@@ -175,11 +175,11 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 			}
 		}, idHolder);
 
-		// asettaa tietokannassa generoidun id:n henkilölle
+		// asettaa tietokannassa generoidun id:n henkilï¿½lle
 		h.setId(idHolder.getKey().intValue());
 
-		System.out.println("lisättiin käyttäjä " + h.getEtunimi()
-				+ " tapahtumaan id:llä: " + tapahtumaid);
+		System.out.println("lisï¿½ttiin kï¿½yttï¿½jï¿½ " + h.getEtunimi()
+				+ " tapahtumaan id:llï¿½: " + tapahtumaid);
 	}
 
 	public Tapahtuma haeTapahtuma(int id) {

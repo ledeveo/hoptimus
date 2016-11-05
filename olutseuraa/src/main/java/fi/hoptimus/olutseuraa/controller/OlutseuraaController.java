@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -100,41 +101,88 @@ public class OlutseuraaController {
 	}
 
 	// TAPAHTUMAN TIETOJEN N�YTT�MINEN
-	@RequestMapping(value = "{id}", method = RequestMethod.GET)
-	public String getView(@PathVariable Integer id, Model model) {
-		Tapahtuma tapahtuma = dao.haeTapahtuma(id);
-		model.addAttribute("tapahtuma", tapahtuma);
-		return "tapah/view";
+	@RequestMapping(value = "userpage", method = RequestMethod.GET)
+	public String getUserView(Model model) {
+		//hae henkilo TODO: id?
+		int id = 0;
+		Henkilo h = dao.haeHenkilo(id);
+		model.addAttribute("henkilo", h);
+		
+		//hae henkilön tapahtumat
+		List<Tapahtuma> t = dao.haeHenkilonTapahtumat(h);
+		model.addAttribute("tapahtumat", t);
+		
+		return "tapah/userpage";
 	}
 
 	// Aktivointilomakkeen näyttäminen
 	@RequestMapping(value = "/aktivoi{id}", method = RequestMethod.GET)
 	public String naytaAktivointiSivu(@PathVariable Integer id, Model model) {
 		
+		model.addAttribute("id", id);
+		
 		return "tapah/aktivointi";
 	}
-	
-	// TODO: tallenna salasanat käyttäjille, luo daohon dao.haeHenkilo(id:llä) ja dao.aktivoiHenkilo(henkilo).
-	/*
-	// Aktivointilomakkeen näyttäminen
+		
+	// Aktivointilomakkeen tallentaminen
 	@RequestMapping(value = "/aktivoi{id}", method = RequestMethod.POST)
-	public String AktivoiTunnus(@PathVariable Integer id, Model model, @ModelAttribute(value = "henkilo") HenkiloImpl henkilo) {
+	public String AktivoiTunnus(@PathVariable Integer id, Model model,
+			@RequestParam Map<String, String> requestParams) {
 		
 		Henkilo oikeahenkilo = dao.haeHenkilo(id);
-		//vertaa että onko annettu sähköposti oikea
-		if(henkilo.getSahkoposti().equals(oikeahenkilo.getSahkoposti())) {
-			model.addAttribute("SubmitSuccess", true);
-			oikeahenkilo.setSalasana(henkilo.getSalasana());
-			dao.aktivoiHenkilo(oikeahenkilo);
-			
+		String sahkoposti = requestParams.get("sahkoposti");
+		String salasana1 = requestParams.get("salasana");
+		String salasana2 = requestParams.get("salasana2");
+		
+		//vertaa että salasanat täsmää
+		if(salasana1.equals(salasana2)) {
+			//vertaa että onko annettu sähköposti oikea
+			if(sahkoposti.equals(oikeahenkilo.getSahkoposti())) {
+				model.addAttribute("submitSuccess", true);
+				
+				//suolaa salasana ja aseta aktivoitu=true.
+				StandardPasswordEncoder spe = new StandardPasswordEncoder();
+				String suolattuSalasana = spe.encode(salasana1);
+				oikeahenkilo.setSalasana(suolattuSalasana); 
+				oikeahenkilo.setAktivoitu(true);
+				
+				//talleta tietokantaan salasana ja aktivointi
+				dao.paivitaHenkilo(oikeahenkilo);
+				
+				dao.luoWebUserTili(oikeahenkilo);
+				
+				//lähetetään aktivoinnista ilmoitus käyttäjälle sähköpostiin
+				SimpleMailMessage mail = new SimpleMailMessage();
+				mail.setFrom("testimeilihoptimus@gmail.com");
+				mail.setTo(oikeahenkilo.getSahkoposti());
+				mail.setSubject("Hei " + oikeahenkilo.getEtunimi() + "! Tilisi on aktivoitu!");
+				String linkki = "http://localhost:8080/olutseuraa/login";
+				//String linkki = "http//proto285:8080/olutseuraa/login";
+				mail.setText("Hei " + oikeahenkilo.getEtunimi() + "! Olet aktivoinut onnistuneesti tilisi. Pääset katsomaan profiiliasi kirjautumalla Olutseuraa-sivuilla: " + linkki + " - Hoptimus Team.");
+				//lähetetään se käyttäjän sähköpostiin
+				mailer.send(mail);
+				
+				return "login"; //ohjaa loginsivulle
+			} else {
+				//sähköposti ei täsmää
+				model.addAttribute("submitError", true);
+				return "redirect:aktivoi?id=" + oikeahenkilo.getId();
+			}
 		} else {
-			model.addAttribute("SubmitError", true);
+			//salasanat ei täsmää
+			model.addAttribute("submitError", true);
+			return "redirect:aktivoi?id=" + oikeahenkilo.getId();
 		}
 		
-		return "tapah/aktivointi";
-		
 	}
-	*/
+	
+	// TAPAHTUMAN TIETOJEN N�YTT�MINEN
+	@RequestMapping(value = "{id}", method = RequestMethod.GET)
+	public String getView(@PathVariable Integer id, Model model) {
+		Tapahtuma tapahtuma = dao.haeTapahtuma(id);
+		model.addAttribute("tapahtuma", tapahtuma);
+		return "tapah/view";
+	}
 	
 	@PostMapping("/liity")
 	public String liita(

@@ -29,7 +29,11 @@ public class HenkiloImpl implements Henkilo {
 	@Email
 	private String sahkoposti;
 	
-
+	private String salasana;
+	
+	private boolean aktivoitu;
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -66,7 +70,22 @@ public class HenkiloImpl implements Henkilo {
 	public String toString() {
 		return etunimi + " " + sukunimi ;
 	}
-	
-	
 
+	public String getSalasana() {
+		return salasana;
+	}
+
+	public void setSalasana(String salasana) {
+		this.salasana = salasana;
+	}
+
+	public boolean isAktivoitu() {
+		return aktivoitu;
+	}
+
+	public void setAktivoitu(boolean aktivoitu) {
+		this.aktivoitu = aktivoitu;
+	}
+	
+	
 }

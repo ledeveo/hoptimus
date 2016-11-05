@@ -15,3 +15,5 @@ AUTO_INCREMENT = 1;
 
 
 
+ALTER TABLE Henkilo
+ADD COLUMN salasana varchar(255) NOT NULL;

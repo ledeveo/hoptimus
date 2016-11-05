@@ -14,20 +14,21 @@
 			<p>
 			Aktivoi tunnuksesi antamalla sama sähköposti jolla ilmoittauduit tapahtumaan ja luo itsellesi salasana.
 			</p>
-			<form:form method="POST" action="aktivoi" modelAttribute="henkilo">
 			
-				<label:label path="sahkoposti">Anna Sähköposti: </label:label>
-				<input:input type="email" path="sahkoposti" id="sahkoposti"></input:input>
+			<form method="POST" action="aktivoi<c:out value="${param.id}"></c:out>">
+			
+				<label>Anna Sähköposti: </label>
+				<input type="email" name="sahkoposti"></input>
 				
-				<label:label path="salasana">Anna salasana: </label:label>
-				<input:input type="password" path="salasana" id="salasana"></input:input>
+				<label >Anna salasana: </label>
+				<input type="password" name="salasana"></input>
 				
-				<label:label path="salasana2">Anna salasana uudelleen: </label:label>
-				<input:input type="password" path="salasana2" id="salasana2"></input:input>
+				<label >Anna salasana uudelleen: </label>
+				<input type="password" name="salasana2"></input>
 				
 				<button class="button success float-center" type="submit">Aktivoi!</button>
-			</form:form>
-
+				
+			</form>
  
 		</div>
 	</div>

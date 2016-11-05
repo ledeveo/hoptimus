@@ -14,4 +14,9 @@ public interface Henkilo {
 	public abstract String getSahkoposti();
 	public abstract void setSahkoposti(String sahkoposti);
 	
+	public abstract String getSalasana();
+	public abstract void setSalasana(String salasana);
+	
+	public abstract boolean isAktivoitu();
+	public abstract void setAktivoitu(boolean aktivoitu);
 }

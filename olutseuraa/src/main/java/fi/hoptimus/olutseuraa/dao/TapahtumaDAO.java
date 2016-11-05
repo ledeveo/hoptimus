@@ -21,4 +21,12 @@ public interface TapahtumaDAO {
 	public abstract List<Henkilo> haeOsallistujat(int tapahtumaid);
 	
 	public abstract void talleta(Henkilo h);
+
+	public abstract Henkilo haeHenkilo(Integer id);
+
+	public abstract void paivitaHenkilo(Henkilo oikeahenkilo);
+
+	public abstract List<Tapahtuma> haeHenkilonTapahtumat(Henkilo h);
+
+	public abstract void luoWebUserTili(Henkilo oikeahenkilo);
 }

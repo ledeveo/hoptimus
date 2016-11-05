@@ -98,7 +98,7 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 
 	public List<Henkilo> haeOsallistujat(int tapId) {
 		// hakee tapahtuman kaikki osallistujat
-		String sql = "SELECT h.etunimi, h.sukunimi, h.sahkoposti, h.id as henkiloId, t.id as tapahtumaId"
+		String sql = "SELECT h.etunimi, h.sukunimi, h.sahkoposti, h.id as henkiloId, h.aktivoitu, t.id as tapahtumaId"
 				+ " FROM Henkilo h"
 				+ " LEFT JOIN tapOsallistuja o ON h.id = o.henkiloId"
 				+ " LEFT JOIN Tapahtuma t ON t.id = o.tapahtumaId "
@@ -106,8 +106,7 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 
 		RowMapper<Henkilo> mapper = new HenkiloRowMapper();
 		Object[] parametrit = new Object[] { tapId };
-		List<Henkilo> osallistujat = jdbcTemplate
-				.query(sql, parametrit, mapper);
+		List<Henkilo> osallistujat = jdbcTemplate.query(sql, parametrit, mapper);
 
 		return osallistujat;
 
@@ -189,6 +188,83 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 
 		Tapahtuma t = jdbcTemplate.queryForObject(sql, parametrit, mapper);
 		return t;
+	}
+
+	public Henkilo haeHenkilo(Integer id) {
+		String sql = "SELECT h.id AS henkiloId, h.etunimi, h.sukunimi, h.sahkoposti, h.aktivoitu FROM Henkilo h WHERE h.id=?";
+		Object[] parametrit = new Object[] { id };
+		RowMapper<Henkilo> mapper = new HenkiloRowMapper();
+		Henkilo h = jdbcTemplate.queryForObject(sql, parametrit, mapper);
+		return h;
+	}
+
+	public void paivitaHenkilo(Henkilo h) {
+		String sql = "UPDATE Henkilo SET etunimi=?,sukunimi=?,sahkoposti=?,aktivoitu=?,salasana=? WHERE id=?";
+		Object[] parametrit = new Object[] { h.getEtunimi(), h.getSukunimi(), h.getSahkoposti(), h.isAktivoitu(), h.getSalasana(), h.getId()};
+		
+		jdbcTemplate.update(sql, parametrit);
+	}
+
+	public List<Tapahtuma> haeHenkilonTapahtumat(Henkilo h) {
+		String sql = "SELECT Tapahtuma.id, nimi, pvm, aika, paikka, teema, osallistujat, isanta, kuvaus, maxOsallistujamaara "
+				+" FROM Tapahtuma LEFT JOIN tapOsallistuja o ON Tapahtuma.id = o.tapahtumaId WHERE o.henkiloId=?";
+		RowMapper<Tapahtuma> mapper = new TapahtumaRowMapper();
+		Object[] parametrit = new Object[] { h.getId() };
+		List<Tapahtuma> tapahtumat = jdbcTemplate.query(sql, parametrit, mapper);
+		
+		return tapahtumat;
+	}
+
+	public void luoWebUserTili(Henkilo h) {
+		
+		//tarkista että onko jo olemassa samainen webuser-tili
+		String sql1 = "SELECT username FROM webuser2 WHERE username=?";
+		Object[] parametrit = new Object[] { h.getSahkoposti() };
+		List<String> webuserit = jdbcTemplate.queryForList(sql1, parametrit, String.class); 
+
+		if (webuserit.size() > 0) {
+			//webuser löytyi, ei tehdä mitään.
+		} else {
+			//jos ei löydy kyseistä webuseria voidaan jatkaa
+			
+			//talleta webuseri tietokantaan
+			final String sql2 = "INSERT INTO webuser2 (username, password_encrypted, enabled, firstname, lastname) VALUES (?,?,?,?,?)";
+			final String username, password, firstname, lastname;
+			final boolean enabled;
+			
+			username = h.getSahkoposti();
+			password = h.getSalasana();
+			firstname = h.getEtunimi();
+			lastname = h.getSukunimi();
+			enabled = h.isAktivoitu();
+			
+			// jdbc pist�� generoidun id:n t�nne talteen
+			KeyHolder idHolder = new GeneratedKeyHolder();
+	
+			// suoritetaan p�ivitys itse m��ritellyll� PreparedStatementCreatorilla
+			// ja KeyHolderilla
+			jdbcTemplate.update(new PreparedStatementCreator() {
+				public PreparedStatement createPreparedStatement(
+						Connection connection) throws SQLException {
+					PreparedStatement ps = connection.prepareStatement(sql2,
+							new String[] { "id" });
+					ps.setString(1, username);
+					ps.setString(2, password);
+					ps.setBoolean(3, enabled);
+					ps.setString(4, firstname);
+					ps.setString(5, lastname);
+					return ps;
+				}
+			}, idHolder);
+	
+			// haetaan saatu id.
+			int id = idHolder.getKey().intValue();
+			
+			//lisää rooli(user = 1) webuserille tietokantaan
+			String sql3 = "INSERT INTO webuser2_authority (webuser2_id, authority_id) VALUES (?,1)";
+			Object[] parametrit2 = new Object[] { id };
+			jdbcTemplate.update(sql3, parametrit2);
+		}
 	}
 
 }

@@ -119,10 +119,16 @@ public class OlutseuraaController {
 	@RequestMapping(value = "/aktivoi{id}", method = RequestMethod.GET)
 	public String naytaAktivointiSivu(@PathVariable Integer id, Model model) {
 		
-		//tili ei vielä aktivoitu
-		model.addAttribute("id", id);
-		return "tapah/aktivointi";
-				
+		Henkilo h = dao.haeHenkilo(id);
+		
+		if(h.isAktivoitu() == false) {
+			//tili ei vielä aktivoitu
+			model.addAttribute("id", id);
+			return "tapah/aktivointi";
+		} else {
+			//tili jo aktivoitu
+			return "login"; //ohjaa loginsivulle
+		}
 	}
 		
 	// Aktivointilomakkeen tallentaminen
@@ -137,7 +143,7 @@ public class OlutseuraaController {
 		
 		System.out.println(oikeahenkilo.isAktivoitu());
 		
-		if(oikeahenkilo.isAktivoitu() != false) {
+		if(oikeahenkilo.isAktivoitu() == false) {
 			//vertaa että salasanat täsmää
 			if(salasana1.equals(salasana2)) {
 				//vertaa että onko annettu sähköposti oikea
@@ -216,8 +222,8 @@ public class OlutseuraaController {
 			mail.setSubject("Hei " + henkilo.getEtunimi() +"! Aktivoi tunnuksesi olutseuran sivuille!");
 			
 			//linkki
-			String linkki = "http://proto285:8080/olutseuraa/aktivoi?id=" + henkilo.getId(); //protolle ohjaus
-			//String linkki  ="http://localhost:8080/olutseuraa/aktivoi?id=" + henkilo.getId(); //localhostilla kikkailua varten
+			String linkki = "http://proto285:8080/olutseuraa/aktivoi" + henkilo.getId(); //protolle ohjaus
+			//String linkki  ="http://localhost:8080/olutseuraa/aktivoi" + henkilo.getId(); //localhostilla kikkailua varten
 			
 			mail.setText("Hei " + henkilo.getEtunimi() + "! Olet osallistunut tapahtumaan Olutseuraa-sivuilla. Mene tähän linkkiin aktivoidaksesi tunnuksesi: " + linkki + " - Hoptimus Team.");
 			

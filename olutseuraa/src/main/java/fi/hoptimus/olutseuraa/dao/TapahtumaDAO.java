@@ -22,7 +22,7 @@ public interface TapahtumaDAO {
 	
 	public abstract void talleta(Henkilo h);
 
-	public abstract Henkilo haeHenkilo(Integer id);
+	public abstract Henkilo haeHenkilo(int id);
 
 	public abstract void paivitaHenkilo(Henkilo oikeahenkilo);
 

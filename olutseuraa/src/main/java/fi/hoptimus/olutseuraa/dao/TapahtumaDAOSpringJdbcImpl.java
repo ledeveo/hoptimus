@@ -190,10 +190,11 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		return t;
 	}
 
-	public Henkilo haeHenkilo(Integer id) {
+	public Henkilo haeHenkilo(int id) {
 		String sql = "SELECT h.id AS henkiloId, h.etunimi, h.sukunimi, h.sahkoposti, h.aktivoitu FROM Henkilo h WHERE h.id=?";
 		Object[] parametrit = new Object[] { id };
 		RowMapper<Henkilo> mapper = new HenkiloRowMapper();
+		
 		Henkilo h = jdbcTemplate.queryForObject(sql, parametrit, mapper);
 		return h;
 	}

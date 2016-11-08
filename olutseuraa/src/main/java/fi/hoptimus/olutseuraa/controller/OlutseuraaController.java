@@ -119,9 +119,10 @@ public class OlutseuraaController {
 	@RequestMapping(value = "/aktivoi{id}", method = RequestMethod.GET)
 	public String naytaAktivointiSivu(@PathVariable Integer id, Model model) {
 		
+		//tili ei vielä aktivoitu
 		model.addAttribute("id", id);
-		
 		return "tapah/aktivointi";
+				
 	}
 		
 	// Aktivointilomakkeen tallentaminen
@@ -134,45 +135,52 @@ public class OlutseuraaController {
 		String salasana1 = requestParams.get("salasana");
 		String salasana2 = requestParams.get("salasana2");
 		
-		//vertaa että salasanat täsmää
-		if(salasana1.equals(salasana2)) {
-			//vertaa että onko annettu sähköposti oikea
-			if(sahkoposti.equals(oikeahenkilo.getSahkoposti())) {
-				model.addAttribute("submitSuccess", true);
-				
-				//suolaa salasana ja aseta aktivoitu=true.
-				StandardPasswordEncoder spe = new StandardPasswordEncoder();
-				String suolattuSalasana = spe.encode(salasana1);
-				oikeahenkilo.setSalasana(suolattuSalasana); 
-				oikeahenkilo.setAktivoitu(true);
-				
-				//talleta tietokantaan salasana ja aktivointi
-				dao.paivitaHenkilo(oikeahenkilo);
-				
-				dao.luoWebUserTili(oikeahenkilo);
-				
-				//lähetetään aktivoinnista ilmoitus käyttäjälle sähköpostiin
-				SimpleMailMessage mail = new SimpleMailMessage();
-				mail.setFrom("testimeilihoptimus@gmail.com");
-				mail.setTo(oikeahenkilo.getSahkoposti());
-				mail.setSubject("Hei " + oikeahenkilo.getEtunimi() + "! Tilisi on aktivoitu!");
-				String linkki = "http://localhost:8080/olutseuraa/login";
-				//String linkki = "http//proto285:8080/olutseuraa/login";
-				mail.setText("Hei " + oikeahenkilo.getEtunimi() + "! Olet aktivoinut onnistuneesti tilisi. Pääset katsomaan profiiliasi kirjautumalla Olutseuraa-sivuilla: " + linkki + " - Hoptimus Team.");
-				//lähetetään se käyttäjän sähköpostiin
-				mailer.send(mail);
-				
-				return "login"; //ohjaa loginsivulle
+		System.out.println(oikeahenkilo.isAktivoitu());
+		
+		if(oikeahenkilo.isAktivoitu() != false) {
+			//vertaa että salasanat täsmää
+			if(salasana1.equals(salasana2)) {
+				//vertaa että onko annettu sähköposti oikea
+				if(sahkoposti.equals(oikeahenkilo.getSahkoposti())) {
+					model.addAttribute("submitSuccess", true);
+					
+					//suolaa salasana ja aseta aktivoitu=true.
+					StandardPasswordEncoder spe = new StandardPasswordEncoder();
+					String suolattuSalasana = spe.encode(salasana1);
+					oikeahenkilo.setSalasana(suolattuSalasana); 
+					oikeahenkilo.setAktivoitu(true);
+					
+					//talleta tietokantaan salasana ja aktivointi
+					dao.paivitaHenkilo(oikeahenkilo);
+					
+					dao.luoWebUserTili(oikeahenkilo);
+					
+					//lähetetään aktivoinnista ilmoitus käyttäjälle sähköpostiin
+					SimpleMailMessage mail = new SimpleMailMessage();
+					mail.setFrom("testimeilihoptimus@gmail.com");
+					mail.setTo(oikeahenkilo.getSahkoposti());
+					mail.setSubject("Hei " + oikeahenkilo.getEtunimi() + "! Tilisi on aktivoitu!");
+					String linkki = "http://localhost:8080/olutseuraa/login";
+					//String linkki = "http//proto285:8080/olutseuraa/login";
+					mail.setText("Hei " + oikeahenkilo.getEtunimi() + "! Olet aktivoinut onnistuneesti tilisi. Pääset katsomaan profiiliasi kirjautumalla Olutseuraa-sivuilla: " + linkki + " - Hoptimus Team.");
+					//lähetetään se käyttäjän sähköpostiin
+					mailer.send(mail);
+					
+					return "login"; //ohjaa loginsivulle
+				} else {
+					//sähköposti ei täsmää
+					model.addAttribute("submitError", true);
+					return "redirect:aktivoi?id=" + oikeahenkilo.getId();
+				}
 			} else {
-				//sähköposti ei täsmää
+				//salasanat ei täsmää
 				model.addAttribute("submitError", true);
 				return "redirect:aktivoi?id=" + oikeahenkilo.getId();
 			}
 		} else {
-			//salasanat ei täsmää
-			model.addAttribute("submitError", true);
-			return "redirect:aktivoi?id=" + oikeahenkilo.getId();
+			return "login"; //ohjaa loginsivulle
 		}
+		
 		
 	}
 	
@@ -208,8 +216,8 @@ public class OlutseuraaController {
 			mail.setSubject("Hei " + henkilo.getEtunimi() +"! Aktivoi tunnuksesi olutseuran sivuille!");
 			
 			//linkki
-			//String linkki = "http://proto285:8080/olutseuraa/aktivoi?id=" + henkilo.getId(); //protolle ohjaus
-			String linkki  ="http://localhost:8080/olutseuraa/aktivoi?id=" + henkilo.getId(); //localhostilla kikkailua varten
+			String linkki = "http://proto285:8080/olutseuraa/aktivoi?id=" + henkilo.getId(); //protolle ohjaus
+			//String linkki  ="http://localhost:8080/olutseuraa/aktivoi?id=" + henkilo.getId(); //localhostilla kikkailua varten
 			
 			mail.setText("Hei " + henkilo.getEtunimi() + "! Olet osallistunut tapahtumaan Olutseuraa-sivuilla. Mene tähän linkkiin aktivoidaksesi tunnuksesi: " + linkki + " - Hoptimus Team.");
 			

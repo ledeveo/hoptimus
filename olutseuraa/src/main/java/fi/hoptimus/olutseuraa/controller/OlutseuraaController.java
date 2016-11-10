@@ -9,6 +9,8 @@ import javax.validation.Valid;
 
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -103,16 +105,24 @@ public class OlutseuraaController {
 	// TAPAHTUMAN TIETOJEN N�YTT�MINEN
 	@RequestMapping(value = "userpage", method = RequestMethod.GET)
 	public String getUserView(Model model) {
-		//hae henkilo TODO: id?
-		int id = 0;
-		Henkilo h = dao.haeHenkilo(id);
-		model.addAttribute("henkilo", h);
+		//hae henkilö joka kirjautui
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String sahkoposti = auth.getName(); //get logged in username = sahkoposti
+	    Henkilo h = dao.haeHenkilo(sahkoposti);
+	    if(h != null) {
+	    	model.addAttribute("henkilo", h);
+			
+			//hae henkilön tapahtumat
+			List<Tapahtuma> t = dao.haeHenkilonTapahtumat(h);
+			model.addAttribute("tapahtumat", t);
+			
+			return "tapah/userpage";
+		} else {
+			//jos ei olla kirjautuneena, ohjataan etusivulle
+			return "redirect:tapahtumat";
+		}
 		
-		//hae henkilön tapahtumat
-		List<Tapahtuma> t = dao.haeHenkilonTapahtumat(h);
-		model.addAttribute("tapahtumat", t);
 		
-		return "tapah/userpage";
 	}
 
 	// Aktivointilomakkeen näyttäminen
@@ -201,6 +211,43 @@ public class OlutseuraaController {
 		Tapahtuma tapahtuma = dao.haeTapahtuma(id);
 		model.addAttribute("tapahtuma", tapahtuma);
 		return "tapah/view";
+	}
+	
+	//Liity tapahtumaan kirjautuneella käyttäjällä
+	@RequestMapping(value = "/kirjautunutLiity", method = RequestMethod.POST)
+	public String kirjautunutliita(@RequestParam Map<String, String> requestParams, Model model) {
+
+		//hae henkilö joka kirjautui
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String sahkoposti = auth.getName(); //get logged in username = sahkoposti
+	    Henkilo henkilo = dao.haeHenkilo(sahkoposti);
+	    String eId = requestParams.get("eventid2");
+	    
+	    if(henkilo != null) {
+			
+			dao.liityTapahtumaan(henkilo, eId);
+
+			//luodaan simple message
+			SimpleMailMessage mail = new SimpleMailMessage();
+			mail.setFrom("testimeilihoptimus@gmail.com");
+			mail.setTo(henkilo.getSahkoposti());
+			mail.setSubject("Hei " + henkilo.getEtunimi() +"! Olet liittynyt tapahtumaan!");
+			
+			//linkki
+			String linkki = "http://proto285:8080/olutseuraa/login"; //protolle ohjaus
+			//String linkki  ="http://localhost:8080/olutseuraa/login"; //localhostilla kikkailua varten
+			
+			mail.setText("Hei " + henkilo.getEtunimi() + "! Olet osallistunut tapahtumaan Olutseuraa-sivuilla. Voit tarkistella tapahtumiasi käyttäjäsivulla kirjautumalla sisään: " + linkki + " - Hoptimus Team.");
+			
+			//lähetetään se käyttäjän sähköpostiin
+			mailer.send(mail);
+			
+			return "redirect: userpage";
+	    } else {
+	    	model.addAttribute("submitError", true);
+	    	return "redirect: tapahtumat";
+	    }
+		
 	}
 	
 	@PostMapping("/liity")

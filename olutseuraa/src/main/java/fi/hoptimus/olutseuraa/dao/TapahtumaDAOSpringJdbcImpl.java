@@ -204,6 +204,21 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 			return null;
 		}
 	}
+	
+	public Henkilo haeHenkilo(String sahkoposti) {
+		//hae henkilo sähköpostilla
+		String sql = "SELECT h.id AS henkiloId, h.etunimi, h.sukunimi, h.sahkoposti, h.aktivoitu FROM Henkilo h WHERE h.sahkoposti=?";
+		Object[] parametrit = new Object[] { sahkoposti };
+		RowMapper<Henkilo> mapper = new HenkiloRowMapper();
+		
+		try {
+			Henkilo h = jdbcTemplate.queryForObject(sql, parametrit, mapper);
+			return h;
+		} catch (EmptyResultDataAccessException e) {
+			//jos henkilöä ei löydy palauta null
+			return null;
+		}
+	}
 
 	public void paivitaHenkilo(Henkilo h) {
 		String sql = "UPDATE Henkilo SET etunimi=?,sukunimi=?,sahkoposti=?,aktivoitu=?,salasana=? WHERE id=?";

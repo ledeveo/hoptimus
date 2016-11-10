@@ -29,4 +29,6 @@ public interface TapahtumaDAO {
 	public abstract List<Tapahtuma> haeHenkilonTapahtumat(Henkilo h);
 
 	public abstract void luoWebUserTili(Henkilo oikeahenkilo);
+
+	public abstract Henkilo haeHenkilo(String sahkoposti);
 }

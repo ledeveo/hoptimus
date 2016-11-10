@@ -17,7 +17,7 @@
 			</sec:authorize>
 			
 			<sec:authorize access="hasRole('ROLE_USER')">
-			<li style="color: white;">Sis‰‰nkirjautuneena: <sec:authentication property="principal.username"/></a></li>
+			<li style="color: white;"><a href="userpage">K‰ytt‰j‰sivu</a></li>
 				<li class="float-right"><a href="j_spring_security_logout"><i class="fi-arrow-right"></i><small>Kirjaudu ulos</small></a></li>
 			</sec:authorize>
 

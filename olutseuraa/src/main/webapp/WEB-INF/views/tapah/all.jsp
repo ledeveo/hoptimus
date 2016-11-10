@@ -44,8 +44,18 @@
 								</c:when>
 
 								<c:otherwise>
-									<button type="button" id="<c:out value="${iteration.count}" />"
+									<sec:authorize access="hasRole('ROLE_USER')">
+										<form action="kirjautunutLiity" method="POST">
+											<input type="hidden" name="username" value="<sec:authentication property="principal.username"/>"/>
+											<input type="hidden" name="eventid2"	value="<c:out value="${event.id}"/>"/>
+											<button type="submit" class="button small success tutustu">Count me in!</button>
+										</form>
+									</sec:authorize>
+									<sec:authorize access="!hasRole('ROLE_USER')">
+										<button type="button" id="<c:out value="${iteration.count}" />"
 										class="button small success tutustu">Beer me, Marge!</button>
+									</sec:authorize>
+									
 								</c:otherwise>
 							</c:choose>
 						</div>

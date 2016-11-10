@@ -120,15 +120,20 @@ public class OlutseuraaController {
 	public String naytaAktivointiSivu(@PathVariable Integer id, Model model) {
 		
 		Henkilo h = dao.haeHenkilo(id);
-		
-		if(h.isAktivoitu() == false) {
-			//tili ei vielä aktivoitu
-			model.addAttribute("id", id);
-			return "tapah/aktivointi";
+		if(h != null) {
+			if(h.isAktivoitu() == false) {
+				//tili ei vielä aktivoitu
+				model.addAttribute("id", id);
+				return "tapah/aktivointi";
+			} else {
+				//tili jo aktivoitu
+				return "login"; //ohjaa loginsivulle
+			}
 		} else {
-			//tili jo aktivoitu
-			return "login"; //ohjaa loginsivulle
+			//henkilöä id:llä ei löytynyt
+			return "redirect:tapahtumat"; //ohjaa etusivulle jos id:llä ei löydy käyttäjää.
 		}
+		
 	}
 		
 	// Aktivointilomakkeen tallentaminen

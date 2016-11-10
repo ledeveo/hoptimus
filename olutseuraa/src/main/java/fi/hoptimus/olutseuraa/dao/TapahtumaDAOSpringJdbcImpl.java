@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
@@ -195,8 +196,13 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		Object[] parametrit = new Object[] { id };
 		RowMapper<Henkilo> mapper = new HenkiloRowMapper();
 		
-		Henkilo h = jdbcTemplate.queryForObject(sql, parametrit, mapper);
-		return h;
+		try {
+			Henkilo h = jdbcTemplate.queryForObject(sql, parametrit, mapper);
+			return h;
+		} catch (EmptyResultDataAccessException e) {
+			//jos henkilöä ei löydy palauta null
+			return null;
+		}
 	}
 
 	public void paivitaHenkilo(Henkilo h) {

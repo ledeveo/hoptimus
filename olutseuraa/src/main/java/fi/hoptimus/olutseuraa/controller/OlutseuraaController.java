@@ -135,7 +135,7 @@ public class OlutseuraaController {
 	@RequestMapping(value = "/aktivoi{id}", method = RequestMethod.POST)
 	public String AktivoiTunnus(@PathVariable Integer id, Model model,
 			@RequestParam Map<String, String> requestParams) {
-		
+		System.out.println("id: " + id);
 		Henkilo oikeahenkilo = dao.haeHenkilo(id);
 		String sahkoposti = requestParams.get("sahkoposti");
 		String salasana1 = requestParams.get("salasana");
@@ -176,12 +176,12 @@ public class OlutseuraaController {
 				} else {
 					//sähköposti ei täsmää
 					model.addAttribute("submitError", true);
-					return "redirect:aktivoi?id=" + oikeahenkilo.getId();
+					return "redirect:aktivoi" + id;
 				}
 			} else {
 				//salasanat ei täsmää
 				model.addAttribute("submitError", true);
-				return "redirect:aktivoi?id=" + oikeahenkilo.getId();
+				return "redirect:aktivoi" + id;
 			}
 		} else {
 			return "login"; //ohjaa loginsivulle

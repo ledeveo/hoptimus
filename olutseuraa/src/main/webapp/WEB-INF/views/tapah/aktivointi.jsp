@@ -15,7 +15,7 @@
 			Aktivoi tunnuksesi antamalla sama sähköposti jolla ilmoittauduit tapahtumaan ja luo itsellesi salasana.
 			</p>
 			
-			<form method="POST" action="aktivoi<c:out value="${param.id}"></c:out>">
+			<form method="POST" action="aktivoi<c:out value="${id}"></c:out>">
 			
 				<label>Anna Sähköposti: </label>
 				<input type="email" name="sahkoposti"></input>

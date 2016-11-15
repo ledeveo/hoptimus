@@ -122,7 +122,7 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		jdbcTemplate.update(sql, parametrit);
 	}
 
-	public void talleta(Henkilo h) {
+	public Henkilo talleta(Henkilo h) {
 		final String sql = "insert into Henkilo(etunimi, sukunimi, sahkoposti) values(?,?,?)";
 
 		// anonyymi sis�luokka tarvitsee vakioina v�litett�v�t arvot,
@@ -151,6 +151,8 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		// tallennetaan id takaisin beaniin, koska
 		// kutsujalla pit�isi olla viittaus samaiseen olioon
 		h.setId(idHolder.getKey().intValue());
+		
+		return h;
 	}
 
 	public void liityTapahtumaan(Henkilo h, String tapahtumaid) {
@@ -159,24 +161,9 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		final int henkId = h.getId();
 		final String sql = "INSERT INTO tapOsallistuja(henkiloId, tapahtumaid) VALUES(?,?)";
 
-		// jdbc pist�� generoidun id:n t�nne talteen
-		KeyHolder idHolder = new GeneratedKeyHolder();
-
-		// suoritetaan p�ivitys itse m��ritellyll� PreparedStatementCreatorilla
-		// ja KeyHolderilla
-		jdbcTemplate.update(new PreparedStatementCreator() {
-			public PreparedStatement createPreparedStatement(
-					Connection connection) throws SQLException {
-				PreparedStatement ps = connection.prepareStatement(sql,
-						new String[] { "id" });
-				ps.setInt(1, henkId);
-				ps.setInt(2, tapahtumaIdInt);
-				return ps;
-			}
-		}, idHolder);
-
-		// asettaa tietokannassa generoidun id:n henkil�lle
-		h.setId(idHolder.getKey().intValue());
+		Object[] parametrit = new Object[] { henkId, tapahtumaIdInt };
+		
+		jdbcTemplate.update(sql, parametrit);
 
 		System.out.println("lis�ttiin k�ytt�j� " + h.getEtunimi()
 				+ " tapahtumaan id:ll�: " + tapahtumaid);

@@ -20,7 +20,7 @@ public interface TapahtumaDAO {
 	
 	public abstract List<Henkilo> haeOsallistujat(int tapahtumaid);
 	
-	public abstract void talleta(Henkilo h);
+	public abstract Henkilo talleta(Henkilo h);
 
 	public abstract Henkilo haeHenkilo(int id);
 

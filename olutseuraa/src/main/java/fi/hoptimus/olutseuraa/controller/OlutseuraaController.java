@@ -242,10 +242,10 @@ public class OlutseuraaController {
 			//lähetetään se käyttäjän sähköpostiin
 			mailer.send(mail);
 			
-			return "redirect: userpage";
+			return "redirect:userpage";
 	    } else {
 	    	model.addAttribute("submitError", true);
-	    	return "redirect: tapahtumat";
+	    	return "redirect:tapahtumat";
 	    }
 		
 	}
@@ -253,20 +253,25 @@ public class OlutseuraaController {
 	@PostMapping("/liity")
 	public String liita(
 			@ModelAttribute(value = "henkilo") @Valid HenkiloImpl henkilo,
-			@RequestParam Map<String, String> requestParams) {
+			@RequestParam Map<String, String> requestParams, Model model) {
 
 		String eId = requestParams.get("eventid");
-
+		
+		Henkilo h1 = dao.haeHenkilo(henkilo.getSahkoposti());
+		
+		
+		
 		if(henkilo.getEtunimi().isEmpty() || henkilo.getSukunimi().isEmpty() || henkilo.getSahkoposti().isEmpty()){
 			return "redirect:tapahtumat";
 		}
 		
-			dao.talleta(henkilo); // tallettaa henkilon tietokantaan ja
-									// palauttaa sen
+		if(h1 == null) {
+			henkilo = (HenkiloImpl) dao.talleta(henkilo); // tallettaa henkilon tietokantaan ja
+			// palauttaa sen
 			// id:ll�
-
+			
 			dao.liityTapahtumaan(henkilo, eId);
-
+			
 			//luodaan simple message
 			SimpleMailMessage mail = new SimpleMailMessage();
 			mail.setFrom("testimeilihoptimus@gmail.com");
@@ -283,6 +288,10 @@ public class OlutseuraaController {
 			mailer.send(mail);
 			
 			return "redirect:tapahtumat";
+		}
+			//käyttäjä on jo olemassa
+			model.addAttribute("UserExists", true);
+			return "redirect:userpage";
 		}
 	
 	private void tuoKuukaudet(Model model){

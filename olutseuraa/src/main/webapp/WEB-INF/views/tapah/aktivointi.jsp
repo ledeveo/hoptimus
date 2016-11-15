@@ -18,13 +18,13 @@
 			<form method="POST" action="aktivoi<c:out value="${id}"></c:out>">
 			
 				<label>Anna Sähköposti: </label>
-				<input type="email" name="sahkoposti"></input>
+				<input type="email" name="sahkoposti" required></input>
 				
 				<label >Anna salasana: </label>
-				<input type="password" name="salasana"></input>
+				<input type="password" name="salasana" required></input>
 				
 				<label >Anna salasana uudelleen: </label>
-				<input type="password" name="salasana2"></input>
+				<input type="password" name="salasana2" required></input>
 				
 				<button class="button success float-center" type="submit">Aktivoi!</button>
 				

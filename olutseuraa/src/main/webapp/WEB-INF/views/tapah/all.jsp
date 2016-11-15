@@ -47,7 +47,7 @@
 									<sec:authorize access="hasRole('ROLE_USER')">
 										<form action="kirjautunutLiity" method="POST">
 											<input type="hidden" name="username" value="<sec:authentication property="principal.username"/>"/>
-											<input type="hidden" name="eventid2"	value="<c:out value="${event.id}"/>"/>
+											<input type="hidden" name="eventid2" value="<c:out value="${event.id}"/>"/>
 											<button type="submit" class="button small success tutustu">Count me in!</button>
 										</form>
 									</sec:authorize>

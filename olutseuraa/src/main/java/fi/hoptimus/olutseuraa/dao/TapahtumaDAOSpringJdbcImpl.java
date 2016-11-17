@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -18,6 +19,8 @@ import org.springframework.stereotype.Repository;
 
 import fi.hoptimus.olutseuraa.bean.Henkilo;
 import fi.hoptimus.olutseuraa.bean.Tapahtuma;
+import fi.hoptimus.olutseuraa.bean.TapahtumaImpl;
+import fi.hoptimus.olutseuraa.helper.ListaHelpperi;
 
 @Repository
 public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
@@ -221,7 +224,10 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		Object[] parametrit = new Object[] { h.getId() };
 		List<Tapahtuma> tapahtumat = jdbcTemplate.query(sql, parametrit, mapper);
 		
-		return tapahtumat;
+		//poista duplikaatit ja yhdist‰ osallistujam‰‰r‰t
+		List<Tapahtuma> tapahtumat2 = ListaHelpperi.PoistaListastaDuplikaatit(tapahtumat);
+		
+		return tapahtumat2;
 	}
 
 	public void luoWebUserTili(Henkilo h) {

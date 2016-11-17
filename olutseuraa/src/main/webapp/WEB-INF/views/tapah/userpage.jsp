@@ -19,7 +19,7 @@
 				<table>
 					<thead>
 						<tr>
-							<td>nimi</td><td>aika</td>
+							<td>tapahtuman nimi</td><td>alkamisaika</td><td>henkilöitä</td>
 						</tr>
 					</thead>
 					<tbody>
@@ -29,7 +29,11 @@
 									<c:out value="${t.nimi}"></c:out>
 								</td>
 								<td>
+									<c:out value="${t.pvm}"></c:out>
 									<c:out value="${t.aika}"></c:out>
+								</td>
+								<td>
+									<c:out value="${t.osallistujamaara}"></c:out>
 								</td>
 							</tr>
 						</c:forEach>

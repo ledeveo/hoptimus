@@ -16,8 +16,11 @@
 				<li class="float-right"><a href="login"><i class="fi-arrow-right"></i><small>Kirjaudu</small></a></li>
 			</sec:authorize>
 			
+			<sec:authorize access="hasRole('ROLE_USER') && !hasRole('ROLE_ADMIN')">
+				<li style="color: white;"><a href="userpage">Käyttäjäsivu</a></li>
+			</sec:authorize>
+			
 			<sec:authorize access="hasRole('ROLE_USER')">
-			<li style="color: white;"><a href="userpage">Käyttäjäsivu</a></li>
 				<li class="float-right"><a href="j_spring_security_logout"><i class="fi-arrow-right"></i><small>Kirjaudu ulos</small></a></li>
 			</sec:authorize>
 

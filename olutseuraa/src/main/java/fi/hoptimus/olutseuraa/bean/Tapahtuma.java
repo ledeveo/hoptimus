@@ -36,4 +36,7 @@ public interface Tapahtuma {
 	public abstract int getmaxOsallistujamaara();
 	public abstract void setmaxOsallistujamaara(int maxOsallistujamaara);
 	
+	public abstract int getOsallistujamaara();
+	public abstract void setOsallistujamaara(int Osallistujamaara);
+	
 }

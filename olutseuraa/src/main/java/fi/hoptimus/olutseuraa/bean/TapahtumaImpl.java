@@ -33,6 +33,15 @@ public class TapahtumaImpl implements Tapahtuma {
 	private String isanta;
 	@Size(min = 1, max = 255)
 	private String kuvaus;
+	private int osallistujamaara;
+
+	public int getOsallistujamaara() {
+		return osallistujamaara;
+	}
+
+	public void setOsallistujamaara(int osallistujamaara) {
+		this.osallistujamaara = osallistujamaara;
+	}
 
 	public int getId() {
 		return id;

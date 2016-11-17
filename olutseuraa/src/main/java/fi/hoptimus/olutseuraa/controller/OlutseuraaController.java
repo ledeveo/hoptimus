@@ -27,6 +27,7 @@ import fi.hoptimus.olutseuraa.bean.HenkiloImpl;
 import fi.hoptimus.olutseuraa.bean.Tapahtuma;
 import fi.hoptimus.olutseuraa.bean.TapahtumaImpl;
 import fi.hoptimus.olutseuraa.dao.TapahtumaDAO;
+import fi.hoptimus.olutseuraa.helper.Helpperi;
 
 @Controller
 @RequestMapping(value = "/")
@@ -87,6 +88,7 @@ public class OlutseuraaController {
 		System.out.println("Kaikki tapahtumat!!!");
 
 		List<Tapahtuma> tapahtumat = dao.haeKaikki();
+		
 		Henkilo tyhjaHenkilo = new HenkiloImpl();
 		tuoKuukaudet(model);
 		

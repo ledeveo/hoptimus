@@ -1,10 +1,12 @@
 package fi.hoptimus.olutseuraa.helper;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import fi.hoptimus.olutseuraa.bean.Henkilo;
 import fi.hoptimus.olutseuraa.bean.Tapahtuma;
 
-public class ListaHelpperi {
+public class Helpperi {
 
 	//poistaa duplikaatit ja yhdist‰‰ osallistujam‰‰r‰t
 	public static List<Tapahtuma> PoistaListastaDuplikaatit(List<Tapahtuma> tapahtumat) {
@@ -25,18 +27,22 @@ public class ListaHelpperi {
 		for(int i = 0; i < tapahtumat.size(); i++) {
 			for(int j = 0; j < tapahtumat2.size(); j++) {
 				
-				//jos id sama, poista j‰lkimm‰isempi uudesta listasta
-				if(tapahtumat.get(i).getId() == tapahtumat2.get(j).getId()) {
-					
-					//jos olemassa uudessa listassa
-					if(tapahtumat2.get(j) != null) {
+				if(j < tapahtumat2.size() && i < tapahtumat.size()) {
+					//jos id sama, poista j‰lkimm‰isempi uudesta listasta
+					if(tapahtumat.get(i).getId() == tapahtumat2.get(j).getId()) {
 						
-						//poista duplikaatti
-						tapahtumat2.remove(j);
+						//jos olemassa uudessa listassa
+						if(tapahtumat2.get(j) != null) {
+							
+							//poista duplikaatti
+							tapahtumat2.remove(j);
+						}
 					}
 				}
+				
 			}
 		}
 		return tapahtumat2;
 	}
+	
 }

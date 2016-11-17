@@ -158,9 +158,9 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		return h;
 	}
 
-	public void liityTapahtumaan(Henkilo h, String tapahtumaid) {
+	public void liityTapahtumaan(Henkilo h, int tapahtumaid) {
 
-		final int tapahtumaIdInt = Integer.parseInt(tapahtumaid);
+		final int tapahtumaIdInt = tapahtumaid;
 		final int henkId = h.getId();
 		final String sql = "INSERT INTO tapOsallistuja(henkiloId, tapahtumaid) VALUES(?,?)";
 

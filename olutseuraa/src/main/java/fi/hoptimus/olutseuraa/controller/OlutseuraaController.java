@@ -221,23 +221,32 @@ public class OlutseuraaController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String sahkoposti = auth.getName(); //get logged in username = sahkoposti
 	    Henkilo henkilo = dao.haeHenkilo(sahkoposti);
-	    String eId = requestParams.get("eventid2");
+	    int eId = Integer.parseInt(requestParams.get("eventid2"));
+	    int osallistujamaara = Integer.parseInt(requestParams.get("osallistujamaara"));
 	    
 	    if(henkilo != null) {
+	    	
+	    	//lisää osallistujamäärän verran henkilöitä tapahtumaan
+			for(int i = 0; i < osallistujamaara; i++) {
+				dao.liityTapahtumaan(henkilo, eId);
+			}
 			
-			dao.liityTapahtumaan(henkilo, eId);
 
+			Tapahtuma t = dao.haeTapahtuma(eId);
+			
 			//luodaan simple message
 			SimpleMailMessage mail = new SimpleMailMessage();
 			mail.setFrom("testimeilihoptimus@gmail.com");
 			mail.setTo(henkilo.getSahkoposti());
-			mail.setSubject("Hei " + henkilo.getEtunimi() +"! Olet liittynyt tapahtumaan!");
+			mail.setSubject("Hei " + henkilo.getEtunimi() +"! Olet liittynyt tapahtumaan " + t.getNimi() + "!");
 			
 			//linkki
 			String linkki = "http://proto285:8080/olutseuraa/login"; //protolle ohjaus
 			//String linkki  ="http://localhost:8080/olutseuraa/login"; //localhostilla kikkailua varten
 			
-			mail.setText("Hei " + henkilo.getEtunimi() + "! Olet osallistunut tapahtumaan Olutseuraa-sivuilla. Voit tarkistella tapahtumiasi käyttäjäsivulla kirjautumalla sisään: " + linkki + " - Hoptimus Team.");
+			mail.setText("Hei " + henkilo.getEtunimi() + "! Olet osallistunut tapahtumaan " + t.getNimi() + " Olutseuraa-sivuilla." +
+			" Tapahtuma alkaa " + t.getPvm() + " klo " + t.getAika() + " paikassa: " + t.getPaikka() +
+			" Voit tarkistella tapahtumiasi käyttäjäsivulla kirjautumalla sisään: " + linkki + " - Hoptimus Team.");
 			
 			//lähetetään se käyttäjän sähköpostiin
 			mailer.send(mail);
@@ -255,8 +264,9 @@ public class OlutseuraaController {
 			@ModelAttribute(value = "henkilo") @Valid HenkiloImpl henkilo,
 			@RequestParam Map<String, String> requestParams, Model model) {
 
-		String eId = requestParams.get("eventid");
-		
+		int eId = Integer.parseInt(requestParams.get("eventid"));
+		int osallistujamaara = Integer.parseInt(requestParams.get("osallistujamaara"));
+	    
 		Henkilo h1 = dao.haeHenkilo(henkilo.getSahkoposti());
 		
 		
@@ -270,7 +280,12 @@ public class OlutseuraaController {
 			// palauttaa sen
 			// id:ll�
 			
-			dao.liityTapahtumaan(henkilo, eId);
+			//lisää osallistujamäärän verran henkilöitä tapahtumaan
+			for(int i = 0; i < osallistujamaara; i++) {
+				dao.liityTapahtumaan(henkilo, eId);
+			}
+			
+			Tapahtuma t = dao.haeTapahtuma(eId);
 			
 			//luodaan simple message
 			SimpleMailMessage mail = new SimpleMailMessage();
@@ -282,7 +297,9 @@ public class OlutseuraaController {
 			String linkki = "http://proto285:8080/olutseuraa/aktivoi" + henkilo.getId(); //protolle ohjaus
 			//String linkki  ="http://localhost:8080/olutseuraa/aktivoi" + henkilo.getId(); //localhostilla kikkailua varten
 			
-			mail.setText("Hei " + henkilo.getEtunimi() + "! Olet osallistunut tapahtumaan Olutseuraa-sivuilla. Mene tähän linkkiin aktivoidaksesi tunnuksesi: " + linkki + " - Hoptimus Team.");
+			mail.setText("Hei " + henkilo.getEtunimi() + "! Olet osallistunut tapahtumaan " + t.getNimi() + " Olutseuraa-sivuilla." + 
+					" Tapahtuma alkaa " + t.getPvm() + " klo " + t.getAika() + " paikassa: " + t.getPaikka() +
+					" Mene tähän linkkiin aktivoidaksesi tunnuksesi: " + linkki + " Samalla vahvistat osallistumisen tapahtumaan. - Hoptimus Team.");
 			
 			//lähetetään se käyttäjän sähköpostiin
 			mailer.send(mail);

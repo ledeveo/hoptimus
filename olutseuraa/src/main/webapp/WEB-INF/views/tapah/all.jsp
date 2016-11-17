@@ -48,6 +48,8 @@
 										<form action="kirjautunutLiity" method="POST">
 											<input type="hidden" name="username" value="<sec:authentication property="principal.username"/>"/>
 											<input type="hidden" name="eventid2" value="<c:out value="${event.id}"/>"/>
+											osallistujia:
+											<input type="number" name="osallistujamaara" min="1" max="${event.maxOsallistujamaara - osallistujat}" value="1">
 											<button type="submit" class="button small success tutustu">Count me in!</button>
 										</form>
 									</sec:authorize>
@@ -144,7 +146,9 @@
 										</form:label>
 
 										<form:input path="sahkoposti" id="sahkoposti" />
-
+										
+										<input type="number" name="osallistujamaara" min="1" max="${event.maxOsallistujamaara - osallistujat}" value="1">
+										
 										<input type="hidden" name="eventid"
 											value="<c:out value="${event.id}"/>" />
 									</div>

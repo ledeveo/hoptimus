@@ -20,7 +20,7 @@ import org.springframework.stereotype.Repository;
 import fi.hoptimus.olutseuraa.bean.Henkilo;
 import fi.hoptimus.olutseuraa.bean.Tapahtuma;
 import fi.hoptimus.olutseuraa.bean.TapahtumaImpl;
-import fi.hoptimus.olutseuraa.helper.ListaHelpperi;
+import fi.hoptimus.olutseuraa.helper.Helpperi;
 
 @Repository
 public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
@@ -92,7 +92,7 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 
 		// aseta osallistujat tapahtumiin
 		for (int i = 0; i < tapahtumat.size(); i++) {
-			List<Henkilo> osallistujat = haeOsallistujat(tapahtumat.get(i)
+			List<Henkilo> osallistujat = haeAktivoidutOsallistujat(tapahtumat.get(i)
 					.getId());
 			tapahtumat.get(i).setOsallistujat(osallistujat);
 		}
@@ -100,13 +100,14 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		return tapahtumat;
 	}
 
-	public List<Henkilo> haeOsallistujat(int tapId) {
+	public List<Henkilo> haeAktivoidutOsallistujat(int tapId) {
 		// hakee tapahtuman kaikki osallistujat
 		String sql = "SELECT h.etunimi, h.sukunimi, h.sahkoposti, h.id as henkiloId, h.aktivoitu, t.id as tapahtumaId"
 				+ " FROM Henkilo h"
 				+ " LEFT JOIN tapOsallistuja o ON h.id = o.henkiloId"
 				+ " LEFT JOIN Tapahtuma t ON t.id = o.tapahtumaId "
-				+ " WHERE o.tapahtumaId = ?";
+				+ " WHERE o.tapahtumaId = ?"
+				+ " AND h.aktivoitu=1";
 
 		RowMapper<Henkilo> mapper = new HenkiloRowMapper();
 		Object[] parametrit = new Object[] { tapId };
@@ -225,7 +226,7 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		List<Tapahtuma> tapahtumat = jdbcTemplate.query(sql, parametrit, mapper);
 		
 		//poista duplikaatit ja yhdist‰ osallistujam‰‰r‰t
-		List<Tapahtuma> tapahtumat2 = ListaHelpperi.PoistaListastaDuplikaatit(tapahtumat);
+		List<Tapahtuma> tapahtumat2 = Helpperi.PoistaListastaDuplikaatit(tapahtumat);
 		
 		return tapahtumat2;
 	}

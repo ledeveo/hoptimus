@@ -34,12 +34,16 @@
 	href="resources/styles/jquery.timepicker.css">
 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
+  <link rel="stylesheet" href="resources/demos/style.css">
  
   
 <title>Olutseuraa</title>
-<link rel="shortcut icon" href="img/beer.png" />
+<link rel="shortcut icon" href="resources/img/beer.png" />
 
+
+<script type="text/javascript" src="resources/js/instafeed.js"></script>
+<script type="text/javascript" src="resources/js/instagrammeli.js"></script>
+      
 
 </head>
 

@@ -272,12 +272,12 @@ public class OlutseuraaController {
 		Henkilo h1 = dao.haeHenkilo(henkilo.getSahkoposti());
 		
 		
-		
-		if(henkilo.getEtunimi().isEmpty() || henkilo.getSukunimi().isEmpty() || henkilo.getSahkoposti().isEmpty()){
+		//tarkista onko käyttäjä jo olemassa, anna virheilmoitus jos on.
+		if(h1 != null){
+			//käyttäjä on jo olemassa
+			model.addAttribute("UserExists", true);
 			return "redirect:tapahtumat";
-		}
-		
-		if(h1 == null) {
+		} else {
 			henkilo = (HenkiloImpl) dao.talleta(henkilo); // tallettaa henkilon tietokantaan ja
 			// palauttaa sen
 			// id:ll�
@@ -308,10 +308,7 @@ public class OlutseuraaController {
 			
 			return "redirect:tapahtumat";
 		}
-			//käyttäjä on jo olemassa
-			model.addAttribute("UserExists", true);
-			return "redirect:userpage";
-		}
+	}
 	
 	private void tuoKuukaudet(Model model){
 		

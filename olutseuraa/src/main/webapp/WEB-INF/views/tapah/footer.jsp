@@ -71,5 +71,7 @@ document.querySelector("#eventTime").addEventListener("keypress", function (evt)
 
 <script src="resources/js/app.js"></script>
 
+<c:if test="${param.UserExists eq true}" ><script> alert("Kirjaudu sis‰‰n liitty‰ksesi tapahtumaan!");</script></c:if>
+
 </body>
 </html>

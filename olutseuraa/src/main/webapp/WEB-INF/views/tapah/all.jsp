@@ -3,8 +3,13 @@
 <body>
 	<%@ include file="header.jsp"%>
 
-	<div class="row">
-		<div class="small-12 medium-10 medium-offset-1 columns main-content">
+	<div class="row align-middle">
+	
+	
+	
+		<div class="column small-12 medium-6 medium-offset-3">
+		
+		<p class="submitError"><c:if test="${param.UserExists eq true}" >Kirjaudu sisään liittyäksesi tapahtumaan!</c:if></p>
 
 			<c:forEach items="${tapahtumat}" var="event" varStatus="iteration">
 
@@ -15,7 +20,7 @@
 				<c:set var="osallistujat" value="${fn:length(event.osallistujat)}" />
 				<c:set var="maxMaara" value="${event.maxOsallistujamaara}" />
 
-				<div class="small-12 medium-8 small-centered event">
+				<div class="small-12 medium-12 small-centered event">
 
 
 
@@ -169,11 +174,9 @@
 
 			</c:forEach>
 
-
-
 		</div>
+		
+		<div id="instafeed" class="show column small-12 medium-3"></div>
 	</div>
-
-
 
 	<%@ include file="footer.jsp"%>

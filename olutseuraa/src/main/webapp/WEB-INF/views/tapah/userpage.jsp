@@ -2,6 +2,8 @@
 <body>
 	<%@ include file="header.jsp"%>
 
+<script src="resources/js/laskeAikaaJaljella.js"></script>
+
 	<div class="row">
 		<div
 			class="event small-12 medium-8 medium-offset-2 columns main-content">
@@ -31,6 +33,9 @@
 								<td>
 									<c:out value="${t.pvm}"></c:out>
 									<c:out value="${t.aika}"></c:out>
+									
+									<button style="color: green;" id="alkamiseenAikaa" onclick="laskeAikaaJaljella('${t.pvm}', '${t.aika}', this)">laske aika</button>
+									
 								</td>
 								<td>
 									<c:out value="${t.osallistujamaara}"></c:out>

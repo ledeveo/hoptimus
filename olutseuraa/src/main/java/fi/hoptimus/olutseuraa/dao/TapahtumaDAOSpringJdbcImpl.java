@@ -226,9 +226,9 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		List<Tapahtuma> tapahtumat = jdbcTemplate.query(sql, parametrit, mapper);
 		
 		//poista duplikaatit ja yhdist‰ osallistujam‰‰r‰t
-		List<Tapahtuma> tapahtumat2 = Helpperi.PoistaListastaDuplikaatit(tapahtumat);
+		tapahtumat = Helpperi.PoistaListastaDuplikaatit(tapahtumat);
 		
-		return tapahtumat2;
+		return tapahtumat;
 	}
 
 	public void luoWebUserTili(Henkilo h) {

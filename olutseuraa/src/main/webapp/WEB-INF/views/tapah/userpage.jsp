@@ -1,8 +1,9 @@
 <%@ include file="head-include.jsp"%>
-<body>
-	<%@ include file="header.jsp"%>
 
-<script src="resources/js/laskeAikaaJaljella.js"></script>
+	<script src="resources/js/laskeAikaaJaljella.js"></script>
+<body onload="haeElementit()">
+
+	<%@ include file="header.jsp"%>
 
 	<div class="row">
 		<div
@@ -34,7 +35,7 @@
 									<c:out value="${t.pvm}"></c:out>
 									<c:out value="${t.aika}"></c:out>
 									
-									<button style="color: green;" id="alkamiseenAikaa" onclick="laskeAikaaJaljella('${t.pvm}', '${t.aika}', this)">laske aika</button>
+									<button style="color: green;" class="alkamiseenAikaa" >${t.pvm}T${t.aika}:00Z</button>
 									
 								</td>
 								<td>
@@ -68,5 +69,5 @@
 	</div>
 
 	<script src="../resources/js/luoTapahtuma.js"></script>
-
+	
 	<%@ include file="footer.jsp"%>

@@ -19,7 +19,7 @@
 				<table>
 					<thead>
 						<tr>
-							<td>tapahtuman nimi</td><td>alkamisaika</td><td>henkilöitä</td>
+							<td>tapahtuman nimi</td><td>alkamisaika</td><td>henkilöitä</td><td>-</td><td>+</td><td>max</td>
 						</tr>
 					</thead>
 					<tbody>
@@ -34,6 +34,23 @@
 								</td>
 								<td>
 									<c:out value="${t.osallistujamaara}"></c:out>
+								</td>
+								<td>
+									<form action="PoistaLiittyminen" method="POST">
+											<input type="hidden" name="tapahtumaId" value="${t.id}"/>
+										<input type="submit" value="-"/>
+									</form>
+								</td>
+								<td>
+									<c:if test="${t.maxOsallistujamaara > fn:length(t.osallistujat)}">
+										<form action="LisaaLiittyminen" method="POST">
+											<input type="hidden" name="tapahtumaId" value="${t.id}"/>
+											<input type="submit" value="+"/>
+										</form>
+									</c:if>
+								</td>
+								<td>
+									<c:out value="${fn:length(t.osallistujat)}"></c:out>/<c:out value="${t.maxOsallistujamaara}"></c:out>
 								</td>
 							</tr>
 						</c:forEach>

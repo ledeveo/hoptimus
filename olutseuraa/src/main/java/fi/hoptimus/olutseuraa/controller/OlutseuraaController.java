@@ -85,18 +85,19 @@ public class OlutseuraaController {
 	@RequestMapping(value = "tapahtumat", method = RequestMethod.GET)
 	public String getView(Model model) {
 		
-		System.out.println("Kaikki tapahtumat!!!");
+		//System.out.println("Kaikki tapahtumat!!!");
 
 		List<Tapahtuma> tapahtumat = dao.haeKaikki();
 		
 		Henkilo tyhjaHenkilo = new HenkiloImpl();
 		tuoKuukaudet(model);
 		
-		
+		/*
+		 * DEBUG
 		for (int i = 0; i < tapahtumat.size(); i++) {
 			System.out.println(tapahtumat.get(i));
 		}
-		
+		*/
 
 		model.addAttribute("henkilo", tyhjaHenkilo);
 		model.addAttribute("tapahtumat", tapahtumat);
@@ -123,10 +124,44 @@ public class OlutseuraaController {
 			//jos ei olla kirjautuneena, ohjataan etusivulle
 			return "redirect:tapahtumat";
 		}
-		
-		
 	}
 
+	//PoistaLiittyminen
+	@RequestMapping(value = "/PoistaLiittyminen", method = RequestMethod.POST)
+	public String PoistaLiittyminen(Model model,
+			@RequestParam Map<String, String> requestParams) {
+		
+		//hae henkilö joka on kirjautunut
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String sahkoposti = auth.getName(); //get logged in username = sahkoposti
+	    Henkilo h = dao.haeHenkilo(sahkoposti);
+	    
+	    int tapahtumaId = Integer.parseInt(requestParams.get("tapahtumaId"));
+		
+		//poista käyttäjältä tapahtumaan liittyminen
+		dao.poistaLiittyminen(h, tapahtumaId);
+	    
+		return "redirect:userpage";
+	}
+	
+	//LisaaLiittyminen
+	@RequestMapping(value = "/LisaaLiittyminen", method = RequestMethod.POST)
+	public String LisaaLiittyminen(Model model,
+			@RequestParam Map<String, String> requestParams) {
+
+		//hae henkilö joka on kirjautunut
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String sahkoposti = auth.getName(); //get logged in username = sahkoposti
+	    Henkilo h = dao.haeHenkilo(sahkoposti);
+	    
+		int tapahtumaId = Integer.parseInt(requestParams.get("tapahtumaId"));
+		
+		//lisää käyttäjälle tapahtumaan liittyminen
+		dao.liityTapahtumaan(h, tapahtumaId);
+		
+		return "redirect:userpage";
+	}
+	
 	// Aktivointilomakkeen näyttäminen
 	@RequestMapping(value = "/aktivoi{id}", method = RequestMethod.GET)
 	public String naytaAktivointiSivu(@PathVariable Integer id, Model model) {

@@ -2,15 +2,9 @@
  * 
  */
 
-//formatoi ajan javascriptille kivaksi
-function formatoiAikaJaKello(pvm, klo) {
-	var formatoituaika = pvm + "T" + klo + ":00Z";
-	return formatoituaika;
-}
-
-function laskeAikaaJaljella(pvm, klo, element){
+function laskeAikaaJaljella(aika, element){
 	
-  var ajanloppu = formatoiAikaJaKello(pvm, klo);
+  var ajanloppu = aika;
   
   var t = Date.parse(ajanloppu) - Date.parse(new Date());
   var minutes = Math.floor( (t/1000/60) % 60 );
@@ -18,7 +12,19 @@ function laskeAikaaJaljella(pvm, klo, element){
   var days = Math.floor( t/(1000*60*60*24) );
   
   var tekstirimpsu = days + " päivää, " + hours + "tuntia, " + minutes + " minuuttia";
-  //alert(tekstirimpsu);
+  
   $(element).text(tekstirimpsu);
 
+}
+
+function haeElementit() {
+	
+	var elementit = document.getElementsByClassName("alkamiseenAikaa");
+	//alert(elementit[0].innerHTML);
+	//aseta ajat elementeille
+	for(i = 0; i < elementit.length; i++) {
+		aika = elementit[i].innerHTML;
+		laskeAikaaJaljella(aika, elementit[i]);
+	}
+	
 }

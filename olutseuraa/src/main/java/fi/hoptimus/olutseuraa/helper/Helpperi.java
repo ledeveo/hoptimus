@@ -24,7 +24,7 @@ public class Helpperi {
 		for(int i = 0; i < tapahtumat.size(); i++) {
 			for(int j = 0; j < tapahtumat2.size(); j++) {
 				
-				if(j <= tapahtumat2.size() && i <= tapahtumat.size()) {
+				if(j < tapahtumat2.size() && i < tapahtumat.size()) {
 					//jos id sama, poista jälkimmäisempi uudesta listasta
 					if(tapahtumat.get(i).getId() == tapahtumat2.get(j).getId()) {
 						

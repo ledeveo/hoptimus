@@ -225,6 +225,13 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		Object[] parametrit = new Object[] { h.getId() };
 		List<Tapahtuma> tapahtumat = jdbcTemplate.query(sql, parametrit, mapper);
 		
+		// aseta osallistujat tapahtumiin
+		for (int i = 0; i < tapahtumat.size(); i++) {
+			List<Henkilo> osallistujat = haeAktivoidutOsallistujat(tapahtumat.get(i)
+					.getId());
+			tapahtumat.get(i).setOsallistujat(osallistujat);
+		}
+		
 		//poista duplikaatit ja yhdistä osallistujamäärät
 		tapahtumat = Helpperi.PoistaListastaDuplikaatit(tapahtumat);
 		
@@ -281,6 +288,13 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 			Object[] parametrit2 = new Object[] { id };
 			jdbcTemplate.update(sql3, parametrit2);
 		}
+	}
+
+	public void poistaLiittyminen(Henkilo h, int tapahtumaId) {
+		//poistaa yhden tapahtuma osallistumisen henkilöltä
+		String sql = "DELETE FROM tapOsallistuja WHERE henkiloId=? AND tapahtumaID=? LIMIT 1";
+		Object[] parametrit = new Object[] { h.getId(), tapahtumaId };
+		jdbcTemplate.update(sql, parametrit);
 	}
 
 }

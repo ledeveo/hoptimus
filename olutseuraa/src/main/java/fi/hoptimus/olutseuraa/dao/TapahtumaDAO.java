@@ -31,4 +31,6 @@ public interface TapahtumaDAO {
 	public abstract void luoWebUserTili(Henkilo oikeahenkilo);
 
 	public abstract Henkilo haeHenkilo(String sahkoposti);
+
+	public abstract void poistaLiittyminen(Henkilo h, int tapahtumaId);
 }

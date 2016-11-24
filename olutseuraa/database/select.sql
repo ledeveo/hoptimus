@@ -10,3 +10,11 @@ FROM Tapahtuma
 LEFT JOIN tapOsallistuja o 
 ON Tapahtuma.id = o.tapahtumaId
 WHERE o.henkiloId=?;
+
+
+//hae kannasta käyttäjän tapahtuma idllä ja vain yksi rivi.
+
+SELECT id, henkiloId, tapahtumaId
+FROM tapOsallistuja
+WHERE henkiloId=67 AND tapahtumaId=16
+ORDER BY id LIMIT 1;

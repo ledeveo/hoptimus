@@ -36,6 +36,8 @@ import fi.hoptimus.olutseuraa.helper.Helpperi;
 @RequestMapping(value = "/")
 public class OlutseuraaController {
 
+	SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+	
 	@Inject
 	private TapahtumaDAO dao;
 
@@ -114,13 +116,11 @@ public class OlutseuraaController {
 		
 		if(toiminto.equals("tallenna")) {
 			
-			SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
-			
 			//tän vois tehrä springin modellilla mut meh.
 			String aika = requestParams.get("aika");
 			String isanta = requestParams.get("isanta");
 			String kuvaus = requestParams.get("kuvaus");
-			int maxOsallistujamaara = Integer.parseInt(requestParams.get("maxOsallistujamaara"));
+			int maxOsallistujamaara = Integer.parseInt(requestParams.get("maxOsallistujamaara2"));
 			String nimi = requestParams.get("nimi");
 			String paikka = requestParams.get("paikka");
 			Date pvm = new Date();
@@ -131,6 +131,9 @@ public class OlutseuraaController {
 				e.printStackTrace();
 			}
 			String teema = requestParams.get("teema");
+			
+			//DEBUG
+			System.out.println("maxOsallistujia: " + maxOsallistujamaara);
 			
 			//hae formin tiedot
 			Tapahtuma t = new TapahtumaImpl();
@@ -144,6 +147,7 @@ public class OlutseuraaController {
 			t.setPvm(pvm);
 			t.setTeema(teema);
 			
+			System.out.println("tapahtuman max osallistujat: " + t.getmaxOsallistujamaara());
 			//päivitä tapahtuman tiedot
 			dao.paivitaTapahtuma(t);
 			

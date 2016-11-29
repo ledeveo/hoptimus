@@ -1,10 +1,10 @@
 package fi.hoptimus.olutseuraa.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -19,12 +19,13 @@ import org.springframework.stereotype.Repository;
 
 import fi.hoptimus.olutseuraa.bean.Henkilo;
 import fi.hoptimus.olutseuraa.bean.Tapahtuma;
-import fi.hoptimus.olutseuraa.bean.TapahtumaImpl;
 import fi.hoptimus.olutseuraa.helper.Helpperi;
 
 @Repository
 public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 
+	SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+	
 	@Inject
 	private JdbcTemplate jdbcTemplate;
 	
@@ -63,7 +64,7 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 				PreparedStatement ps = connection.prepareStatement(sql,
 						new String[] { "id" });
 				ps.setString(1, nimi);
-				ps.setDate(2, pvm);
+				ps.setDate(2, new java.sql.Date(pvm.getTime()));
 				ps.setString(3, aika);
 				ps.setString(4, paikka);
 				ps.setString(5, teema);

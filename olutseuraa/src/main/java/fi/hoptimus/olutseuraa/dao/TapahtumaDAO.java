@@ -33,4 +33,7 @@ public interface TapahtumaDAO {
 	public abstract Henkilo haeHenkilo(String sahkoposti);
 
 	public abstract void poistaLiittyminen(Henkilo h, int tapahtumaId);
+	
+	public abstract void poistaTapahtuma(int tapahtumaId);
+	
 }

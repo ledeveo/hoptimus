@@ -292,9 +292,25 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 
 	public void poistaLiittyminen(Henkilo h, int tapahtumaId) {
 		//poistaa yhden tapahtuma osallistumisen henkilöltä
-		String sql = "DELETE FROM tapOsallistuja WHERE henkiloId=? AND tapahtumaID=? LIMIT 1";
+		String sql = "DELETE FROM tapOsallistuja WHERE henkiloId=? AND tapahtumaId=? LIMIT 1";
 		Object[] parametrit = new Object[] { h.getId(), tapahtumaId };
 		jdbcTemplate.update(sql, parametrit);
+	}
+	
+	public void poistaTapahtuma(int tapahtumaId) {
+		//poista KAIKKI tapahtuman yhteyssuhteet
+		String sql = "DELETE FROM tapOsallistuja WHERE tapahtumaId=?";
+		Object[] parametrit = new Object[] { tapahtumaId };
+		jdbcTemplate.update(sql, parametrit);
+		
+		//toivotaan että tässä välissä ei tule yhteyssuhteita kyseiseen tapahtumaan.
+		// wink wink: kokeile ON DELETE CASCADE 
+		
+		//poista tapahtuma
+		sql = "DELETE FROM Tapahtuma WHERE id=?";
+		parametrit = new Object[] { tapahtumaId };
+		jdbcTemplate.update(sql, parametrit);
+		
 	}
 
 }

@@ -1,6 +1,9 @@
 package fi.hoptimus.olutseuraa.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -81,6 +84,78 @@ public class OlutseuraaController {
 		}
 	}
 
+	//muokkaaTapahtuma
+	@RequestMapping(value = "muokkaaTapahtuma", method = RequestMethod.POST)
+	public String muokkaaTapahtumaa(Model model,
+			@RequestParam Map<String, String> requestParams) {
+		
+		String toiminto = requestParams.get("toiminto");
+		int tapId = Integer.parseInt(requestParams.get("tapahId"));
+		
+		//DEBUG
+		/*
+		System.out.println("toiminto: " + toiminto);
+		System.out.println("tapahtuma ID: " + tapId);
+		
+		String pvm = requestParams.get("pvm");
+		System.out.println("pvm: " + pvm);
+
+		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+		Date pvm2 = new Date();
+		try {
+			pvm2 = f.parse(requestParams.get("pvm"));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("pvm2: " + pvm2);
+		*/
+		
+		if(toiminto.equals("tallenna")) {
+			
+			SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+			
+			//tän vois tehrä springin modellilla mut meh.
+			String aika = requestParams.get("aika");
+			String isanta = requestParams.get("isanta");
+			String kuvaus = requestParams.get("kuvaus");
+			int maxOsallistujamaara = Integer.parseInt(requestParams.get("maxOsallistujamaara"));
+			String nimi = requestParams.get("nimi");
+			String paikka = requestParams.get("paikka");
+			Date pvm = new Date();
+			try {
+				pvm = f.parse(requestParams.get("pvm"));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			String teema = requestParams.get("teema");
+			
+			//hae formin tiedot
+			Tapahtuma t = new TapahtumaImpl();
+			t.setId(tapId);
+			t.setAika(aika);
+			t.setIsanta(isanta);
+			t.setKuvaus(kuvaus);
+			t.setmaxOsallistujamaara(maxOsallistujamaara);
+			t.setNimi(nimi);
+			t.setPaikka(paikka);
+			t.setPvm(pvm);
+			t.setTeema(teema);
+			
+			//päivitä tapahtuman tiedot
+			dao.paivitaTapahtuma(t);
+			
+		} else if(toiminto.equals("poista")) {
+			
+			//poista tapahtuma
+			dao.poistaTapahtuma(tapId);
+		}
+		
+		return "redirect:tapahtumat";
+	}
+	
 	// n�yt� kaikki tapahtumat
 	@RequestMapping(value = "tapahtumat", method = RequestMethod.GET)
 	public String getView(Model model) {

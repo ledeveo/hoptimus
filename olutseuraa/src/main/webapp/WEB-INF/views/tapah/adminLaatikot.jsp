@@ -1,12 +1,7 @@
 
 	<div class="small-12 medium-12 small-centered event">
-	<form>
-		<div>
-			<button class="button small alert">poista</button>
-			<button class="button small float-right">tallenna</button>
-		</div>
-		
-	
+	<form action="muokkaaTapahtuma" method="POST">
+			
 		<article>
 			<div class="event-date">
 				<p class="event-month"><c:out value="${kuukaudet[kk-1]}" /></p>
@@ -17,7 +12,7 @@
 	
 			<div class="event-desc">
 				<h4 class="event-desc-header">
-					<c:out value="${event.nimi}" />
+					<input type="text" name="nimi" path="nimi" value="${event.nimi}"/>
 				</h4>
 				<p class="event-desc-detail">
 					<span class="event-desc-time"></span>${event.paikka}
@@ -71,5 +66,12 @@
 				"
 			</h4>
 		</div>
+		
+		<div>
+			<input type="hidden" name="tapahId" value="${event.id }"/>
+			<button type="submit" name="toiminto" value="poista" class="button small alert">poista</button>
+			<button type="submit" name="toiminto" value="tallenna" class="button small float-right">tallenna</button>
+		</div>
+		
 	</form>
 	</div>

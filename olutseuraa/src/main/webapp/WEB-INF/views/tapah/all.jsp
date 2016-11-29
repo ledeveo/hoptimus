@@ -177,7 +177,7 @@
 
 		</div>
 		
-		<div id="instafeed" class="show column small-12 medium-3"></div>
+	<div id="instafeed" class="show column small-12 medium-3"><img border="0" alt="ig" src="resources/img/instagram_logo.png" width="150" height="150"><br></div>
 	</div>
 
 	<%@ include file="footer.jsp"%>

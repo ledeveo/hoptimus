@@ -1,6 +1,6 @@
 <div class="container">
 <header class="header show-for-medium">
-	<h1 class="headline  pressStart"><a href="/olutseuraa/tapahtumat">
+	<h1 class="headline  pressStart"><a href="/olutseuraa/tapahtumat"><img alt="olut" src="resources/img/oluttuoppi.png" width="130" height="130">
 		Olutseuraa <small>by HoptimusPrime</small></a>
 	</h1>
 	<ul class="header-subnav">

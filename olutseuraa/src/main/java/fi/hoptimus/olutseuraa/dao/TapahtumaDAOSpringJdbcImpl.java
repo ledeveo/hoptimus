@@ -221,7 +221,7 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 
 	public List<Tapahtuma> haeHenkilonTapahtumat(Henkilo h) {
 		String sql = "SELECT Tapahtuma.id, nimi, pvm, aika, paikka, teema, osallistujat, isanta, kuvaus, maxOsallistujamaara "
-				+" FROM Tapahtuma LEFT JOIN tapOsallistuja o ON Tapahtuma.id = o.tapahtumaId WHERE o.henkiloId=?";
+				+" FROM Tapahtuma LEFT JOIN tapOsallistuja o ON Tapahtuma.id = o.tapahtumaId WHERE o.henkiloId=? ORDER BY pvm ASC";
 		RowMapper<Tapahtuma> mapper = new TapahtumaRowMapper();
 		Object[] parametrit = new Object[] { h.getId() };
 		List<Tapahtuma> tapahtumat = jdbcTemplate.query(sql, parametrit, mapper);

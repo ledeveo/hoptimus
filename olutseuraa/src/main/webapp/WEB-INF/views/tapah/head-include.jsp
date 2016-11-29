@@ -38,7 +38,7 @@
  
   
 <title>Olutseuraa</title>
-<link rel="shortcut icon" href="resources/img/beer.png" />
+<link rel="icon" href="resources/img/oluttuoppi.png" />
 
 
 <script type="text/javascript" src="resources/js/instafeed.js"></script>

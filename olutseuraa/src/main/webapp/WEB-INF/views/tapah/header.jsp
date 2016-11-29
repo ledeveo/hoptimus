@@ -1,14 +1,14 @@
 <div class="container">
-<header class="header show-for-medium">
+<header class="header">
 	<h1 class="headline  pressStart"><a href="/olutseuraa/tapahtumat"><img alt="olut" src="resources/img/oluttuoppi.png" width="130" height="130">
 		Olutseuraa <small>by HoptimusPrime</small></a>
 	</h1>
 	<ul class="header-subnav">
 		<li class="small-offset-1">
-			<a href="tapahtumat" id="kaikki">Hae tapahtumia</a></li>
+			<a href="tapahtumat" id="kaikki">Tapahtumat</a></li>
 		
 			<sec:authorize access="hasRole('ROLE_ADMIN')">
-				<li><a href="uusi" id="uusi">Luo tapahtuma</a></li>
+				<li><a href="uusi" id="uusi">Luo uusi tapahtuma</a></li>
 			</sec:authorize>
 			
 			
@@ -17,7 +17,7 @@
 			</sec:authorize>
 			
 			<sec:authorize access="hasRole('ROLE_USER') && !hasRole('ROLE_ADMIN')">
-				<li style="color: white;"><a href="userpage">Käyttäjäsivu</a></li>
+				<li style="color: white;"><a href="userpage">Käyttäjä</a></li>
 			</sec:authorize>
 			
 			<sec:authorize access="hasRole('ROLE_USER')">

@@ -11,7 +11,7 @@ function laskeAikaaJaljella(aika, element){
   var hours = Math.floor( (t/(1000*60*60)) % 24 );
   var days = Math.floor( t/(1000*60*60*24) );
   
-  var tekstirimpsu = days + " päivää, " + hours + "tuntia, " + minutes + " minuuttia";
+  var tekstirimpsu = days + " päivää, " + hours + " tuntia, " + minutes + " minuuttia";
   
   $(element).text(tekstirimpsu);
 

@@ -10,53 +10,51 @@
 			class="event small-12 medium-8 medium-offset-2 columns main-content">
 
 			<!-- TODO: tulosta käyttäjän tiedot ja muokkausmahdollisuus -->
-			<sec:authentication property="principal.username"/></h3>
+			<span class="float-right">tili: <sec:authentication property="principal.username"/></span>
 
 			<sec:authorize access="hasRole('ROLE_USER')">
-				<h2>Hei <c:out value="${henkilo.etunimi}"></c:out>!</h2>
-				<p>
-				Tapahtumasi johon olet liittynyt:
-				</p>
+				<h2 class="center">Hei <c:out value="${henkilo.etunimi}"></c:out> <c:out value="${henkilo.sukunimi}"></c:out>!</h2>
 				
-				<!-- TODO: tulosta tapahtumat joihin käyttäjä on liittynyt ja anna mahdollisuus perua liittyminen -->
+				<h5 class="center">Tapahtumasi johon olet liittynyt:</h5>
+				
 				<table>
 					<thead>
 						<tr>
-							<td>tapahtuman nimi</td><td>alkamisaika</td><td>henkilöitä</td><td>-</td><td>+</td><td>max</td>
+							<th>tapahtuman nimi</th><th>alkaa</th><th>osallistumiset</th><th colspan="2">muokkaus</th><th>osallistujat</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach items="${tapahtumat}" var="t">
-							<tr>
+							<tr class="center">
 								<td>
-									<c:out value="${t.nimi}"></c:out>
+									<h5><c:out value="${t.nimi}"></c:out></h5>
 								</td>
-								<td>
-									<c:out value="${t.pvm}"></c:out>
-									<c:out value="${t.aika}"></c:out>
-									
-									<button style="color: green;" class="alkamiseenAikaa" >${t.pvm}T${t.aika}:00Z</button>
-									
+								<td class="center">
+								
+									<h5 style="color: green;" class="alkamiseenAikaa center" >${t.pvm}T${t.aika}:00Z</h5>
+									<div class="row center">
+									<i class="step fi-calendar size-18"></i> <fmt:formatDate pattern="dd.MM.yyyy" value="${t.pvm}" /> <i class="step fi-clock size-18"></i> <c:out value="${t.aika}"></c:out>
+									</div>
 								</td>
-								<td>
-									<c:out value="${t.osallistujamaara}"></c:out>
+								<td class="center">
+									<c:out value="${t.osallistujamaara}"></c:out> <i class="step fi-male size-18"></i>
 								</td>
-								<td>
+								<td class="center">
 									<form action="PoistaLiittyminen" method="POST">
 											<input type="hidden" name="tapahtumaId" value="${t.id}"/>
-										<input type="submit" value="-"/>
+										<button class="button alert" type="submit">-</button>
 									</form>
 								</td>
-								<td>
+								<td class="center">
 									<c:if test="${t.maxOsallistujamaara > fn:length(t.osallistujat)}">
 										<form action="LisaaLiittyminen" method="POST">
 											<input type="hidden" name="tapahtumaId" value="${t.id}"/>
-											<input type="submit" value="+"/>
+											<button class="button success" type="submit">+</button>
 										</form>
 									</c:if>
 								</td>
-								<td>
-									<c:out value="${fn:length(t.osallistujat)}"></c:out>/<c:out value="${t.maxOsallistujamaara}"></c:out>
+								<td class="center">
+									<c:out value="${fn:length(t.osallistujat)}"></c:out>/<c:out value="${t.maxOsallistujamaara}"></c:out> <i class="step fi-torsos size-18"></i>
 								</td>
 							</tr>
 						</c:forEach>

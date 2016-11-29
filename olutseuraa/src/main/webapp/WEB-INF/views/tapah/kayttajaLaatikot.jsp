@@ -10,11 +10,11 @@
 			</div>
 	
 			<div class="event-desc">
-				<h4 class="event-desc-header">
+				<h4 class="event-desc-header ">
 					<c:out value="${event.nimi}" />
 				</h4>
 				<p class="event-desc-detail">
-					<span class="event-desc-time"></span>${event.paikka}
+					<i class="step fi-marker size-36"></i> <span class="event-desc-time"></span>${event.paikka}
 				</p>
 	
 				<c:choose>
@@ -22,7 +22,7 @@
 						<button type="button" id="<c:out value="${iteration.count}" />"
 							class="button small alert" data-tooltip aria-haspopup="true"
 							class="has-tip" data-disable-hover="false"
-							title="T‰m‰ tapahtuma on t‰ynn‰!">D'oh!</button>
+							title="T‰m‰ tapahtuma on t‰ynn‰!"><i class="step fi-x size-36"></i> D'oh!</button>
 					</c:when>
 	
 					<c:otherwise>
@@ -32,12 +32,12 @@
 								<input type="hidden" name="eventid2" value="<c:out value="${event.id}"/>"/>
 								osallistujia:
 								<input type="number" name="osallistujamaara" min="1" max="${event.maxOsallistujamaara - osallistujat}" value="1">
-								<button type="submit" class="button small success tutustu">Count me in!</button>
+								<button type="submit" class="button small success tutustu"><i class="step fi-check size-36"></i> Count me in!</button>
 							</form>
 						</sec:authorize>
 						<sec:authorize access="!hasRole('ROLE_USER')">
 							<button type="button" id="<c:out value="${iteration.count}" />"
-							class="button small success tutustu">Beer me, Marge!</button>
+							class="button small success tutustu"><i class="step fi-check size-36"></i> Beer me, Marge!</button>
 						</sec:authorize>
 						
 					</c:otherwise>
@@ -47,36 +47,36 @@
 	
 		<div class="small-12 medium-6 columns">
 			<h5>
-				P‰iv‰m‰‰r‰:
+				<i class="step fi-calendar size-24"></i>
 				<fmt:formatDate pattern="dd.MM.yyyy" value="${pvm}" />
 			</h5>
 			<h5>
-				Kellonaika:
+				<i class="step fi-clock size-24"></i>
 				<c:out value="${event.aika}" />
 			</h5>
 			<h5>
-				Ravintola:
+				<i class="step fi-marker size-36"></i> 
 				<c:out value="${event.paikka}" />
 			</h5>
 		</div>
 		<div class="small-12 medium-6 columns">
 			<h5>
-				Teema:
+				<i class="step fi-burst size-36"></i> Teema:
 				<c:out value="${event.teema}" />
 			</h5>
 	
 			<h5>
-				Osallistujat: <span data-tooltip aria-haspopup="true"
+				Osallistujia <span data-tooltip aria-haspopup="true"
 					class="has-tip" data-disable-hover="false"
 					title="<c:if test="${empty event.osallistujat}" >Ole ensimm‰inen tapahtumaan ilmoittautuva!</c:if>
 						<c:forEach items="${event.osallistujat}" varStatus="loop" var="i" ><c:out value="${i}"/><c:if test="${!loop.last}">, </c:if></c:forEach>">
 					<c:out
-						value="${fn:length(event.osallistujat)}/${event.maxOsallistujamaara}" />
+						value="${fn:length(event.osallistujat)}/${event.maxOsallistujamaara}" /> <i class="step fi-torsos size-24"></i>
 				</span>
 			</h5>
 	
 			<h5>
-				Is‰nt‰:
+				<i class="step fi-foot size-36"></i> Is‰nt‰:
 				<c:out value="${event.isanta}" />
 			</h5>
 		</div>

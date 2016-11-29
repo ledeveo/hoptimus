@@ -1,6 +1,7 @@
 </div>
 <footer class="footer">
 
+
 	<div id="social">
 		<!-- <p class="about subheader">Beer me, Marge</p>-->
 		<span class="inline-list social"> <a href="#"><i
@@ -10,6 +11,9 @@
 				class="fi-social-github"></i></a>
 		</span>
 	</div>
+		
+	<h6 data-tooltip class="info float-right white" title="Anssi, Joonas, Juho, Leo, Sebastian & Yousuf">HoptimusPrime 2016</h6>
+	
 </footer>
 </div>
 

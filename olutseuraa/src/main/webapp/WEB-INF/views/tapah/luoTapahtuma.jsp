@@ -32,32 +32,32 @@
 					</p>
 					<div class="row">
 						<p class="small-6 columns">
-							<form:label class="lead" path="pvm">P‰iv‰m‰‰r‰</form:label>
+							<form:label class="lead" path="pvm"><i class="step fi-calendar size-36"></i> P‰iv‰m‰‰r‰</form:label>
 							<form:input type="date" id="datepicker" path="pvm"/>
 						</p>
 						
 						<p class="small-6 columns">
-							<form:label class="lead" path="aika">Kellonaika</form:label>
+							<form:label class="lead" path="aika"><i class="step fi-clock size-36"></i> Kellonaika</form:label>
 							<form:input type="text" id="eventTime" path="aika" class="time ui-timepicker-input"  />
 						</p>
 					</div>
 					<div class="row">
 						<p class="small-6 columns">
-							<form:label class="lead" path="paikka">Paikka</form:label>
+							<form:label class="lead" path="paikka"><i class="step fi-marker size-36"></i> Paikka</form:label>
 							<form:input type="text" path="paikka" />
 						</p>
 						<p class="small-6 columns">
-							<form:label class="lead" path="teema">Teema</form:label>
+							<form:label class="lead" path="teema"><i class="step fi-burst size-36"></i> Teema</form:label>
 							<form:input path="teema" />
 						</p>
 					</div>
 					<div class="row">
 						<p class="small-6 columns">
-							<form:label class="lead" path="isanta">Is‰nt‰</form:label>
+							<form:label class="lead" path="isanta"><i class="step fi-foot size-36"></i> Is‰nt‰</form:label>
 							<form:input type="text" path="isanta" />
 						</p>
 						<p class="small-6 columns">
-							<form:label class="lead" path="maxOsallistujamaara">Enint‰‰n osallistujia</form:label>
+							<form:label class="lead" path="maxOsallistujamaara"><i class="step fi-torsos size-36"></i> Enint‰‰n osallistujia</form:label>
 							<form:select path="maxOsallistujamaara">
 								<form:option value="0" label="0" />
 								<form:options items="${osallistujat}" />

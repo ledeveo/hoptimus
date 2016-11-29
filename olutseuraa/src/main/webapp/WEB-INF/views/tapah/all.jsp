@@ -9,7 +9,9 @@
 	
 		<div class="column small-12 medium-6 medium-offset-3">
 		
-		<p class="submitError"><c:if test="${param.UserExists eq true}" >Kirjaudu sisään liittyäksesi tapahtumaan!</c:if></p>
+		<div class="submitError"><c:if test="${param.UserExists eq true}" >
+			  <h4>Kirjaudu sisään liittyäksesi tapahtumaan!</h4>
+		</c:if></div>
 
 			<c:forEach items="${tapahtumat}" var="event" varStatus="iteration">
 

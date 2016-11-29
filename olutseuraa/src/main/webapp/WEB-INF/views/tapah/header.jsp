@@ -1,27 +1,27 @@
 <div class="container">
 <header class="header">
 	<h1 class="headline  pressStart"><a href="/olutseuraa/tapahtumat"><img alt="olut" src="resources/img/oluttuoppi.png" width="130" height="130">
-		Olutseuraa <small>by HoptimusPrime</small></a>
+		Olutseuraa <small data-tooltip title="Anssi, Joonas, Juho, Leo, Sebastian & Yousuf">by HoptimusPrime</small></a>
 	</h1>
 	<ul class="header-subnav">
 		<li class="small-offset-1">
-			<a href="tapahtumat" id="kaikki">Tapahtumat</a></li>
+			<a href="tapahtumat" id="kaikki"><i class="step fi-marker size-36"></i> Tapahtumat</a></li>
 		
 			<sec:authorize access="hasRole('ROLE_ADMIN')">
-				<li><a href="uusi" id="uusi">Luo uusi tapahtuma</a></li>
+				<li><a href="uusi" id="uusi"> <i class="step fi-pencil size-36"></i> Luo uusi tapahtuma</a></li>
 			</sec:authorize>
 			
 			
 			<sec:authorize access="!hasRole('ROLE_USER')">
-				<li class="float-right"><a href="login"><i class="fi-arrow-right"></i><small>Kirjaudu</small></a></li>
+				<li><a href="login"><i class="fi-arrow-right"></i> Kirjaudu sis‰‰n</a></li>
 			</sec:authorize>
 			
 			<sec:authorize access="hasRole('ROLE_USER') && !hasRole('ROLE_ADMIN')">
-				<li style="color: white;"><a href="userpage">K‰ytt‰j‰</a></li>
+				<li style="color: white;"><a href="userpage"><i class="step fi-bookmark size-36"></i> Osallistumiset</a></li>
 			</sec:authorize>
 			
 			<sec:authorize access="hasRole('ROLE_USER')">
-				<li class="float-right"><a href="j_spring_security_logout"><i class="fi-arrow-right"></i><small>Kirjaudu ulos</small></a></li>
+				<li><a href="j_spring_security_logout"><i class="fi-arrow-right"></i> Kirjaudu ulos</a></li>
 			</sec:authorize>
 
 	</ul>
@@ -48,5 +48,7 @@
 	<p class="text-center">Lis‰‰ sek‰ etu- ett‰ sukunimi!
 	<p>
 </div>
+
+
 
 

@@ -50,7 +50,7 @@
 						value="${fn:length(event.osallistujat)}/${event.maxOsallistujamaara}" />
 						</span>
 					
-					<input type="text" name="maxOsallistujamaara" value="${event.maxOsallistujamaara}"/>
+					<input type="number" name="maxOsallistujamaara2" value="${event.maxOsallistujamaara}"/>
 			</h5>
 	
 			<h5>

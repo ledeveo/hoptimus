@@ -119,10 +119,10 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 	}
 
 	public void paivitaTapahtuma(Tapahtuma t) {
-		String sql = "UPDATE Tapahtuma SET nimi=?, pvm=?, aika=?, paikka=?, teema=?, osallistujat=?, isanta=?, kuvaus=? WHERE id=?";
+		String sql = "UPDATE Tapahtuma SET nimi=?, pvm=?, aika=?, paikka=?, teema=?, osallistujat=?, isanta=?, kuvaus=?, maxOsallistujamaara=? WHERE id=?";
 		Object[] parametrit = new Object[] { t.getNimi(), t.getPvm(),
 				t.getAika(), t.getPaikka(), t.getTeema(), t.getOsallistujat(),
-				t.getIsanta(), t.getKuvaus(), t.getId() };
+				t.getIsanta(), t.getKuvaus(), t.getmaxOsallistujamaara(), t.getId() };
 
 		jdbcTemplate.update(sql, parametrit);
 	}

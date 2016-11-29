@@ -151,9 +151,9 @@
 										</form:label>
 
 										<form:input path="sahkoposti" id="sahkoposti" />
+										<label path="osallistujamaara"><spring:message code="henk.create.osallistujat" /></label>
 										
-										<font size="2">Osallistujien lukum‰‰r‰</font>
-										<input type="number" name="osallistujamaara" min="1" max="${event.maxOsallistujamaara - osallistujat}" value="1">
+										<input path="osallistujamaara" type="number" name="osallistujamaara" min="1" max="${event.maxOsallistujamaara - osallistujat}" value="1">
 										
 										<input type="hidden" name="eventid"
 											value="<c:out value="${event.id}"/>" />

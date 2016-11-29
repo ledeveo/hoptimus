@@ -3,7 +3,7 @@ package fi.hoptimus.olutseuraa.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -74,6 +74,8 @@ public class OlutseuraaController {
 	public String create(
 			Model model, @ModelAttribute(value = "tapahtuma") @Valid TapahtumaImpl tapahtuma, BindingResult result) {
 		
+		//TODO: tähän tarvitaa testi onko käyttäjä admin!
+		
 		System.out.println(result);
 		
 		if (result.hasErrors()) {
@@ -94,25 +96,6 @@ public class OlutseuraaController {
 		String toiminto = requestParams.get("toiminto");
 		int tapId = Integer.parseInt(requestParams.get("tapahId"));
 		
-		//DEBUG
-		/*
-		System.out.println("toiminto: " + toiminto);
-		System.out.println("tapahtuma ID: " + tapId);
-		
-		String pvm = requestParams.get("pvm");
-		System.out.println("pvm: " + pvm);
-
-		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
-		Date pvm2 = new Date();
-		try {
-			pvm2 = f.parse(requestParams.get("pvm"));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		System.out.println("pvm2: " + pvm2);
-		*/
 		
 		if(toiminto.equals("tallenna")) {
 			
@@ -123,13 +106,14 @@ public class OlutseuraaController {
 			int maxOsallistujamaara = Integer.parseInt(requestParams.get("maxOsallistujamaara2"));
 			String nimi = requestParams.get("nimi");
 			String paikka = requestParams.get("paikka");
-			Date pvm = new Date();
+			java.util.Date pvm2 = null;
 			try {
-				pvm = f.parse(requestParams.get("pvm"));
+				pvm2 = f.parse(requestParams.get("pvm"));
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			Date pvm = new Date(pvm2.getTime());
 			String teema = requestParams.get("teema");
 			
 			//DEBUG

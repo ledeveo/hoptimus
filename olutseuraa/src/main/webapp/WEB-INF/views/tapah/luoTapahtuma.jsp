@@ -82,6 +82,4 @@
 		</div>
 	</div>
 
-	<script src="../resources/js/luoTapahtuma.js"></script>
-
 	<%@ include file="footer.jsp"%>

@@ -3,6 +3,8 @@
  */
 
 
+
+
 var feed = new Instafeed({
 		get: 'user',
 		userId: 4181455874,
@@ -19,5 +21,9 @@ var feed = new Instafeed({
 });
 
 window.onload = function() {
-	feed.run();
+	var instafeedi = document.getElementById("instafeed");
+	//jos feedi löytyy sivulta
+	if(instafeedi) {
+		feed.run();
+	}
 }

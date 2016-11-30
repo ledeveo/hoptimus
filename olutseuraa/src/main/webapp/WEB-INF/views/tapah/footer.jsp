@@ -58,12 +58,15 @@
 
 <!-- Estää kirjainten kirjoittamisen Aika -kenttään -->
 <script>
-document.querySelector("#eventTime").addEventListener("keypress", function (evt) {
-    if (evt.which < 48 || evt.which > 57)
-    {
-        evt.preventDefault();
-    }
-});
+if(document.querySelector("#eventTime")) {
+	document.querySelector("#eventTime").addEventListener("keypress", function (evt) {
+	    if (evt.which < 48 || evt.which > 57)
+	    {
+	        evt.preventDefault();
+	    }
+	});
+}
+
 
 </script>
 

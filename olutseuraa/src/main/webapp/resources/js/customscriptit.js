@@ -61,8 +61,19 @@ function skrollaakontenttiin(elementtiID) {
 	elementtiin.addClass("valittu");
 }
 
+//klikkaa olut-kuvaa
+function suurennaKuva() {
+	$("#olutKuva").addClass("suurennaKuva");
+	setTimeout(function() {
+		$("#olutKuva").removeClass("suurennaKuva");}, 500);
+}
 
-
+//klikkaa olut-kuvaa
+function pienennaKuva() {
+	$("#olutKuva").addClass("pienennaKuva");
+	setTimeout(function() {
+		$("#olutKuva").removeClass("pienennaKuva");}, 500);
+}
 
 
 

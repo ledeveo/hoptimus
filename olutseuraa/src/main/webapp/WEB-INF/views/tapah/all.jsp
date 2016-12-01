@@ -1,6 +1,8 @@
 
 <%@ include file="head-include.jsp"%>
-<body>
+
+<body onload="haeElementit()">
+
 	<%@ include file="header.jsp"%>
 
 	<div class="row align-middle">
@@ -70,8 +72,4 @@
 	
 	</div>
 	
-
-
- <script type="text/javascript" src="resources/js/instafeed.js"></script>
-<script type="text/javascript" src="resources/js/instagrammeli.js"></script>
 	<%@ include file="footer.jsp"%>

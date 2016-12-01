@@ -55,12 +55,5 @@ var feed = new Instafeed({
                 el.className += ' ' + 'show';
         }
 });
-window.onload = function() {
-    var instafeedi = document.getElementById("instafeed");
-    //jos feedi löytyy sivulta
-    if(instafeedi) {
-        feed.run();
-    }
-}
 
 

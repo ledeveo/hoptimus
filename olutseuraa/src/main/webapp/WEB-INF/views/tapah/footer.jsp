@@ -78,6 +78,10 @@ if(document.querySelector("#eventTime")) {
 
 <script src="resources/js/app.js"></script>
 
+<script src="resources/js/laskeAikaaJaljella.js"></script>
+ <script type="text/javascript" src="resources/js/lataa.js"></script>
+ <script type="text/javascript" src="resources/js/instafeed.js"></script>
+<script type="text/javascript" src="resources/js/instagrammeli.js"></script>
   
 
 

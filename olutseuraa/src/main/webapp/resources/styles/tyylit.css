@@ -42,11 +42,12 @@
 
 .suurennaKuva {
 	transition: 0.5s;
-	transform: scale(2, 2);
+	transform: scale(2, 2) rotate(-15deg);
+	
 }
 
 .pienennaKuva {
 	transition: 0.5s;
-	transform: scale(0.5, 0.5);
+	transform: scale(0.5, 0.5) rotate(20deg);
 }
 

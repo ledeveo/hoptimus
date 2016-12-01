@@ -1,4 +1,20 @@
 </div>
+
+<div id="audioklipit" style="display: none;">
+	<audio controls id="CrumpleBeer">
+	  <source src="resources/sound/crumple.wav" type="audio/wav">
+	</audio>
+	<audio controls id="popBeer">
+	  <source src="resources/sound/popbeer.wav" type="audio/wav">
+	</audio>
+	<audio controls id="snapOpenBeer">
+	  <source src="resources/sound/snapopen.wav" type="audio/wav">
+	</audio>
+	<audio controls id="pourBeer">
+	  <source src="resources/sound/pourbeer.wav" type="audio/wav">
+	</audio>
+</div>
+
 <footer class="footer">
 
 

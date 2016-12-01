@@ -1,5 +1,5 @@
 
-	<div class="small-12 medium-12 small-centered event">
+	<div id="<c:out value="${event.id}"/>" class="small-12 medium-12 small-centered event">
 	
 		<article>
 			<div class="event-date">
@@ -7,7 +7,7 @@
 				<p class="event-day">
 					<fmt:formatDate pattern="dd" value="${pvm}" />
 				</p>
-				<h5 style="color: green;" class="alkamiseenAikaa center" >${event.pvm}T${event.aika}:00Z</h5>
+				alkuun aikaa: <h5 style="color: green;" class="alkamiseenAikaa center" >${event.pvm}T${event.aika}:00Z</h5>
 			</div>
 	
 			<div class="event-desc">

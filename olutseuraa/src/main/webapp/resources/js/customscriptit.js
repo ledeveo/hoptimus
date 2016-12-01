@@ -42,6 +42,24 @@ $("#showFilters").click(function() {
 });
 
 
+function skrollaakontenttiin(elementtiID) {
+	
+	//poista valittu edellisestä
+	var valitut = document.getElementsByClassName("valittu");
+	if(valitut) {
+		for(i = 0; i < valitut.length; i++) {
+			//alert(valitut[i]);
+			$(valitut[i]).removeClass("valittu");
+		}
+	}
+	
+	//skrollaa elementtiin
+	var elementtiin = $("#" + elementtiID);
+	$('body').scrollTo(elementtiin,1000);
+	
+	//lisää valittuu seuraavaan
+	elementtiin.addClass("valittu");
+}
 
 
 

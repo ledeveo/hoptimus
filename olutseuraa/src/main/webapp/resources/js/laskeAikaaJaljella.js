@@ -35,8 +35,8 @@ function laskeAikaaJaljella(aika, element){
   
   $(element).text(tekstirimpsu);
   // DEBUG
-  console.log("elementti: " + element);
-  console.log("aika: " + tekstirimpsu);
+  //console.log("elementti: " + element);
+  //console.log("aika: " + tekstirimpsu);
 
 }
 

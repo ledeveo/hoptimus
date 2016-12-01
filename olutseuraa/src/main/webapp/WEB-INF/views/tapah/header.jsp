@@ -1,6 +1,6 @@
 <div class="container">
 <header class="header">
-	<h1 class="headline  pressStart"><a onclick="suurennaKuva()"><img id="olutKuva"  alt="olut" src="resources/img/oluttuoppi.png" width="130" height="130"></a><a href="/olutseuraa/tapahtumat">
+	<h1 class="headline  pressStart"><a onclick="randomAnimaatio()"><img id="olutKuva"  alt="olut" src="resources/img/oluttuoppi.png" width="130" height="130"></a><a href="/olutseuraa/tapahtumat">
 		Olutseuraa <small data-tooltip title="Anssi, Joonas, Juho, Leo, Sebastian & Yousuf">by HoptimusPrime</small></a>
 	</h1>
 	<ul class="header-subnav">

@@ -61,8 +61,39 @@ function skrollaakontenttiin(elementtiID) {
 	elementtiin.addClass("valittu");
 }
 
+function soitaPoistoKlippi() {
+	var audio = document.getElementById("CrumpleBeer");
+	audio.play();
+}
+
+function soitaLisaysKlippi() {
+	//valitse satunnaisesti klippi joka soitetaan
+	var audio1 = document.getElementById("popBeer");
+	var audio2 = document.getElementById("snapOpenBeer");
+	var audio3 = document.getElementById("pourBeer");
+	
+	var random = Math.floor((Math.random() * 3) + 1); 
+	switch(random) {
+		case 1:
+			audio1.play();
+			break;
+		case 2:
+			audio2.play();
+			break;
+		case 3:
+			audio3.play();
+			break;
+		default:
+			audio1.play();
+	}
+	   
+}
+
 //klikkaa olut-kuvaa
 function suurennaKuva() {
+	
+	soitaLisaysKlippi();
+	
 	$("#olutKuva").addClass("suurennaKuva");
 	setTimeout(function() {
 		$("#olutKuva").removeClass("suurennaKuva");}, 500);
@@ -70,11 +101,28 @@ function suurennaKuva() {
 
 //klikkaa olut-kuvaa
 function pienennaKuva() {
+	
+	soitaPoistoKlippi();
+	
 	$("#olutKuva").addClass("pienennaKuva");
 	setTimeout(function() {
 		$("#olutKuva").removeClass("pienennaKuva");}, 500);
 }
 
+
+function randomAnimaatio() {
+	var random = Math.floor((Math.random() * 2) + 1);
+	switch(random) {
+		case 1:
+			pienennaKuva();
+			break;
+		case 2:
+			suurennaKuva();
+			break;
+		default:
+			suurennaKuva();
+	}
+}
 
 
 

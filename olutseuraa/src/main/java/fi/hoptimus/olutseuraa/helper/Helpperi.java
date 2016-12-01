@@ -2,10 +2,16 @@ package fi.hoptimus.olutseuraa.helper;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
+
+import fi.hoptimus.olutseuraa.bean.Henkilo;
 import fi.hoptimus.olutseuraa.bean.Tapahtuma;
 
 public class Helpperi {
-
+	
 	//poistaa duplikaatit ja yhdistää osallistujamäärät
 	public static List<Tapahtuma> PoistaListastaDuplikaatit(List<Tapahtuma> tapahtumat) {
 		
@@ -84,4 +90,54 @@ public class Helpperi {
 		return tapahtumat;
 	}
 	
+	public static void lahetaAktivointilinkki(Henkilo henkilo, Tapahtuma t, MailSender mailer) {
+		//luodaan simple message
+		SimpleMailMessage mail = new SimpleMailMessage();
+		mail.setFrom("testimeilihoptimus@gmail.com");
+		mail.setTo(henkilo.getSahkoposti());
+		mail.setSubject("Hei " + henkilo.getEtunimi() +"! Aktivoi tunnuksesi olutseuran sivuille!");
+		
+		//linkki
+		String linkki = "http://proto285:8080/olutseuraa/aktivoi" + henkilo.getId(); //protolle ohjaus
+		//String linkki  ="http://localhost:8080/olutseuraa/aktivoi" + henkilo.getId(); //localhostilla kikkailua varten
+		
+		mail.setText("Hei " + henkilo.getEtunimi() + "! Olet osallistunut tapahtumaan " + t.getNimi() + " Olutseuraa-sivuilla." + 
+				" Tapahtuma alkaa " + t.getPvm() + " klo " + t.getAika() + " paikassa: " + t.getPaikka() +
+				" Mene tähän linkkiin aktivoidaksesi tunnuksesi: " + linkki + " Samalla vahvistat osallistumisen tapahtumaan. - Hoptimus Team.");
+		
+		//lähetetään se käyttäjän sähköpostiin
+		mailer.send(mail);
+	}
+	
+	public static void lahetaTapahtumaanLiittyminenOnnistunut(Henkilo henkilo, Tapahtuma t, MailSender mailer) {
+		//luodaan simple message
+		SimpleMailMessage mail = new SimpleMailMessage();
+		mail.setFrom("testimeilihoptimus@gmail.com");
+		mail.setTo(henkilo.getSahkoposti());
+		mail.setSubject("Hei " + henkilo.getEtunimi() +"! Olet liittynyt tapahtumaan " + t.getNimi() + "!");
+		
+		//linkki
+		String linkki = "http://proto285:8080/olutseuraa/login"; //protolle ohjaus
+		//String linkki  ="http://localhost:8080/olutseuraa/login"; //localhostilla kikkailua varten
+		
+		mail.setText("Hei " + henkilo.getEtunimi() + "! Olet osallistunut tapahtumaan " + t.getNimi() + " Olutseuraa-sivuilla." +
+		" Tapahtuma alkaa " + t.getPvm() + " klo " + t.getAika() + " paikassa: " + t.getPaikka() +
+		" Voit tarkistella tapahtumiasi käyttäjäsivulla kirjautumalla sisään: " + linkki + " - Hoptimus Team.");
+		
+		//lähetetään se käyttäjän sähköpostiin
+		mailer.send(mail);
+	}
+	
+	public static void lahetaAktivointiOnnistunutlinkki(Henkilo henkilo, MailSender mailer) {
+		//lähetetään aktivoinnista ilmoitus käyttäjälle sähköpostiin
+		SimpleMailMessage mail = new SimpleMailMessage();
+		mail.setFrom("testimeilihoptimus@gmail.com");
+		mail.setTo(henkilo.getSahkoposti());
+		mail.setSubject("Hei " + henkilo.getEtunimi() + "! Tilisi on aktivoitu!");
+		String linkki = "http://localhost:8080/olutseuraa/login";
+		//String linkki = "http//proto285:8080/olutseuraa/login";
+		mail.setText("Hei " + henkilo.getEtunimi() + "! Olet aktivoinut onnistuneesti tilisi. Pääset katsomaan profiiliasi kirjautumalla Olutseuraa-sivuilla: " + linkki + " - Hoptimus Team.");
+		//lähetetään se käyttäjän sähköpostiin
+		mailer.send(mail);
+	}
 }

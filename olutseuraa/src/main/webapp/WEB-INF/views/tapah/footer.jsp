@@ -78,10 +78,16 @@ if(document.querySelector("#eventTime")) {
 
 <script src="resources/js/app.js"></script>
 
+<<<<<<< HEAD
 <script type="text/javascript" src="resources/js/instafeed.js"></script>
 <script type="text/javascript" src="resources/js/instagrammeli.js"></script>
 
 <c:if test="${param.UserExists eq true}" ><script> alert("Kirjaudu sisään liittyäksesi tapahtumaan!");</script></c:if>
+=======
+<c:if test="${param.UserExists eq true}" ><script> alert("Säköpostilla oleva tili on jo olemassa. Kirjaudu sisään liittyäksesi tapahtumaan!");</script></c:if>
+<c:if test="${param.userNotActivated eq true}" ><script> alert("Sähköpostiisi on lähetetty aktivointilinkki! Posti saattaa olla roskaposteissa.");</script></c:if>
+<c:if test="${param.submitSuccessActivate eq true}" ><script> alert("Osallistuminen onnistui! Tarkista sähköpostisi tilin aktivointia varten.");</script></c:if>
+>>>>>>> ecdbe832b003a4ae93549b66108f9050664edeba
 
 </body>
 </html>

@@ -5,6 +5,12 @@
 	text-align: center;	
 }
 
+/* onnistunut viesti */
+.submitSuccess {
+	color: green;
+	text-align: center;	
+}
+
 .VirheellinenKentta {
 	border: 2px solid red;
 }

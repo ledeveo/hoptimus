@@ -6,10 +6,14 @@
 		<div
 			class="event small-12 medium-8 medium-offset-2 columns main-content">
 
-			<c:if test="${param.submitError eq true}">
-				<p class="submitError">Tapahtui virhe.
-					Tarkista kaikki kentät!</p>
-			</c:if>
+			<div class="submitError">
+				<c:if test="${param.submitError eq true}">
+					<h4>Tapahtui virhe. Tarkista kaikki kentät!</h4>
+				</c:if>
+				<c:if test="${param.userNotActivated eq true}" >
+					<h4>Käyttäjää ei ole aktivoitu, tarkista sähköpostisi aktivointilinkkiä varten!</h4>
+				</c:if>
+			</div>
 
 			<p>
 			Aktivoi tunnuksesi antamalla sama sähköposti jolla ilmoittauduit tapahtumaan ja luo itsellesi salasana.

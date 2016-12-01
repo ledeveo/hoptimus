@@ -9,6 +9,8 @@
 	
 		<div class="column small-12 medium-6 medium-offset-3" id="stickyanchor" >
 		
+		
+		<!-- Joko modaaleihin tai alertteihin -->
 		<div class="submitError">
 			<c:if test="${param.UserExists eq true}" >
 				  <h4>Kirjaudu sisään liittyäksesi tapahtumaan!</h4>
@@ -70,5 +72,6 @@
 	
 
 
-
+ <script type="text/javascript" src="resources/js/instafeed.js"></script>
+<script type="text/javascript" src="resources/js/instagrammeli.js"></script>
 	<%@ include file="footer.jsp"%>

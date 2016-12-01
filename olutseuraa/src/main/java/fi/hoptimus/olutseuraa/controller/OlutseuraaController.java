@@ -49,7 +49,8 @@ public class OlutseuraaController {
 		this.dao = dao;
 	}
 	
-	@Inject MailSender mailer;
+	@Inject
+	private MailSender mailer;
 	
 	public MailSender getMailer() {
 		return mailer;
@@ -58,7 +59,7 @@ public class OlutseuraaController {
 	public void setMailer(MailSender mailer) {
 		this.mailer = mailer;
 	}
-
+	
 	// FORMIN TEKEMINEN | Tapahtuman luonti formi
 	@RequestMapping(value = "uusi", method = RequestMethod.GET)
 	public String getCreateForm(Model model) {
@@ -184,8 +185,8 @@ public class OlutseuraaController {
 			
 			return "tapah/userpage";
 		} else {
-			//jos ei olla kirjautuneena, ohjataan etusivulle
-			return "redirect:tapahtumat";
+			//jos ei olla kirjautuneena, ohjataan kirjautumaan
+			return "redirect:login";
 		}
 	}
 
@@ -203,11 +204,12 @@ public class OlutseuraaController {
 		
 		//poista käyttäjältä tapahtumaan liittyminen
 		dao.poistaLiittyminen(h, tapahtumaId);
+		model.addAttribute("tapahtumaRemoved", true);
 	    
 		return "redirect:userpage";
 	}
 	
-	//LisaaLiittyminen
+	//LisaaLiittyminen, plus napista käyttäjäsivulla, lisää yhden liittymisen
 	@RequestMapping(value = "/LisaaLiittyminen", method = RequestMethod.POST)
 	public String LisaaLiittyminen(Model model,
 			@RequestParam Map<String, String> requestParams) {
@@ -219,8 +221,17 @@ public class OlutseuraaController {
 	    
 		int tapahtumaId = Integer.parseInt(requestParams.get("tapahtumaId"));
 		
-		//lisää käyttäjälle tapahtumaan liittyminen
-		dao.liityTapahtumaan(h, tapahtumaId);
+		Tapahtuma t = dao.haeTapahtuma(tapahtumaId);
+		
+		//tarkista että max osallistujamäärä ei ole täynnä
+		if(t.getOsallistujat().size() <= t.getmaxOsallistujamaara()) {
+			//lisää käyttäjälle yhden tapahtumaan liittyminen
+			dao.liityTapahtumaan(h, tapahtumaId);
+			model.addAttribute("tapahtumaAdded", true);
+		} else {
+			//muulloin ei pysty liittymään
+			model.addAttribute("cantJoin", true);
+		}
 		
 		return "redirect:userpage";
 	}
@@ -230,17 +241,21 @@ public class OlutseuraaController {
 	public String naytaAktivointiSivu(@PathVariable Integer id, Model model) {
 		
 		Henkilo h = dao.haeHenkilo(id);
+		
 		if(h != null) {
 			if(h.isAktivoitu() == false) {
 				//tili ei vielä aktivoitu
+				model.addAttribute("userNotActivated", true);
 				model.addAttribute("id", id);
 				return "tapah/aktivointi";
 			} else {
+				model.addAttribute("user", true);
 				//tili jo aktivoitu
-				return "login"; //ohjaa loginsivulle
+				return "redirect:login"; //ohjaa loginsivulle
 			}
 		} else {
 			//henkilöä id:llä ei löytynyt
+			model.addAttribute("userNotExists", true);
 			return "redirect:tapahtumat"; //ohjaa etusivulle jos id:llä ei löydy käyttäjää.
 		}
 		
@@ -276,16 +291,7 @@ public class OlutseuraaController {
 					
 					dao.luoWebUserTili(oikeahenkilo);
 					
-					//lähetetään aktivoinnista ilmoitus käyttäjälle sähköpostiin
-					SimpleMailMessage mail = new SimpleMailMessage();
-					mail.setFrom("testimeilihoptimus@gmail.com");
-					mail.setTo(oikeahenkilo.getSahkoposti());
-					mail.setSubject("Hei " + oikeahenkilo.getEtunimi() + "! Tilisi on aktivoitu!");
-					String linkki = "http://localhost:8080/olutseuraa/login";
-					//String linkki = "http//proto285:8080/olutseuraa/login";
-					mail.setText("Hei " + oikeahenkilo.getEtunimi() + "! Olet aktivoinut onnistuneesti tilisi. Pääset katsomaan profiiliasi kirjautumalla Olutseuraa-sivuilla: " + linkki + " - Hoptimus Team.");
-					//lähetetään se käyttäjän sähköpostiin
-					mailer.send(mail);
+					Helpperi.lahetaAktivointiOnnistunutlinkki(oikeahenkilo, mailer);
 					
 					return "login"; //ohjaa loginsivulle
 				} else {
@@ -326,32 +332,29 @@ public class OlutseuraaController {
 	    
 	    if(henkilo != null) {
 	    	
-	    	//lisää osallistujamäärän verran henkilöitä tapahtumaan
-			for(int i = 0; i < osallistujamaara; i++) {
-				dao.liityTapahtumaan(henkilo, eId);
+	    	Tapahtuma t = dao.haeTapahtuma(eId);
+			
+			//tarkista että max osallistujamäärä ei ole täynnä
+			if((t.getOsallistujat().size() + osallistujamaara) <= t.getmaxOsallistujamaara()) {
+				
+				//lisää käyttäjän liittymiset
+				for(int i = 0; i < osallistujamaara; i++) {
+					dao.liityTapahtumaan(henkilo, eId);
+				}
+				
+				Helpperi.lahetaTapahtumaanLiittyminenOnnistunut(henkilo, t, mailer);
+				
+				model.addAttribute("tapahtumaAdded", true);
+				return "redirect:userpage";
+				
+			} else {
+				//muulloin ei pysty liittymään
+				model.addAttribute("cantJoin", true);
+				return "redirect:tapahtumat";
 			}
 			
-
-			Tapahtuma t = dao.haeTapahtuma(eId);
+	    	//lisää osallistujamäärän verran henkilöitä tapahtumaan
 			
-			//luodaan simple message
-			SimpleMailMessage mail = new SimpleMailMessage();
-			mail.setFrom("testimeilihoptimus@gmail.com");
-			mail.setTo(henkilo.getSahkoposti());
-			mail.setSubject("Hei " + henkilo.getEtunimi() +"! Olet liittynyt tapahtumaan " + t.getNimi() + "!");
-			
-			//linkki
-			String linkki = "http://proto285:8080/olutseuraa/login"; //protolle ohjaus
-			//String linkki  ="http://localhost:8080/olutseuraa/login"; //localhostilla kikkailua varten
-			
-			mail.setText("Hei " + henkilo.getEtunimi() + "! Olet osallistunut tapahtumaan " + t.getNimi() + " Olutseuraa-sivuilla." +
-			" Tapahtuma alkaa " + t.getPvm() + " klo " + t.getAika() + " paikassa: " + t.getPaikka() +
-			" Voit tarkistella tapahtumiasi käyttäjäsivulla kirjautumalla sisään: " + linkki + " - Hoptimus Team.");
-			
-			//lähetetään se käyttäjän sähköpostiin
-			mailer.send(mail);
-			
-			return "redirect:userpage";
 	    } else {
 	    	model.addAttribute("submitError", true);
 	    	return "redirect:tapahtumat";
@@ -379,32 +382,26 @@ public class OlutseuraaController {
 			henkilo = (HenkiloImpl) dao.talleta(henkilo); // tallettaa henkilon tietokantaan ja
 			// palauttaa sen
 			// id:ll�
-			
-			//lisää osallistujamäärän verran henkilöitä tapahtumaan
-			for(int i = 0; i < osallistujamaara; i++) {
-				dao.liityTapahtumaan(henkilo, eId);
-			}
-			
 			Tapahtuma t = dao.haeTapahtuma(eId);
 			
-			//luodaan simple message
-			SimpleMailMessage mail = new SimpleMailMessage();
-			mail.setFrom("testimeilihoptimus@gmail.com");
-			mail.setTo(henkilo.getSahkoposti());
-			mail.setSubject("Hei " + henkilo.getEtunimi() +"! Aktivoi tunnuksesi olutseuran sivuille!");
+			if((t.getOsallistujat().size() + osallistujamaara) <= t.getmaxOsallistujamaara()) {
+					
+				//lisää osallistujamäärän verran henkilöitä tapahtumaan
+				for(int i = 0; i < osallistujamaara; i++) {
+					dao.liityTapahtumaan(henkilo, eId);
+				}
+				
+				Helpperi.lahetaAktivointilinkki(henkilo, t, mailer);
+				model.addAttribute("submitSuccessActivate", true);
+				return "redirect:tapahtumat";
+				
+			} else {
+				//tapahtumaan ei voi liittyä näin monta kertaa
+				model.addAttribute("submitError", true);
+				return "redirect:tapahtumat";
+			}
 			
-			//linkki
-			String linkki = "http://proto285:8080/olutseuraa/aktivoi" + henkilo.getId(); //protolle ohjaus
-			//String linkki  ="http://localhost:8080/olutseuraa/aktivoi" + henkilo.getId(); //localhostilla kikkailua varten
 			
-			mail.setText("Hei " + henkilo.getEtunimi() + "! Olet osallistunut tapahtumaan " + t.getNimi() + " Olutseuraa-sivuilla." + 
-					" Tapahtuma alkaa " + t.getPvm() + " klo " + t.getAika() + " paikassa: " + t.getPaikka() +
-					" Mene tähän linkkiin aktivoidaksesi tunnuksesi: " + linkki + " Samalla vahvistat osallistumisen tapahtumaan. - Hoptimus Team.");
-			
-			//lähetetään se käyttäjän sähköpostiin
-			mailer.send(mail);
-			
-			return "redirect:tapahtumat";
 		}
 	}
 	

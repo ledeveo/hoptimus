@@ -109,6 +109,15 @@ function pienennaKuva() {
 		$("#olutKuva").removeClass("pienennaKuva");}, 500);
 }
 
+function pyoritaKuva() {
+	$("#olutKuva").addClass("pyoritaKuva");
+	setTimeout(function() {
+		$("#olutKuva").removeClass("pyoritaKuva");
+		$("#olutKuva").addClass("pyoritaKuva2");}, 300);
+	setTimeout(function() {
+		$("#olutKuva").removeClass("pyoritaKuva2");}, 700);
+	
+}
 
 function randomAnimaatio() {
 	var random = Math.floor((Math.random() * 2) + 1);
@@ -119,12 +128,14 @@ function randomAnimaatio() {
 		case 2:
 			suurennaKuva();
 			break;
+		case 3:
+			soitaLisaysKlippi();
+			pyoritaKuva();
+			break;
 		default:
 			suurennaKuva();
 	}
 }
-
-
 
 
 

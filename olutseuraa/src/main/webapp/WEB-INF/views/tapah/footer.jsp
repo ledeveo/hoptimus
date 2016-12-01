@@ -78,6 +78,9 @@ if(document.querySelector("#eventTime")) {
 
 <script src="resources/js/app.js"></script>
 
+<script type="text/javascript" src="resources/js/instafeed.js"></script>
+<script type="text/javascript" src="resources/js/instagrammeli.js"></script>
+
 <c:if test="${param.UserExists eq true}" ><script> alert("Kirjaudu sis‰‰n liitty‰ksesi tapahtumaan!");</script></c:if>
 
 </body>

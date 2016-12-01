@@ -34,8 +34,7 @@
 <link rel="icon" href="resources/img/oluttuoppi.png" />
 
 <!-- scriptit loput footterin jälkeen -->
-<script type="text/javascript" src="resources/js/instafeed.js"></script>
-<script type="text/javascript" src="resources/js/instagrammeli.js"></script>
+
       
 
 </head>

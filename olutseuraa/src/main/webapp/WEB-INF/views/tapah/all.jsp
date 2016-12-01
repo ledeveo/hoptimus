@@ -7,7 +7,7 @@
 	
 	
 	
-		<div class="column small-12 medium-6 medium-offset-3">
+		<div class="column small-12 medium-6 medium-offset-3" id="stickyanchor" >
 		
 		<div class="submitError"><c:if test="${param.UserExists eq true}" >
 			  <h4>Kirjaudu sisään liittyäksesi tapahtumaan!</h4>
@@ -32,7 +32,26 @@
 
 		</div>
 		
-	<div id="instafeed" class="show column small-12 medium-3"><img border="0" alt="ig" src="resources/img/instagram_logo.png" width="150" height="150"><br></div>
+	
+		
+	
+	
+		
+	<div class="columns small-12 medium-3 center" data-sticky-container>
+    <div id="instafeed" class="sticky" data-sticky data-sticky-on="medium" data-anchor="stickyanchor" ><img border="0" alt="ig" src="resources/img/instagram_logo.png"
+     width="150" height="150"></div>
 	</div>
+
+	<!--  
+	<div class="columns small-12 show-for-small-only" >
+    <div id="instafeed"><img border="0" alt="ig" src="resources/img/instagram_logo.png"
+     width="150" height="150"></div>
+	</div>-->
+	
+	
+	</div>
+	
+
+
 
 	<%@ include file="footer.jsp"%>

@@ -1,6 +1,6 @@
 <%@ include file="head-include.jsp"%>
 
-	<script src="resources/js/laskeAikaaJaljella.js"></script>
+<script src="resources/js/laskeAikaaJaljella.js"></script>
 <body onload="haeElementit()">
 
 	<%@ include file="header.jsp"%>

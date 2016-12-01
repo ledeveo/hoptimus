@@ -35,8 +35,8 @@ function laskeAikaaJaljella(aika, element){
   
   $(element).text(tekstirimpsu);
   // DEBUG
-  //console.log("elementti: " + element);
-  //console.log("aika: " + tekstirimpsu);
+  console.log("elementti: " + element);
+  console.log("aika: " + tekstirimpsu);
 
 }
 
@@ -48,7 +48,7 @@ function naytaAjat(ajat, elementit) {
 }
 
 function haeElementit() {
-	
+
 	var elementit = document.getElementsByClassName("alkamiseenAikaa");
 	var ajat = [];
 	

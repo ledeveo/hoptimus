@@ -42,15 +42,13 @@
 			</h5>
 	
 			<h5>
-				<i class="step fi-torsos size-24"></i>osallistuu <span data-tooltip aria-haspopup="true"
+				<i class="step fi-torsos size-24"></i> <span data-tooltip aria-haspopup="true"
 					class="has-tip" data-disable-hover="false"
 					title="<c:if test="${empty event.osallistujat}" >Ole ensimmäinen tapahtumaan ilmoittautuva!</c:if>
 						<c:forEach items="${event.osallistujat}" varStatus="loop" var="i" ><c:out value="${i}"/><c:if test="${!loop.last}">, </c:if></c:forEach>">
-<<<<<<< HEAD
-					<c:out value="${fn:length(event.osallistujat)}/${event.maxOsallistujamaara}" /> 
-=======
-					<c:out value="${fn:length(event.osallistujat)}/${event.maxOsallistujamaara}" /> <i class="step fi-torsos size-24"></i>
->>>>>>> ecdbe832b003a4ae93549b66108f9050664edeba
+
+					<c:out value="${fn:length(event.osallistujat)}/${event.maxOsallistujamaara}" />
+
 						</span>
 					
 					<input type="number" name="maxOsallistujamaara2" value="${event.maxOsallistujamaara}"/>

@@ -45,26 +45,7 @@ $("#showFilters").click(function() {
 
 
 
-//Tervehdysviesti liittyjälle, tästä luovuttaneen
-//$(document).ready(function() {
-//	$('#success').fadeIn("fast", function() {
-//	});
-//});
 
-
-//Valittaa nimien puutteesta formissa, tästäkin luovuttaneen
-//$(document).ready(function() {
-//$(".subcheck").click(function(e) {
-//	var id = $(this).attr('id');
-//	var enimi = $.trim($("#enimi" + id).val());
-//	var snimi = $.trim($("#snimi" + id).val());
-//
-//	if (enimi.length < 1 || snimi.length < 1) {
-//		event.preventDefault();
-//		$("#inputvirhe").fadeIn("fast").delay(1500).fadeOut("slow");
-//	}
-//});
-//});
 
 
 

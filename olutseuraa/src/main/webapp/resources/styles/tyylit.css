@@ -51,3 +51,12 @@
 	transform: scale(0.5, 0.5) rotate(20deg);
 }
 
+.pyoritaKuva {
+	transition: 0.1s;
+	transform: rotate(45deg);
+}
+
+.pyoritaKuva2 {
+	transition: 0.1s;
+	transform: rotate(-45deg);
+}

@@ -67,7 +67,10 @@ function haeElementit() {
 	//näytä ajat
 	naytaAjat(ajat, elementit);
 	//näytä ajat väliajoin
-	var ajanlaskenta = setInterval(function(){ naytaAjat(ajat, elementit) }, 1000*60);
+	var ajanlaskenta = setInterval(function(){
+		naytaAjat(ajat, elementit);
+		pyoritaKuva(); //pyöritä oluttuoppia aina kun ajat päivittyy
+	}, 1000*60);
 	
 	
 }

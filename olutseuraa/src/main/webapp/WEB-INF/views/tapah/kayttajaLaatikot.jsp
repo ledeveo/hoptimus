@@ -30,7 +30,6 @@
 							<form action="kirjautunutLiity" method="POST">
 								<input type="hidden" name="username" value="<sec:authentication property="principal.username"/>"/>
 								<input type="hidden" name="eventid2" value="<c:out value="${event.id}"/>"/>
-								osallistujia:
 								<input type="number" name="osallistujamaara" min="1" max="${event.maxOsallistujamaara - osallistujat}" value="1">
 								<button type="submit" class="button small success tutustu"><i class="step fi-check size-36"></i> Count me in!</button>
 							</form>
@@ -66,12 +65,11 @@
 			</h5>
 	
 			<h5>
-				Osallistujia <span data-tooltip aria-haspopup="true"
+				<span data-tooltip aria-haspopup="true"
 					class="has-tip" data-disable-hover="false"
 					title="<c:if test="${empty event.osallistujat}" >Ole ensimmäinen tapahtumaan ilmoittautuva!</c:if>
 						<c:forEach items="${event.osallistujat}" varStatus="loop" var="i" ><c:out value="${i}"/><c:if test="${!loop.last}">, </c:if></c:forEach>">
-					<c:out
-						value="${fn:length(event.osallistujat)}/${event.maxOsallistujamaara}" /> <i class="step fi-torsos size-24"></i>
+					<c:out value="${fn:length(event.osallistujat)}/${event.maxOsallistujamaara}" /> <i class="step fi-torsos size-24"></i>
 				</span>
 			</h5>
 	

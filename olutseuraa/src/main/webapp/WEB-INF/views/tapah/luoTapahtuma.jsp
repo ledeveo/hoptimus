@@ -1,5 +1,11 @@
 <%@ include file="head-include.jsp"%>
 <body>
+
+<sec:authorize access="!hasRole('ROLE_ADMIN')">
+	<c:redirect url="tapahtumat"></c:redirect>
+</sec:authorize>
+
+<sec:authorize access="hasRole('ROLE_ADMIN')">
 	<%@ include file="header.jsp"%>
 
 	<div class="row">
@@ -83,3 +89,5 @@
 	</div>
 
 	<%@ include file="footer.jsp"%>
+	
+	<!-- näytä vain adminille --></sec:authorize>

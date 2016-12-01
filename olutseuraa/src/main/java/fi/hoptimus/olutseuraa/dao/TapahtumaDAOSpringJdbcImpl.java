@@ -180,6 +180,11 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		RowMapper<Tapahtuma> mapper = new TapahtumaRowMapper();
 
 		Tapahtuma t = jdbcTemplate.queryForObject(sql, parametrit, mapper);
+		
+		// aseta osallistujat tapahtumiin
+		t.setOsallistujat(haeAktivoidutOsallistujat(t.getId()));
+		
+		
 		return t;
 	}
 

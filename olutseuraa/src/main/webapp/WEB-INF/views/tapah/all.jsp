@@ -9,9 +9,26 @@
 	
 		<div class="column small-12 medium-6 medium-offset-3">
 		
-		<div class="submitError"><c:if test="${param.UserExists eq true}" >
-			  <h4>Kirjaudu sisään liittyäksesi tapahtumaan!</h4>
-		</c:if></div>
+		<div class="submitError">
+			<c:if test="${param.UserExists eq true}" >
+				  <h4>Kirjaudu sisään liittyäksesi tapahtumaan!</h4>
+			</c:if>
+			<c:if test="${param.cantJoin eq true}" >
+				  <h4>Tapahtumaan liittyminen ei onnistunut!</h4>
+			</c:if>
+			<c:if test="${param.submitError eq true}" >
+				  <h4>Tapahtui virhe liittyessä tapahtumaan!</h4>
+			</c:if>
+			<c:if test="${param.userNotExists eq true}" >
+				  <h4>Käyttäjää ei löytynyt!</h4>
+			</c:if>
+		</div>
+		
+		<div class="submitSuccess">
+			<c:if test="${param.submitSuccessActivate eq true}" >
+				  <h4>Osallistuminen onnistui! Tarkista sähköpostisi tilin aktivointia varten.</h4>
+			</c:if>
+		</div>
 
 			<c:forEach items="${tapahtumat}" var="event" varStatus="iteration">
 

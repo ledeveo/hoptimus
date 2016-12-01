@@ -78,7 +78,9 @@ if(document.querySelector("#eventTime")) {
 
 <script src="resources/js/app.js"></script>
 
-<c:if test="${param.UserExists eq true}" ><script> alert("Kirjaudu sisään liittyäksesi tapahtumaan!");</script></c:if>
+<c:if test="${param.UserExists eq true}" ><script> alert("Säköpostilla oleva tili on jo olemassa. Kirjaudu sisään liittyäksesi tapahtumaan!");</script></c:if>
+<c:if test="${param.userNotActivated eq true}" ><script> alert("Sähköpostiisi on lähetetty aktivointilinkki! Posti saattaa olla roskaposteissa.");</script></c:if>
+<c:if test="${param.submitSuccessActivate eq true}" ><script> alert("Osallistuminen onnistui! Tarkista sähköpostisi tilin aktivointia varten.");</script></c:if>
 
 </body>
 </html>

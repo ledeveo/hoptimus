@@ -46,8 +46,7 @@
 					class="has-tip" data-disable-hover="false"
 					title="<c:if test="${empty event.osallistujat}" >Ole ensimmäinen tapahtumaan ilmoittautuva!</c:if>
 						<c:forEach items="${event.osallistujat}" varStatus="loop" var="i" ><c:out value="${i}"/><c:if test="${!loop.last}">, </c:if></c:forEach>">
-					<c:out
-						value="${fn:length(event.osallistujat)}/${event.maxOsallistujamaara}" /> <i class="step fi-torsos size-24"></i>
+					<c:out value="${fn:length(event.osallistujat)}/${event.maxOsallistujamaara}" /> <i class="step fi-torsos size-24"></i>
 						</span>
 					
 					<input type="number" name="maxOsallistujamaara2" value="${event.maxOsallistujamaara}"/>

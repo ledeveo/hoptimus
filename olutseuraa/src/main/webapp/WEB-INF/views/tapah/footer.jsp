@@ -97,6 +97,7 @@ if(document.querySelector("#eventTime")) {
  <script type="text/javascript" src="resources/js/instafeed.js"></script>
 <script type="text/javascript" src="resources/js/instagrammeli.js"></script>
 <script src="resources/js/customscriptit.js"></script>
+<script src="resources/js/ajaxkikkailu.js"></script>
   
 
 

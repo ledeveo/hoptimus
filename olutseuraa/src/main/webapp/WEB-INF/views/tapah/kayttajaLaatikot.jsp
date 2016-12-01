@@ -81,10 +81,7 @@
 		</div>
 	
 		<div class="small-12 columns">
-			<h4 class="text-center" style="margin: 0; padding: 0;">
-				"
-				<c:out value="${event.kuvaus}" />
-				"
+			<h4 class="text-center" style="margin: 0; padding: 0;">"<c:out value="${event.kuvaus}" />"
 			</h4>
 		</div>
 	

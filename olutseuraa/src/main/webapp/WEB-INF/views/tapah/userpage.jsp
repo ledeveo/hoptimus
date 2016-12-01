@@ -33,11 +33,11 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${tapahtumat}" var="t">
-							<tr class="center">
+							<tr class="center" >
 								<td>
-									<h5><c:out value="${t.nimi}"></c:out></h5>
+									<h5 data-tooltip title="Nimi kertoo enemmän kuin tuhat sanaa"><c:out value="${t.nimi}"></c:out></h5>
 								</td>
-								<td class="center">
+								<td class="center" data-tooltip title="Tapahtuman alkuun aikaa. Jaksatko venata?">
 								
 									<h5 style="color: green;" class="alkamiseenAikaa center" >${t.pvm}T${t.aika}:00Z</h5>
 									<div class="row center">
@@ -46,22 +46,22 @@
 								</td>
 								<td class="center">
 									<form action="PoistaLiittyminen" method="POST">
-											<input type="hidden" name="tapahtumaId" value="${t.id}"/>
-										<button data-tooltip title="Vähennä kavereita tai itsesi liittymisistä." class="button alert" type="submit">-</button>
+										<input type="hidden" name="tapahtumaId" value="${t.id}"/>
+										<a type="button" onclick="Poista(${t.id})" id="poistaSubmit" data-tooltip title="Pienemmät bileet?" class="button alert">-</a>
 									</form>
 								</td>
 								<td class="center">
-									1<c:out value=" + ${t.osallistujamaara - 1}"></c:out> <i class="step fi-male size-18"></i>
+									<span data-tooltip title="Sinä + pari muuttujaa matkassa?">1<c:out value=" + ${t.osallistujamaara - 1}"></c:out> <i class="step fi-male size-18"></i></span>
 								</td>
 								<td class="center">
 									<c:if test="${t.maxOsallistujamaara > fn:length(t.osallistujat)}">
 										<form action="LisaaLiittyminen" method="POST">
 											<input type="hidden" name="tapahtumaId" value="${t.id}"/>
-											<button data-tooltip title="Lisää kaveri mukaan!" class="button success" type="submit">+</button>
+											<a type="button" onclick="Lisaa(${t.id})" id="lisaaSubmit" data-tooltip title="Lisää kavereita! Kippis!" class="button success">+</a>
 										</form>
 									</c:if>
 								</td>
-								<td class="center">
+								<td class="center" data-tooltip title="Osallistujamäärä tapahtumaan">
 									<c:out value="${fn:length(t.osallistujat)}"></c:out>/<c:out value="${t.maxOsallistujamaara}"></c:out> <i class="step fi-torsos size-18"></i>
 								</td>
 							</tr>

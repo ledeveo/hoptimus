@@ -2,7 +2,9 @@
  * 
  */
 
-function Lisaa(tID) {
+function Lisaa(nappula, tID) {
+	
+	$(nappula).hide();
 	suurennaKuva();
 	//alert("lisaa");
     $.ajax({
@@ -15,13 +17,16 @@ function Lisaa(tID) {
         success: function(msg)
         {
             //alert('Lisäys onnistui!');
+        	// tän vois tehrä paremminki. esim. 
+        	// muuntaa elementissä numeron kokoo vain jotenki?
         	setTimeout(function() {location.reload()}, 800);
         }               
     });
 }
 
-function Poista(tID) 
+function Poista(nappula, tID) 
 {
+	$(nappula).hide();
 	pienennaKuva();
 	//alert("poista");
     $.ajax({

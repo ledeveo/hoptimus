@@ -4,7 +4,12 @@
 <body onload="haeElementit()">
 
 	<%@ include file="header.jsp"%>
-
+<!--ei toimi
+	<div data-alert class="alert-box">
+	  This is a success alert with a radius.
+	  <a href="#" class="close">&times;</a>
+	</div>
+-->
 	<div class="row">
 		<div class="event small-12 medium-8 medium-offset-2 columns main-content">
 			
@@ -47,7 +52,7 @@
 								<td class="center">
 									<form action="PoistaLiittyminen" method="POST">
 										<input type="hidden" name="tapahtumaId" value="${t.id}"/>
-										<a type="button" onclick="Poista(${t.id})" id="poistaSubmit" data-tooltip title="Pienemmät bileet?" class="button alert">-</a>
+										<a type="button" onclick="Poista(this,${t.id})" id="poistaSubmit" data-tooltip title="Pienemmät bileet?" class="button alert">-</a>
 									</form>
 								</td>
 								<td class="center">
@@ -57,7 +62,7 @@
 									<c:if test="${t.maxOsallistujamaara > fn:length(t.osallistujat)}">
 										<form action="LisaaLiittyminen" method="POST">
 											<input type="hidden" name="tapahtumaId" value="${t.id}"/>
-											<a type="button" onclick="Lisaa(${t.id})" id="lisaaSubmit" data-tooltip title="Lisää kavereita! Kippis!" class="button success">+</a>
+											<a type="button" onclick="Lisaa(this,${t.id})" id="lisaaSubmit" data-tooltip title="Lisää kavereita! Kippis!" class="button success">+</a>
 										</form>
 									</c:if>
 								</td>

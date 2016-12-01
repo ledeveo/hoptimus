@@ -29,8 +29,24 @@
 }
 
 .valittu {
+	transition-delay: 1s;
 	transition: 0.5s;
+	transform: scale(1.04, 1.04);
 	background-color: white;
 	border: 1px solid black;
+}
+
+#olutKuva {
+	transition: 0.5s;
+}
+
+.suurennaKuva {
+	transition: 0.5s;
+	transform: scale(2, 2);
+}
+
+.pienennaKuva {
+	transition: 0.5s;
+	transform: scale(0.5, 0.5);
 }
 

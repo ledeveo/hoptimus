@@ -36,7 +36,7 @@
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="resources/js/jquery.timepicker.js"></script>
-
+<script src="resources/js/jquery.scrollTo.min.js"></script>
 	
 
 <!-- Määrittelee patternin Pvm -kentän inputille -->
@@ -74,14 +74,13 @@ if(document.querySelector("#eventTime")) {
 
 
 
-<script src="resources/js/customscriptit.js"></script>
 
 <script src="resources/js/app.js"></script>
-
 <script src="resources/js/laskeAikaaJaljella.js"></script>
  <script type="text/javascript" src="resources/js/lataa.js"></script>
  <script type="text/javascript" src="resources/js/instafeed.js"></script>
 <script type="text/javascript" src="resources/js/instagrammeli.js"></script>
+<script src="resources/js/customscriptit.js"></script>
   
 
 

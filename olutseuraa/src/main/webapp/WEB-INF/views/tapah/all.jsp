@@ -8,8 +8,14 @@
 	<div class="row align-middle">
 	
 	
-	
-		<div class="column small-12 medium-6 medium-offset-3" id="stickyanchor" >
+		
+		<div class="column small-12 medium-4 center" data-sticky-container>
+	    	<div class="sticky" data-sticky data-sticky-on="medium" data-anchor="stickyanchor" >
+				<%@ include file="tapahtumalistaus.jsp"%>
+			</div>
+		</div>
+		
+		<div class="column small-12 medium-5" id="stickyanchor" >
 		
 		
 		<!-- Joko modaaleihin tai alertteihin -->
@@ -58,7 +64,7 @@
 	
 	
 		
-	<div class="columns small-12 medium-3 center" data-sticky-container>
+	<div class="column small-12 medium-3 center" data-sticky-container>
     <div id="instafeed" class="sticky" data-sticky data-sticky-on="medium" data-anchor="stickyanchor" ><img border="0" alt="ig" src="resources/img/instagram_logo.png"
      width="150" height="150"></div>
 	</div>

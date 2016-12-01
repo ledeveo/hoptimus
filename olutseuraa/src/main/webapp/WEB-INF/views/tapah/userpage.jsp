@@ -28,7 +28,7 @@
 				<table>
 					<thead>
 						<tr>
-							<th>tapahtuman nimi</th><th>alkaa</th><th>osallistumiset</th><th colspan="2">muokkaus</th><th>osallistujat</th>
+							<th class="center">tapahtuman nimi</th><th class="center">alkaa</th><th colspan="3" class="center">osallistumiset</th><th class="center">osallistujat</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -45,19 +45,19 @@
 									</div>
 								</td>
 								<td class="center">
-									<c:out value="${t.osallistujamaara}"></c:out> <i class="step fi-male size-18"></i>
-								</td>
-								<td class="center">
 									<form action="PoistaLiittyminen" method="POST">
 											<input type="hidden" name="tapahtumaId" value="${t.id}"/>
-										<button class="button alert" type="submit">-</button>
+										<button data-tooltip title="Vähennä kavereita tai itsesi liittymisistä." class="button alert" type="submit">-</button>
 									</form>
+								</td>
+								<td class="center">
+									1<c:out value=" + ${t.osallistujamaara - 1}"></c:out> <i class="step fi-male size-18"></i>
 								</td>
 								<td class="center">
 									<c:if test="${t.maxOsallistujamaara > fn:length(t.osallistujat)}">
 										<form action="LisaaLiittyminen" method="POST">
 											<input type="hidden" name="tapahtumaId" value="${t.id}"/>
-											<button class="button success" type="submit">+</button>
+											<button data-tooltip title="Lisää kaveri mukaan!" class="button success" type="submit">+</button>
 										</form>
 									</c:if>
 								</td>

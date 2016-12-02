@@ -47,6 +47,7 @@ var feed = new Instafeed({
         accessToken: '4181455874.1677ed0.96ef6a7ff545477997ba60ecd2aae92d',
         target: 'instafeed',
         template: '<a href="{{link}}"><img src="{{image}}" /></a>',
+        limit: '5',
         after: function() {
             var el = document.getElementById('instafeed');
             if (el.classList)

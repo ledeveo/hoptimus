@@ -14,10 +14,10 @@ function laskeAikaaJaljella(aika, element){
   
   // tapahtumaa ennen.
   if(days > 0) {
-	  tekstirimpsu += days + "p, ";
+	  tekstirimpsu += days + "p ";
   }
   if(hours > 0) {
-	  tekstirimpsu += hours + "t, ";
+	  tekstirimpsu += hours + "t ";
   }
   if(minutes > 0) {
 	  tekstirimpsu += minutes + "min";

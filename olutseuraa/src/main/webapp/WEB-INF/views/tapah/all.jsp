@@ -14,8 +14,8 @@
 				<%@ include file="tapahtumalistaus.jsp"%>
 			</div>
 		</div>
-		
-		<div class="column small-12 medium-5" id="stickyanchor" >
+	
+		<div class="column small-12 medium-5"  id="stickyanchor">
 		
 		
 		<!-- Joko modaaleihin tai alertteihin -->
@@ -64,18 +64,18 @@
 	
 	
 		
-	<div class="column small-12 medium-3 center" data-sticky-container>
-    <div id="instafeed" class="sticky" data-sticky data-sticky-on="medium" data-anchor="stickyanchor" ><img border="0" alt="ig" src="resources/img/instagram_logo.png"
+	<div class="column small-12 medium-3 " data-sticky-container>
+    <div id="instafeed" class="sticky" data-sticky data-anchor="stickyanchor" ><img border="0" alt="ig" src="resources/img/instagram_logo.png"
      width="150" height="150"></div>
 	</div>
 
-	<!--  
-	<div class="columns small-12 show-for-small-only" >
-    <div id="instafeed"><img border="0" alt="ig" src="resources/img/instagram_logo.png"
-     width="150" height="150"></div>
-	</div>-->
+	
 	
 	
 	</div>
+	
+		<%@ include file="contact.jsp"%>
+	
+
 	
 	<%@ include file="footer.jsp"%>

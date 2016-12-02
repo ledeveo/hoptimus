@@ -17,10 +17,6 @@ html, body {
 	height: 100%;
 }
 
-/*Tällä sai scrollbarin piiloon, jos haluaa
-::-webkit-scrollbar { 
-display: none; 
-}*/
 
 .container {
 	min-height: 100%;

@@ -79,6 +79,7 @@ html, body {
 }
 
 .event {
+	margin-top:0.5rem;
 	display: table;
 	background: #dee0e1;
 	padding: 1rem;

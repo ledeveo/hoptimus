@@ -54,8 +54,9 @@ function skrollaakontenttiin(elementtiID) {
 	}
 	
 	//skrollaa elementtiin
+	var quarter = screen.height/4;
 	var elementtiin = $("#" + elementtiID);
-	$('body').scrollTo(elementtiin,1000);
+	$('body').scrollTo(elementtiin.offset().top - quarter ,1000);
 	
 	//lisää valittuu seuraavaan
 	elementtiin.addClass("valittu");

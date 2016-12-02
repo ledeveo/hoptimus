@@ -2,21 +2,36 @@
  *  laskee alkamisajat tapahtumille minuutin välein
  */
 
-function asetaVari(days, hours, minutes) {
-	
-	  var red = days * 16;
-	  var green = minutes * 16;
+function asetaVari(days) {
+		
+	  var red = 0;
+	  var green = 255;
 	  var blue = 0;
 	  
-	  if(minutes < 30) {
+	  //tämä kusee
+	  
+	  for(i = 0; i < days; i++) {
+		  green -= 15;
+		  red += 15;
+	  }
+	  //pysytään värirajoilla
+	  if(green <= 0) {
+		  green = 0;
+	  }
+	  if(red <= 0) {
+		  red = 0;
+	  }
+	  if(blue <= 0) {
+		  blue = 0;
+	  }
+	  if(green >= 255) {
 		  green = 255;
 	  }
-	  if(green > 150 && red > 150) {
-		  green -= red;
+	  if(red >= 255) {
+		  red = 255;
 	  }
-	  if(days > 30) {
-		  green = 100;
-		  red = 250;
+	  if(blue >= 255) {
+		  blue = 255;
 	  }
 	  
 	  var color = "'rgb(" + red + "," + green + "," + blue + ")'";
@@ -30,7 +45,6 @@ function laskeAikaaJaljella(aika, element){
   var minutes = Math.floor( (t/1000/60) % 60 );
   var hours = Math.floor( (t/(1000*60*60)) % 24 );
   var days = Math.floor( t/(1000*60*60*24) );
-  
   
   var tekstirimpsu = "";
   
@@ -55,9 +69,15 @@ function laskeAikaaJaljella(aika, element){
 	  tekstirimpsu = "tapahtuma ohi.";
   }
   
-  var color = asetaVari(days, hours, minutes);
-  $(element).css('color', color);//rgb(days, hours, minutes);
+  // laita väri tekstille
+  var color = asetaVari(days);
+  $(element).css('color', color);
   
+  //DEBUG
+  console.log("tekstirimpsu: [" + tekstirimpsu + "]");
+  console.log("color: [" + color + "]");
+  console.log("element: [" + element + "]");
+  console.log("");
   $(element).text(tekstirimpsu);
   // DEBUG
   //console.log("elementti: " + element);

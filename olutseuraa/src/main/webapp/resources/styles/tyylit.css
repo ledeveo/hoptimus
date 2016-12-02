@@ -60,3 +60,11 @@
 	transition: 0.1s;
 	transform: rotate(-45deg);
 }
+
+#contact{
+	display:none;
+}
+
+
+
+

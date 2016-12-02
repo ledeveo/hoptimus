@@ -7,7 +7,7 @@
 
 	<div class="row align-middle">
 	
-		<div class="column small-12 medium-4 center" data-sticky-container>
+		<div class="column small-12 medium-4 center show-for-medium" data-sticky-container>
 	    	<div class="sticky small-12 medium-12" data-sticky data-sticky-on="medium" data-anchor="stickyanchor" >
 				<%@ include file="tapahtumalistaus.jsp"%>
 			</div>

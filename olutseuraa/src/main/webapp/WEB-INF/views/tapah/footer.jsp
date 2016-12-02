@@ -17,8 +17,8 @@
 
 <footer class="footer">
 
-
-	<div id="social">
+<div class="row expanded">
+	<div id="social" class="columns small-12 medium-2 center lineheight">
 		<!-- <p class="about subheader">Beer me, Marge</p>-->
 		<span class="inline-list social"> <a href="#"><i
 				class="fi-social-facebook"></i></a> <a href="#"><i
@@ -28,15 +28,16 @@
 		</span>
 		
 		
-		
-	</div>
-	<div><button data-toggle="contact" class="button small center warning">Anna palautetta <i class="fi-megaphone small"></i></button></div>
+</div>
+<div class="text-center columns small-12 medium-8 lineheight"><button data-toggle="contact" class="button center small warning">Anna palautetta <i class="fi-megaphone small"></i></button></div>
 	
-		
-	<h6 data-tooltip class="info float-right white"
+		<div class="columns small-12 medium-2 lineheight">
+	<h6 data-tooltip class="info white center"
 		title="Anssi, Joonas, Juho, Leo, Sebastian & Yousuf">HoptimusPrime
 		2016</h6>
-
+	</div>
+		
+</div>
 </footer>
 </div>
 

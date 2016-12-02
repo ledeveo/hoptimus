@@ -2,6 +2,28 @@
  *  laskee alkamisajat tapahtumille minuutin välein
  */
 
+function asetaVari(days, hours, minutes) {
+	
+	  var red = days * 16;
+	  var green = minutes * 16;
+	  var blue = 0;
+	  
+	  if(minutes < 30) {
+		  green = 255;
+	  }
+	  if(green > 150 && red > 150) {
+		  green -= red;
+	  }
+	  if(days > 30) {
+		  green = 100;
+		  red = 250;
+	  }
+	  
+	  var color = "'rgb(" + red + "," + green + "," + blue + ")'";
+	  
+	  return color;
+}
+
 function laskeAikaaJaljella(aika, element){
 	
   var t = Date.parse(aika) - Date.parse(new Date());
@@ -25,13 +47,16 @@ function laskeAikaaJaljella(aika, element){
   
   // 8 tuntia tapahtuman aikana
   if(days < 1 && hours < 1 && minutes < 1 && hours > -8) {
-	  tekstirimpsu = "on alkanut!";
+	  tekstirimpsu = "on alkanut!";	  
   }
   
   // 8 tunnin jälkeen tapahtumasta
   if(days < 1 && hours < 1 && minutes < 1 && hours < -8) {
 	  tekstirimpsu = "tapahtuma ohi.";
   }
+  
+  var color = asetaVari(days, hours, minutes);
+  $(element).css('color', color);//rgb(days, hours, minutes);
   
   $(element).text(tekstirimpsu);
   // DEBUG

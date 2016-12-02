@@ -26,7 +26,7 @@
 			<span class="float-right">tili: <sec:authentication property="principal.username"/></span>
 
 			<sec:authorize access="hasRole('ROLE_USER')">
-				<h2 class="center">Hei <c:out value="${henkilo.etunimi}"></c:out> <c:out value="${henkilo.sukunimi}"></c:out>!</h2>
+				<h2 class="float left">Hei <c:out value="${henkilo.etunimi}"></c:out> <c:out value="${henkilo.sukunimi}"></c:out>!</h2>
 				
 				<h5 class="center">Tapahtumasi johon olet liittynyt:</h5>
 				
@@ -44,7 +44,7 @@
 								</td>
 								<td class="center" data-tooltip title="Tapahtuman alkuun aikaa. Jaksatko venata?">
 								
-									<h5 style="color: green;" class="alkamiseenAikaa center" >${t.pvm}T${t.aika}:00Z</h5>
+									<h5 class="alkamiseenAikaa center" >${t.pvm}T${t.aika}:00Z</h5>
 									<div class="row center">
 									<i class="step fi-calendar size-18"></i> <fmt:formatDate pattern="dd.MM.yyyy" value="${t.pvm}" /> <i class="step fi-clock size-18"></i> <c:out value="${t.aika}"></c:out>
 									</div>

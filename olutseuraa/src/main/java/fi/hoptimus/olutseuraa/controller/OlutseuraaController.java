@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import fi.hoptimus.olutseuraa.bean.Henkilo;
 import fi.hoptimus.olutseuraa.bean.HenkiloImpl;
@@ -405,6 +406,20 @@ public class OlutseuraaController {
 		}
 	}
 	
+	
+	@PostMapping("/palautetta")
+	@ResponseBody
+		public String tallennaPalaute(@RequestParam Map<String, String> requestParams){
+		
+		String sposti = requestParams.get("sposti");
+		String nimi = requestParams.get("nimi");
+		String palaute = requestParams.get("palaute");
+		
+		System.out.println("Sähköposti: " + sposti + ", nimi: " + nimi + ", palaute: " + palaute);
+		String success = "A succesful ajax-request!";
+		
+		return success;                                
+	}
 	private void tuoKuukaudet(Model model){
 		
 		List<String> kuukaudet = new ArrayList<String>();

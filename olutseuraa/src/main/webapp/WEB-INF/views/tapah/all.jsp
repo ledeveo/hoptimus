@@ -8,7 +8,7 @@
 	<div class="row align-middle">
 	
 		<div class="column small-12 medium-4 center" data-sticky-container>
-	    	<div class="sticky" data-sticky data-sticky-on="medium" data-anchor="stickyanchor" >
+	    	<div class="sticky small-12 medium-12" data-sticky data-sticky-on="medium" data-anchor="stickyanchor" >
 				<%@ include file="tapahtumalistaus.jsp"%>
 			</div>
 		</div>
@@ -58,9 +58,7 @@
 			
 		
 	<div class="column small-12 medium-3" data-sticky-container>
-    	<div id="instafeed" class="sticky" data-sticky data-sticky-on="medium" data-anchor="stickyanchor" >
-    		<img border="0" alt="ig" src="resources/img/instagram_logo.png" width="150" height="150">
-    	</div>
+    	<div id="instafeed" class="sticky" data-sticky data-sticky-on="medium" data-anchor="stickyanchor"><img border="0" alt="ig" src="resources/img/instagram_logo.png" width="150" height="150"></div>
 	</div>
 
 	<!--  

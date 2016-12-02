@@ -4,10 +4,6 @@
 
 window.onload = function() {
 	
-    //jos feedi löytyy sivulta
-    if(document.getElementById("instafeed")) {
-        feed.run();
-    }
     //jos sivulla on ajanlasku
     if(document.getElementsByClassName("alkamiseenAikaa")) {
     	haeElementit();
@@ -15,3 +11,10 @@ window.onload = function() {
     
     
 }
+
+$(document).ready(function(){
+	//jos feedi löytyy sivulta
+    if(document.getElementById("instafeed")) {
+        feed.run();
+    }
+});

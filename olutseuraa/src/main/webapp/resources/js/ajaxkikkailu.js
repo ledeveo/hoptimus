@@ -6,7 +6,7 @@ function Lisaa(nappula, tID) {
 	
 	$(nappula).hide();
 	suurennaKuva();
-	//alert("lisaa");
+	// alert("lisaa");
     $.ajax({
         url: 'LisaaLiittyminen',
         type:'POST',
@@ -16,8 +16,8 @@ function Lisaa(nappula, tID) {
         },
         success: function(msg)
         {
-            //alert('Lisäys onnistui!');
-        	// tän vois tehrä paremminki. esim. 
+            // alert('Lisäys onnistui!');
+        	// tän vois tehrä paremminki. esim.
         	// muuntaa elementissä numeron kokoo vain jotenki?
         	setTimeout(function() {location.reload()}, 800);
         }               
@@ -28,7 +28,7 @@ function Poista(nappula, tID)
 {
 	$(nappula).hide();
 	pienennaKuva();
-	//alert("poista");
+	// alert("poista");
     $.ajax({
         url: 'PoistaLiittyminen',
         type:'POST',
@@ -38,8 +38,31 @@ function Poista(nappula, tID)
         },
         success: function(msg)
         {
-            //alert('Poisto onnistui!');
+            // alert('Poisto onnistui!');
         	setTimeout(function() {location.reload()}, 800);
         }               
     });
 }
+
+
+$("#palauteform").submit(function(event) {
+
+    /* stop form from submitting normally */
+    event.preventDefault();
+
+    var postData = $("#palauteform").serialize();
+    $.ajax({
+          type: "post",
+          url: "palautetta",
+          data: postData,
+          contentType: "application/x-www-form-urlencoded",
+          accepts: "text/plain",
+          success: function(responseData, textStatus, jqXHR) {
+        	  $('#contact').foundation('close');
+        			        	  
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+              console.log(errorThrown);
+          }
+      })
+})

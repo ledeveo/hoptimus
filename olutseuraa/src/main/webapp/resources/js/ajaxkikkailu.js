@@ -72,3 +72,6 @@ $("#palauteform").submit(function(event) {
           }
       })
 })
+
+
+

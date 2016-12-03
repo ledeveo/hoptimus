@@ -24,3 +24,6 @@ INSERT INTO
 	tapOsallistuja (henkiloId, tapahtumaId)
 VALUES
 	(1, 1);
+
+INSERT INTO palaute (nimi, sposti, palaute)
+VALUES ('Jorma Palauttaja', 'jormanposti@meisseli.fi', 'Ihan paska tämä teidän palvelunne!');

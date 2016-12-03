@@ -5,7 +5,7 @@
 
 	<%@ include file="header.jsp"%>
 
-	<div class="row align-middle">
+	<div class="row align-middle" id="rowdiv">
 	
 		<div class="column small-12 medium-4 center show-for-medium" data-sticky-container>
 	    	<div class="sticky small-12 medium-12" data-sticky data-sticky-on="medium" data-anchor="stickyanchor" >

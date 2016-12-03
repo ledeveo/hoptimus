@@ -67,5 +67,8 @@
 	/* text-shadow: 1px 1px 3px black; */
 }
 
-
-
+/* HUOM! id body, ei tag-elementti body */
+#body{
+	background-image: url("../img/blue1.jpg");
+	background-attachment: fixed;
+}

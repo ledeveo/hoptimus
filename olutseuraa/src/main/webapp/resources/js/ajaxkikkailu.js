@@ -49,6 +49,7 @@ $("#palauteform").submit(function(event) {
 
     /* stop form from submitting normally */
     event.preventDefault();
+    var originalState = $("#contactbtndiv").clone();
 
     var postData = $("#palauteform").serialize();
     $.ajax({
@@ -62,10 +63,8 @@ $("#palauteform").submit(function(event) {
         	  $('#contact').foundation('close');
         	  $("#contactbtndiv").hide().html("<button class='button center small success'>" +
         	  		"Kiitos palautteesta! <i class='fi-like small' ></i></button>").fadeIn(1500).delay(1500).queue(function(){
-        	  			$("#contactbtndiv").show().html("<button data-toggle='contact' class='button center small warning'>" +
-            	  		"Anna palautetta <i class='fi-megaphone small'></i></button>");
-        	  		});
-        	  
+        	        	  $("#contactbtndiv").replaceWith(originalState);
+        	  });        	  
         	  		      			        	  
           },
           error: function(jqXHR, textStatus, errorThrown) {

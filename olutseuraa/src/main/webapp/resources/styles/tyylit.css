@@ -61,14 +61,18 @@
 	transform: rotate(-45deg);
 }
 
-
-
 .alkamiseenAikaa {
 	/* text-shadow: 1px 1px 3px black; */
 }
 
+.header, .footer{
+	background-image: url("../img/blue1.jpg");
+}
+
 /* HUOM! id body, ei tag-elementti body */
+/*
 #body{
 	background-image: url("../img/blue1.jpg");
 	background-attachment: fixed;
 }
+*/

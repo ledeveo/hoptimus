@@ -4,7 +4,7 @@
 <body>
 
 	<%@ include file="header.jsp"%>
-<div class="boty">
+
 	<div class="row align-middle">
 	
 		<div class="column small-12 medium-4 center" data-sticky-container>
@@ -73,7 +73,7 @@
 	</div>
 	
 	</div>
-</div><!-- /boty -->	
+	
 		<%@ include file="contact.jsp"%>
 	
 	<%@ include file="footer.jsp"%>

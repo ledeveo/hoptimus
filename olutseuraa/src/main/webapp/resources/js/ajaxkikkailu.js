@@ -62,9 +62,10 @@ $("#palauteform").submit(function(event) {
         	  $('#contact').foundation('close');
         	  $("#contactbtndiv").hide().html("<button class='button center small success'>" +
         	  		"Kiitos palautteesta! <i class='fi-like small' ></i></button>").fadeIn(1500).delay(1500).queue(function(){
-        	  			$("#contactbtndiv").html("<button class='button center small warning'>" +
+        	  			$("#contactbtndiv").show().html("<button data-toggle='contact' class='button center small warning'>" +
             	  		"Anna palautetta <i class='fi-megaphone small'></i></button>");
         	  		});
+        	  
         	  		      			        	  
           },
           error: function(jqXHR, textStatus, errorThrown) {

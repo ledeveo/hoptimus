@@ -29,7 +29,10 @@
 		
 		
 </div>
-<div class="text-center columns small-12 medium-8 lineheight" id="contactbtndiv"><button data-toggle="contact" class="button center small warning">Anna palautetta <i class="fi-megaphone small" ></i></button>
+
+					
+				
+<div class="text-center columns small-12 medium-8 lineheight" id="contactbtndiv"><sec:authorize access="!hasRole('ROLE_ADMIN')"><button data-toggle="contact" class="button center small warning">Anna palautetta <i class="fi-megaphone small" ></i></button></sec:authorize>
 <!--  <div class="text-center columns small-12 medium-8 lineheight"><button data-toggle="contact" class="button center small success">Kiitos palautteesta! <i class="fi-like small" ></i></button>-->
 
 </div>

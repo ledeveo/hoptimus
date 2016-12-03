@@ -3,18 +3,12 @@
  */
 
 function asetaVari(days) {
-		
-	  var red = 0;
-	  var green = 200;
-	  var blue = 50;
+	
+	  var colorStep = 5;
+	  var red       = colorStep * days;
+	  var green     = 200 - colorStep * days;
+	  var blue      = 50;
 	  
-	  //tämä kusee
-	  /*
-	  for(i = 0; i < days; i++) {
-		  green -= 15;
-		  red += 15;
-	  }
-	  */
 	  //pysytään värirajoilla
 	  if(green <= 0) {
 		  green = 0;

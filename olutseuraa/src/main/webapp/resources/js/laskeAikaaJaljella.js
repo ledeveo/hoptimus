@@ -5,15 +5,16 @@
 function asetaVari(days) {
 		
 	  var red = 0;
-	  var green = 255;
-	  var blue = 0;
+	  var green = 220;
+	  var blue = 50;
 	  
 	  //tämä kusee
-	  
+	  /*
 	  for(i = 0; i < days; i++) {
 		  green -= 15;
 		  red += 15;
 	  }
+	  */
 	  //pysytään värirajoilla
 	  if(green <= 0) {
 		  green = 0;
@@ -24,14 +25,14 @@ function asetaVari(days) {
 	  if(blue <= 0) {
 		  blue = 0;
 	  }
-	  if(green >= 255) {
-		  green = 255;
+	  if(green >= 220) {
+		  green = 220;
 	  }
-	  if(red >= 255) {
-		  red = 255;
+	  if(red >= 220) {
+		  red = 220;
 	  }
-	  if(blue >= 255) {
-		  blue = 255;
+	  if(blue >= 220) {
+		  blue = 220;
 	  }
 	  
 	  var color = "'rgb(" + red + "," + green + "," + blue + ")'";

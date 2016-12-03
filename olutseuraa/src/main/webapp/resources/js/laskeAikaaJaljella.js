@@ -5,7 +5,7 @@
 function asetaVari(days) {
 		
 	  var red = 0;
-	  var green = 220;
+	  var green = 200;
 	  var blue = 50;
 	  
 	  //tämä kusee
@@ -25,14 +25,14 @@ function asetaVari(days) {
 	  if(blue <= 0) {
 		  blue = 0;
 	  }
-	  if(green >= 220) {
-		  green = 220;
+	  if(green >= 200) {
+		  green = 200;
 	  }
-	  if(red >= 220) {
-		  red = 220;
+	  if(red >= 200) {
+		  red = 200;
 	  }
-	  if(blue >= 220) {
-		  blue = 220;
+	  if(blue >= 200) {
+		  blue = 200;
 	  }
 	  
 	  var color = "'rgb(" + red + "," + green + "," + blue + ")'";

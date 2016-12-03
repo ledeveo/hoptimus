@@ -13,7 +13,7 @@
 					</td>
 					<td class="center">
 					
-						<p class="alkamiseenAikaa center" >${t.pvm}T${t.aika}:00Z</p>
+						<b class="alkamiseenAikaa center" >${t.pvm}T${t.aika}:00Z</b>
 						<div class="row center">
 						
 						</div>

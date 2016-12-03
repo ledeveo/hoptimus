@@ -1,7 +1,7 @@
 
 <%@ include file="head-include.jsp"%>
 
-<body onload="haeElementit()">
+<body>
 
 	<%@ include file="header.jsp"%>
 

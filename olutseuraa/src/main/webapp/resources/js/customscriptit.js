@@ -121,7 +121,7 @@ function pyoritaKuva() {
 }
 
 function randomAnimaatio() {
-	var random = Math.floor((Math.random() * 2) + 1);
+	var random = Math.floor((Math.random() * 3) + 1);
 	switch(random) {
 		case 1:
 			pienennaKuva();

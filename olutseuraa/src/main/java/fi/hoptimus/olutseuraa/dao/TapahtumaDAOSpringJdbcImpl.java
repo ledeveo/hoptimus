@@ -18,6 +18,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import fi.hoptimus.olutseuraa.bean.Henkilo;
+import fi.hoptimus.olutseuraa.bean.Palaute;
 import fi.hoptimus.olutseuraa.bean.Tapahtuma;
 import fi.hoptimus.olutseuraa.helper.Helpperi;
 
@@ -317,6 +318,13 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		parametrit = new Object[] { tapahtumaId };
 		jdbcTemplate.update(sql, parametrit);
 		
+	}
+	
+	public void tallennaPalaute(Palaute p) {
+		//poistaa yhden tapahtuma osallistumisen henkilöltä
+		String sql = "INSERT INTO palaute (nimi, sposti, palaute) VALUES (?,?,?);";
+		Object[] parametrit = new Object[] { p.getPalautteenAntaja(), p.getSposti(), p.getPalaute() };
+		jdbcTemplate.update(sql, parametrit);
 	}
 
 }

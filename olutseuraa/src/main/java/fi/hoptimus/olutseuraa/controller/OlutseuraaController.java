@@ -28,6 +28,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import fi.hoptimus.olutseuraa.bean.Henkilo;
 import fi.hoptimus.olutseuraa.bean.HenkiloImpl;
+import fi.hoptimus.olutseuraa.bean.Palaute;
+import fi.hoptimus.olutseuraa.bean.PalauteImpl;
 import fi.hoptimus.olutseuraa.bean.Tapahtuma;
 import fi.hoptimus.olutseuraa.bean.TapahtumaImpl;
 import fi.hoptimus.olutseuraa.dao.TapahtumaDAO;
@@ -414,6 +416,14 @@ public class OlutseuraaController {
 		String sposti = requestParams.get("sposti");
 		String nimi = requestParams.get("nimi");
 		String palaute = requestParams.get("palaute");
+
+		Palaute p = new PalauteImpl();
+		
+		p.setPalautteenAntaja(nimi);
+		p.setSposti(sposti);
+		p.setPalaute(palaute);
+		
+		dao.tallennaPalaute(p);
 		
 		System.out.println("Sähköposti: " + sposti + ", nimi: " + nimi + ", palaute: " + palaute);
 		String success = "A succesful ajax-request!";

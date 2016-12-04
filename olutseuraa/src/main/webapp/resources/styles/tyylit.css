@@ -67,18 +67,19 @@
 	text-shadow: 1px 1px 3px black;
 }
 
-
+/*
 ::-webkit-scrollbar{
 	display:none;
-}
+}*/
 
+/*K‰ytet‰‰n footerin ikonit sis‰lt‰vill‰ riveill‰*/
 .lineheight{
 	padding-top:0.5rem;
 	padding-bottom:0.5rem;
 }
 
-.modaloffset{
-	margin-right:16px;
-}
+
+
+
 
 

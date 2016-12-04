@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import fi.hoptimus.olutseuraa.bean.Henkilo;
+import fi.hoptimus.olutseuraa.bean.Palaute;
 import fi.hoptimus.olutseuraa.bean.Tapahtuma;
 
 
@@ -43,4 +44,5 @@ public interface TapahtumaDAO {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public abstract void poistaTapahtuma(int tapahtumaId);
 	
+	public abstract void tallennaPalaute(Palaute p);
 }

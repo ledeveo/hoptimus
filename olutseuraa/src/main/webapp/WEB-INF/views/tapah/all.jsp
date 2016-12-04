@@ -66,11 +66,12 @@
 		
 	
 
-	<div class="column small-12 medium-3" data-sticky-container>
+	<div class="column small-12 medium-3 center" data-sticky-container>
     	<div id="instafeed" class="sticky" data-sticky data-sticky-on="medium" data-anchor="stickyanchor"><img border="0" alt="ig" src="resources/img/instagram_logo.png" width="150" height="150"></div>
     	
 
 	</div>
+
 	
 	</div>
 	

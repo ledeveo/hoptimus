@@ -138,3 +138,20 @@ function randomAnimaatio() {
 	}
 }
 
+
+function bodyOffset(){
+var bodyOffset = window.innerWidth - $(window).width();
+alert(bodyOffset);
+if(bodyOffset > 0){
+	$('body').css('padding-right', bodyOffset + 'px');
+}
+}
+
+
+
+ $(document).on('closed.zf.reveal', '[data-reveal]', function() {
+	 $('body').css('padding-right', '');
+    }); 
+
+  
+

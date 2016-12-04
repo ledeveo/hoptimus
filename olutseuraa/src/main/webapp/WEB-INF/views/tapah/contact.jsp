@@ -6,12 +6,12 @@
   <div class="row">
     <div class="medium-6 columns">
       <label>Sähköposti
-        <input type="email" placeholder="...ei ole pakko täyttää" name="sposti">
+        <input type="email" maxlength="50" placeholder="...ei ole pakko täyttää" name="sposti">
       </label>
     </div>
     <div class="medium-6 columns">
       <label>Nimi
-        <input type="text" name="nimi" placeholder="...eikä tätäkään">
+        <input type="text" maxlength="50" name="nimi" placeholder="...eikä tätäkään">
       </label>
     </div>
     <div class="small-12 columns">

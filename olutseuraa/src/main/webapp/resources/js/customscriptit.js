@@ -138,17 +138,15 @@ function randomAnimaatio() {
 	}
 }
 
-
+//laskee offsetin, minkä modaali saa aikaan lisäten vaaditun paddingin
 function bodyOffset(){
 var bodyOffset = window.innerWidth - $(window).width();
-alert(bodyOffset);
 if(bodyOffset > 0){
 	$('body').css('padding-right', bodyOffset + 'px');
 }
 }
 
-
-
+//resetoi bodyn paddingin kun modaali suljetaan
  $(document).on('closed.zf.reveal', '[data-reveal]', function() {
 	 $('body').css('padding-right', '');
     }); 

@@ -15,7 +15,7 @@ public class PalauteRowMapper implements RowMapper<Palaute> {
 		Palaute p = new PalauteImpl();
 		
 		p.setId(rs.getInt("id"));
-		p.setNimi(rs.getString("nimi"));
+		p.setPalautteenAntaja(rs.getString("nimi"));
 		p.setPalaute(rs.getString("palaute"));
 		p.setAikaleima(rs.getTimestamp("aikaleima"));
 		p.setSposti(rs.getString("sposti"));

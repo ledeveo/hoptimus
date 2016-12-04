@@ -16,7 +16,7 @@
     </div>
     <div class="small-12 columns">
     <label>Palaute
-    <textarea placeholder="Kirjoita palautteesi tähän laatikkoon" name="palaute"></textarea>
+    <textarea placeholder="Kirjoita palautteesi tähän laatikkoon (max 500 merkkiä)" name="palaute" maxLength="500"></textarea>
     </label>
     </div>
   </div>

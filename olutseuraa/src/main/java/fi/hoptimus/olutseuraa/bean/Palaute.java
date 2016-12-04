@@ -7,8 +7,8 @@ public interface Palaute {
 		public abstract int getId();		
 		public void setId(int id);
 		
-		public abstract String getNimi();
-		public void setNimi(String nimi);
+		public abstract String getPalautteenAntaja();
+		public void setPalautteenAntaja(String nimi);
 		
 		public abstract String getPalaute();
 		public void setPalaute(String palaute);

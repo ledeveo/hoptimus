@@ -9,15 +9,16 @@
 </sec:authorize>
 
 <div>
-	<h2 class="center white" style="margin-bottom: 1rem;">Palaute<small id="maara" style="font-size:1rem;">...viimeiset viisi</small> 
-	<button id="palauteAjax" class="button float-center small success">Hae kaikki palautteet <i class="fi-asterisk small"></i></button></h2>
+	<h2 class="center white">Palaute<small id="maara" style="font-size:1rem;">...viimeiset viisi</small></h2> 
+	<div class="center"><button id="palauteAjax" class="button small success">Hae kaikki palautteet <i class="fi-asterisk small"></i></button>
+	<button class="button small warning" style="display:none;" id="five" onClick="location.reload()">Viimeiset viisi</button></div>
 	
 </div>
 <div class="row" style="margin-bottom: 6rem;">
 
-	<div class="small-12 medium-8 medium-offset-2 columns">
 
 
+	<div class="small-12 medium-8 medium-offset-2 columns" id="accord">
 
 		<ul class="accordion center" data-accordion data-allow-all-closed="true">
 			<c:forEach var="palaute" items="${palautteet}">
@@ -51,8 +52,10 @@
 			</c:forEach>
 		</ul>
 	</div>
+	
+	<div id="ajaxdiv" class="small-12 medium-8 medium-offset-2 columns"></div>
+
 </div>
 
-<div id="ajaxdiv"></div>
 
 <%@ include file="footer.jsp"%>

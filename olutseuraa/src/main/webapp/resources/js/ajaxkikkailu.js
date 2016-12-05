@@ -79,21 +79,42 @@ $("#palauteform").submit(function(event) {
 })
 
 $("#palauteAjax").click(function(){
-	alert("Clicked palauteAjax!");
-    var originalState = $("#contactbtndiv").clone();
+	
+	
+	$("#five").toggle();
+	$("#palauteAjax").toggle();
 
-    var postData = $("#palauteform").serialize();
+		
     $.ajax({
           type: "get",
           url: "kaikkiPalautteet",
           dataType: "json",
           success: function(responseData, textStatus, jqXHR) {
-        	  console.log(responseData);
-        	  $( "#ajaxdiv" ).append( "<p>" + responseData + "</p>" );
-        	  		      			        	  
+              
+        	    
+        	  
+        	  $.each(responseData, function( index, palaute ) {
+        		  
+        		  $( "#ajaxdiv" ).append( "<ul class='accordion center' data-accordion data-allow-all-closed='true'>");
+        		  $("#ajaxdiv").append("<li class='accordion-item' data-accordion-item><a href='#' class='accordion-title'><h5>Kakka</h5></a>");
+        		  $("#ajaxdiv").append ("<div class='accordion-content' data-tab-content>");
+        		  $( "#ajaxdiv" ).append( "<table><tbody><tr>");	
+        		  $( "#ajaxdiv" ).append( "<th>Palautteen antaja </th></tr>" );
+        		  $( "#ajaxdiv" ).append( "<tr><td>" + palaute.palautteenAntaja + "</td></tr>" );
+        		  $( "#ajaxdiv" ).append( "<tr><th>Palaute </th></tr>" );
+        		  $( "#ajaxdiv" ).append( "<tr><td>" + palaute.palaute + "</td></tr>" );
+        		  $( "#ajaxdiv" ).append( "<tr><th>Sähköposti </th></tr>" );
+        		  $( "#ajaxdiv" ).append( "<tr><td>" + palaute.sposti + "</td></tr>" );
+        		  $( "#ajaxdiv" ).append( "</tbody></table></div></li></ul>");
+        		 
+        		  
+        		})     
+        
+        	  	    
+        	  
           },
           error: function(jqXHR, textStatus, errorThrown) {
-              console.log(errorThrown);
+              console.log("Error" + errorThrown);
           
           }
       })

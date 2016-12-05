@@ -48,5 +48,5 @@ public interface TapahtumaDAO {
 	public abstract void tallennaPalaute(Palaute p);
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public abstract List<Palaute> haePalautteet();
+	public abstract List<Palaute> haePalautteet(String kaikki);
 }

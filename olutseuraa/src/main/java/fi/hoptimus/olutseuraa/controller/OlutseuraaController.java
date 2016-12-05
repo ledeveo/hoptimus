@@ -433,20 +433,22 @@ public class OlutseuraaController {
 	@RequestMapping(value = "palautteet", method = RequestMethod.GET)
 	public String naytaPalauteSivu(Model model) {
 		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		Object aukto = auth.getPrincipal();
-	
-//		System.out.println("Auth on: " + aukto);
-//		if(aukto.equals("anonymousUser")){
-//			return "redirect:tapahtumat";
-//		}
-
-		List<Palaute> palautteet = dao.haePalautteet();	
+		String kaikki = "";
+		List<Palaute> palautteet = dao.haePalautteet(kaikki);	
 		
 		model.addAttribute("palautteet", palautteet);
 		
 
 		return "tapah/palautesivu";
+	}
+	
+	@RequestMapping(value = "kaikkiPalautteet", method = RequestMethod.GET)
+	public @ResponseBody List<Palaute> haePalautteet() {
+		
+		String kaikki = "kaikki";
+		List<Palaute> palautteet = dao.haePalautteet(kaikki);	
+		
+		return palautteet;
 	}
 	private void tuoKuukaudet(Model model){
 		

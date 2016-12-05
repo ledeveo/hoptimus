@@ -102,8 +102,14 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		return tapahtumat;
 	}
 	
-	public List<Palaute> haePalautteet(){
-		String sql = "SELECT * FROM palaute ORDER BY aikaleima DESC LIMIT 3;";
+	public List<Palaute> haePalautteet(String kaikki){
+		String sql;
+		if(kaikki == ""){
+		sql = "SELECT * FROM palaute ORDER BY aikaleima DESC LIMIT 5;";
+		}
+		else{
+		sql = "SELECT * FROM palaute ORDER BY aikaleima;";
+		}
 		RowMapper<Palaute> mapper = new PalauteRowMapper();
 		List<Palaute> palautteet = jdbcTemplate.query(sql, mapper);
 		return palautteet;

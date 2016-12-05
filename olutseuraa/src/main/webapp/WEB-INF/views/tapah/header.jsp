@@ -11,6 +11,9 @@
 				<li><a href="uusi" id="uusi"> <i class="step fi-pencil size-36"></i> Luo uusi tapahtuma</a></li>
 			</sec:authorize>
 			
+			<sec:authorize access="hasRole('ROLE_ADMIN')">
+				<li><a href="palautteet"><i class="fi-arrow-right"></i> Palaute</a></li>
+			</sec:authorize>
 			
 			<sec:authorize access="!hasRole('ROLE_USER')">
 				<li><a href="login"><i class="fi-arrow-right"></i> Kirjaudu sisään</a></li>

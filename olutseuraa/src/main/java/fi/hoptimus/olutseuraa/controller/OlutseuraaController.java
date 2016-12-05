@@ -1,9 +1,9 @@
 package fi.hoptimus.olutseuraa.controller;
 
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +11,6 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 
 import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
@@ -429,6 +428,25 @@ public class OlutseuraaController {
 		String success = "A succesful ajax-request!";
 		
 		return success;                                
+	}
+	
+	@RequestMapping(value = "palautteet", method = RequestMethod.GET)
+	public String naytaPalauteSivu(Model model) {
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Object aukto = auth.getPrincipal();
+	
+//		System.out.println("Auth on: " + aukto);
+//		if(aukto.equals("anonymousUser")){
+//			return "redirect:tapahtumat";
+//		}
+
+		List<Palaute> palautteet = dao.haePalautteet();	
+		
+		model.addAttribute("palautteet", palautteet);
+		
+
+		return "tapah/palautesivu";
 	}
 	private void tuoKuukaudet(Model model){
 		

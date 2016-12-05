@@ -78,5 +78,25 @@ $("#palauteform").submit(function(event) {
       })
 })
 
+$("#palauteAjax").click(function(){
+	alert("Clicked palauteAjax!");
+    var originalState = $("#contactbtndiv").clone();
+
+    var postData = $("#palauteform").serialize();
+    $.ajax({
+          type: "get",
+          url: "kaikkiPalautteet",
+          dataType: "json",
+          success: function(responseData, textStatus, jqXHR) {
+        	  console.log(responseData);
+        	  $( "#ajaxdiv" ).append( "<p>" + responseData + "</p>" );
+        	  		      			        	  
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+              console.log(errorThrown);
+          
+          }
+      })
+})
 
 

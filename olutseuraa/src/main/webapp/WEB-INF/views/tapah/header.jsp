@@ -12,11 +12,11 @@
 			</sec:authorize>
 			
 			<sec:authorize access="hasRole('ROLE_ADMIN')">
-				<li><a href="palautteet"><i class="fi-arrow-right"></i> Palaute</a></li>
+				<li><a href="palautteet"><i class="fi-comments size-36"></i> Palaute</a></li>
 			</sec:authorize>
 			
 			<sec:authorize access="!hasRole('ROLE_USER')">
-				<li><a href="login"><i class="fi-arrow-right"></i> Kirjaudu sis‰‰n</a></li>
+				<li><a href="login"><i class="fi-wheelchair size-36"></i> Kirjaudu sis‰‰n</a></li>
 			</sec:authorize>
 			
 			<sec:authorize access="hasRole('ROLE_USER') && !hasRole('ROLE_ADMIN')">
@@ -24,7 +24,7 @@
 			</sec:authorize>
 			
 			<sec:authorize access="hasRole('ROLE_USER')">
-				<li><a href="j_spring_security_logout"><i class="fi-arrow-right"></i> Kirjaudu ulos</a></li>
+				<li><a href="j_spring_security_logout"><i class="fi-eject size-36"></i> Kirjaudu ulos</a></li>
 			</sec:authorize>
 
 	</ul>

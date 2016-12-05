@@ -16,7 +16,7 @@
 </div>
 
 <footer class="footer">
-
+<sec:authorize access="!hasRole('ROLE_ADMIN')">
 <div class="row expanded">
 	<div id="social" class="columns small-12 medium-2 center lineheight">
 		<!-- <p class="about subheader">Beer me, Marge</p>-->
@@ -47,6 +47,8 @@
 	</div>
 		
 </div>
+
+</sec:authorize>
 </footer>
 </div>
 

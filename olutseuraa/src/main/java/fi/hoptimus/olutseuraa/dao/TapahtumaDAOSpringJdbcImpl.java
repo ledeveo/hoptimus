@@ -101,6 +101,13 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 
 		return tapahtumat;
 	}
+	
+	public List<Palaute> haePalautteet(){
+		String sql = "SELECT * FROM palaute ORDER BY aikaleima DESC LIMIT 3;";
+		RowMapper<Palaute> mapper = new PalauteRowMapper();
+		List<Palaute> palautteet = jdbcTemplate.query(sql, mapper);
+		return palautteet;
+	}
 
 	public List<Henkilo> haeAktivoidutOsallistujat(int tapId) {
 		// hakee tapahtuman kaikki osallistujat

@@ -5,10 +5,11 @@ import java.sql.Timestamp;
 public class PalauteImpl implements Palaute{
 
 	private int id;
-	private String palautteen_antaja;
+	private String palautteenAntaja;
 	private String palaute;
 	private String sposti;
 	private Timestamp aikaleima;
+	
 	public int getId() {
 		return id;
 	}
@@ -16,10 +17,10 @@ public class PalauteImpl implements Palaute{
 		this.id = id;
 	}
 	public String getPalautteenAntaja() {
-		return palautteen_antaja;
+		return palautteenAntaja;
 	}
 	public void setPalautteenAntaja(String nimi) {
-		this.palautteen_antaja = nimi;
+		this.palautteenAntaja = nimi;
 	}
 	public String getPalaute() {
 		return palaute;

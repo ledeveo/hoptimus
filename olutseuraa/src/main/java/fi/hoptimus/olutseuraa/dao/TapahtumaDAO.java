@@ -44,5 +44,9 @@ public interface TapahtumaDAO {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public abstract void poistaTapahtuma(int tapahtumaId);
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public abstract void tallennaPalaute(Palaute p);
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	public abstract List<Palaute> haePalautteet();
 }

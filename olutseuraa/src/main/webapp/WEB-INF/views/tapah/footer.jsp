@@ -20,19 +20,22 @@
 <div class="row expanded">
 	<div id="social" class="columns small-12 medium-2 center lineheight">
 		<!-- <p class="about subheader">Beer me, Marge</p>-->
-		<span class="inline-list social"> <a href="#"><i
+		<span class="inline-list social"> <!--<a href="#"><i
 				class="fi-social-facebook"></i></a> <a href="#"><i
-				class="fi-social-twitter"></i></a> <a href="#"><i
+				class="fi-social-twitter"></i></a>  <a href="#"><i
 				class="fi-social-linkedin"></i></a> <a href="#"><i
-				class="fi-social-github"></i></a>
+				class="fi-social-github"></i></a>>-->
+				<a href="whatsapp://send" data-text="Olutseuraa" 
+				data-href="" class="wa_btn wa_btn_s show-for-small-only"><img src="resources/img/whatsapp.png"></a>
 		</span>
 		
 		
 </div>
 
-					
-				
-<div class="text-center columns small-12 medium-8 lineheight" id="contactbtndiv"><sec:authorize access="!hasRole('ROLE_ADMIN')"><button data-toggle="contact" onClick="bodyOffset()" class="button center small warning" id="contactbtn">Anna palautetta <i class="fi-megaphone small" ></i></button></sec:authorize>
+			
+<div class="text-center columns small-12 medium-8 lineheight" id="contactbtndiv">
+
+		</span><button data-toggle="contact" onClick="bodyOffset()" class="button center small warning" id="contactbtn">Anna palautetta <i class="fi-megaphone small" ></i></button>
 <!--  <div class="text-center columns small-12 medium-8 lineheight"><button data-toggle="contact" class="button center small success">Kiitos palautteesta! <i class="fi-like small" ></i></button>-->
 
 </div>
@@ -112,6 +115,7 @@ if(document.querySelector("#eventTime")) {
 <script type="text/javascript" src="resources/js/lataa.js"></script>
 <script src="resources/js/customscriptit.js"></script>
 <script src="resources/js/ajaxkikkailu.js"></script>
+<script type="text/javascript">if(typeof wabtn4fg==="undefined"){wabtn4fg=1;h=document.head||document.getElementsByTagName("head")[0],s=document.createElement("script");s.type="text/javascript";s.src="resources/js/whatsapp-button.js";h.appendChild(s);}</script>
 
 
 

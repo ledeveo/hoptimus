@@ -9,26 +9,24 @@
 </sec:authorize>
 
 <div>
-	<h2 class="center white">Palaute<small id="maara" style="font-size:1rem;"> /viimeiset viisi</small></h2> 
-	<div class="center"><button id="kaikkip" class="button small success">Hae kaikki palautteet <i class="fi-asterisk small"></i></button>
-	<button class="button small warning" style="display:none;"  id="five">Hae viimeiset viisi</button></div>
+	<h2 class="white" style="position:absolute; left:43%;">Palaute<small id="maara" style="font-size:1rem;" class="show-for-medium"> /viimeiset viisi</small></h2> 
+	</div>
 	
-</div>
+	<div class="center" style="margin-top:4em;"><button id="kaikkip" class="button small success">Hae kaikki palautteet <i class="fi-asterisk small"></i></button>
+	<button class="button small warning" style="display:none;"  id="five">Hae viimeiset viisi <i class="fi-die-five small"></i></button></div>
+	
+
 <div class="row" style="margin-bottom: 6rem;">
 
 
  
 	<div class="small-12 medium-8 medium-offset-2 columns">
 
-		<ul class="accordion center" data-accordion data-allow-all-closed="true" id="listitem">
-			
-				
-			
+		<ul class="accordion center" data-accordion data-allow-all-closed="true" id="listitem">	
+			<!-- Ajax-sisältö ladataan tähän -->
 		</ul>
 	</div>
-
-	<!-- <div class="small-12 medium-8 medium-offset-2 columns" id="ajaxdiv"></div>-->
-
 </div>
+
 
 <%@ include file="footer.jsp"%>

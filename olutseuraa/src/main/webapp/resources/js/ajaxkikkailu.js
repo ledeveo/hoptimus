@@ -121,9 +121,9 @@ $(function() {
 										+	"<a href='#'class='accordion-title'><h5>" + date + "</h5></a>"
 										+	"<div class='accordion-content' data-tab-content><table>"
 										+	"<tbody><tr><th>Palautteen antaja</th></tr>"
-										+	"<tr><td>" +palaute.palautteenAntaja+"</td></tr><tr><th>Palaute</th></tr>"
-										+		"<tr><td>"+palaute.palaute+ "</td></tr><tr><th>Sähköposti</th></tr>"
-										+	"<tr><td>"+palaute.sposti + "</td></tr></tbody></table></div></li>");
+										+	"<tr><td>" +palaute.palautteenAntaja +"</td></tr><tr><th>Sähköposti</th></tr>"
+										+		"<tr><td>"+palaute.sposti + "</td></tr><tr><th>Palaute</th></tr>"
+										+	"<tr><td>"+palaute.palaute + "</td></tr></tbody></table></div></li>");
 
 									})
 									Foundation.reInit('accordion');
@@ -141,7 +141,7 @@ $("#kaikkip, #five").click(function() {
 	var url;
 	if(this.id == "five"){
 		url = "viimeisetViisi";
-		$("#maara").text(" /viimeisetViisi");
+		$("#maara").text(" /viimeiset viisi");
 	}else{
 		url = "kaikkiPalautteet";
 		$("#maara").text(" /kaikki");
@@ -173,9 +173,9 @@ $("#kaikkip, #five").click(function() {
 										+	"<a href='#'class='accordion-title'><h5>" + date + "</h5></a>"
 										+	"<div class='accordion-content' data-tab-content><table>"
 										+	"<tbody><tr><th>Palautteen antaja</th></tr>"
-										+	"<tr><td>" +palaute.palautteenAntaja+"</td></tr><tr><th>Palaute</th></tr>"
-										+		"<tr><td>"+palaute.palaute+ "</td></tr><tr><th>Sähköposti</th></tr>"
-										+	"<tr><td>"+palaute.sposti + "</td></tr></tbody></table></div></li>");
+										+	"<tr><td>" +palaute.palautteenAntaja+"</td></tr><tr><th>Sähköposti</th></tr>"
+										+		"<tr><td>"+palaute.sposti + "</td></tr><tr><th>Palaute</th></tr>"
+										+	"<tr><td>"+palaute.palaute + "</td></tr></tbody></table></div></li>");
 
 									})
 									Foundation.reInit('accordion');

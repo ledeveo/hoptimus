@@ -415,6 +415,13 @@ public class OlutseuraaController {
 		String sposti = requestParams.get("sposti");
 		String nimi = requestParams.get("nimi");
 		String palaute = requestParams.get("palaute");
+		
+		if(nimi.equals("")){
+				nimi = "Palautteen antaja ei maininnut nimeään.";
+		}
+		if(sposti.equals("")){
+			sposti = "Palautteen antaja ei maininnut sähköpostiaan.";
+		}
 
 		Palaute p = new PalauteImpl();
 		
@@ -450,10 +457,6 @@ public class OlutseuraaController {
 		
 		String kaikki = "";
 		List<Palaute> palautteet = dao.haePalautteet(kaikki);
-		
-		for (Palaute pal : palautteet) {
-			System.out.println(pal.getAikaleima());
-		}
 		
 		return palautteet;
 	}

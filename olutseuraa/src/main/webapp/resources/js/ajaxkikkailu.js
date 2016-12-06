@@ -98,18 +98,53 @@ $("#palauteform")
 							})
 				})
 
-//$(function() {
-//	hae("viimeisetViisi");
-//})
 
+$(function() {
+
+	var url = "viimeisetViisi";
+	
+	$.ajax({
+				type : "get",
+				url : url,
+				dataType : "json",
+				success : function(responseData, textStatus, jqXHR) {
+
+				
+					$
+							.each(
+									responseData,
+									function(index, palaute) {
+										
+										var date = (DateFormat.format.date(palaute.aikaleima, "dd.MM.yyyy  HH.mm"));
+										
+									$("#listitem").append("<li class='accordion-item' data-accordion-item >" 
+										+	"<a href='#'class='accordion-title'><h5>" + date + "</h5></a>"
+										+	"<div class='accordion-content' data-tab-content><table>"
+										+	"<tbody><tr><th>Palautteen antaja</th></tr>"
+										+	"<tr><td>" +palaute.palautteenAntaja+"</td></tr><tr><th>Palaute</th></tr>"
+										+		"<tr><td>"+palaute.palaute+ "</td></tr><tr><th>Sähköposti</th></tr>"
+										+	"<tr><td>"+palaute.sposti + "</td></tr></tbody></table></div></li>");
+
+									})
+									Foundation.reInit('accordion');
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					console.log("Error" + errorThrown);
+
+				}				
+			})		
+})
+				
+				
 $("#kaikkip, #five").click(function() {
 
-	alert(this.id); 
 	var url;
 	if(this.id == "five"){
 		url = "viimeisetViisi";
+		$("#maara").text(" /viimeisetViisi");
 	}else{
 		url = "kaikkiPalautteet";
+		$("#maara").text(" /kaikki");
 	}
 	
 	
@@ -129,26 +164,25 @@ $("#kaikkip, #five").click(function() {
 									responseData,
 									function(index, palaute) {
 										
+										
+										var date = (DateFormat.format.date(palaute.aikaleima, "dd.MM.yyyy  HH.mm"));
+										
+										
+										
 									$("#listitem").append("<li class='accordion-item' data-accordion-item >" 
-										+	"<a href='#'class='accordion-title'><h5>" +palaute.aikaleima + "</h5></a>"
+										+	"<a href='#'class='accordion-title'><h5>" + date + "</h5></a>"
 										+	"<div class='accordion-content' data-tab-content><table>"
 										+	"<tbody><tr><th>Palautteen antaja</th></tr>"
 										+	"<tr><td>" +palaute.palautteenAntaja+"</td></tr><tr><th>Palaute</th></tr>"
 										+		"<tr><td>"+palaute.palaute+ "</td></tr><tr><th>Sähköposti</th></tr>"
 										+	"<tr><td>"+palaute.sposti + "</td></tr></tbody></table></div></li>");
 
-									
 									})
 									Foundation.reInit('accordion');
 				},
 				error : function(jqXHR, textStatus, errorThrown) {
 					console.log("Error" + errorThrown);
 
-				}
-
-				
-			})
-			
-			
-		
+				}				
+			})		
 })

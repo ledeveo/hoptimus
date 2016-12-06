@@ -9,7 +9,7 @@
 </sec:authorize>
 
 <div>
-	<h2 class="white" style="position:absolute; left:43%;">Palaute<small id="maara" style="font-size:1rem;" class="show-for-medium"> /viimeiset viisi</small></h2> 
+	<h2 class="white" style="position:absolute; left:43%;">PalautE<small id="maara" style="font-size:1rem;" class="show-for-medium"> /viimeiset viisi</small></h2> 
 	</div>
 	
 	<div class="center" style="margin-top:4em;"><button id="kaikkip" class="button small success">Hae kaikki palautteet <i class="fi-asterisk small"></i></button>
@@ -27,6 +27,8 @@
 		</ul>
 	</div>
 </div>
+
+
 
 <script src="resources/js/palauteajax.js"></script>
 <%@ include file="footer.jsp"%>

@@ -22,6 +22,7 @@
 <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro" rel="stylesheet">
 
 <link rel="stylesheet" type="text/css" href="resources/styles/foundation.css">
+<link rel="stylesheet" type="text/css" href="resources/styles/alert-boxes.css">
 <link rel="stylesheet" type="text/css" href="resources/styles/apply.css">
 <link rel="stylesheet" type="text/css" href="resources/styles/tyylit.css">
 <link rel="stylesheet" type="text/css" href="resources/styles/jquery.timepicker.css">

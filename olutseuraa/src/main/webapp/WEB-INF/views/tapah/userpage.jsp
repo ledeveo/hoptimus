@@ -4,23 +4,9 @@
 <body>
 
 	<%@ include file="header.jsp"%>
-<!--ei toimi
-	<div data-alert class="alert-box">
-	  This is a success alert with a radius.
-	  <a href="#" class="close">&times;</a>
-	</div>
--->
+
 	<div class="row">
 		<div class="event small-12 medium-8 medium-offset-2 columns main-content">
-			
-			<div class="submitSuccess">
-				<c:if test="${param.tapahtumaAdded eq true}" >
-					  <h4>Tapahtumaan liittyminen lisätty!</h4>
-				</c:if>
-				<c:if test="${param.tapahtumaRemoved eq true}" >
-					  <h4>Tapahtumaan liittyminen poistettu!</h4>
-				</c:if>
-			</div>
 			
 			<!-- TODO: tulosta käyttäjän tiedot ja muokkausmahdollisuus -->
 			<span class="float-right">tili: <sec:authentication property="principal.username"/></span>

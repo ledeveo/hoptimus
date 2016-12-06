@@ -431,13 +431,7 @@ public class OlutseuraaController {
 	}
 	
 	@RequestMapping(value = "palautteet", method = RequestMethod.GET)
-	public String naytaPalauteSivu(Model model) {
-		
-		String kaikki = "";
-		List<Palaute> palautteet = dao.haePalautteet(kaikki);	
-		
-		model.addAttribute("palautteet", palautteet);
-		
+	public String naytaPalauteSivu() {
 
 		return "tapah/palautesivu";
 	}
@@ -447,6 +441,19 @@ public class OlutseuraaController {
 		
 		String kaikki = "kaikki";
 		List<Palaute> palautteet = dao.haePalautteet(kaikki);	
+		
+		return palautteet;
+	}
+	
+	@RequestMapping(value = "viimeisetViisi", method = RequestMethod.GET)
+	public @ResponseBody List<Palaute> haeViimeisetViisi(Model model) {
+		
+		String kaikki = "";
+		List<Palaute> palautteet = dao.haePalautteet(kaikki);
+		
+		for (Palaute pal : palautteet) {
+			System.out.println(pal.getAikaleima());
+		}
 		
 		return palautteet;
 	}

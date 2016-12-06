@@ -78,6 +78,15 @@
 	padding-bottom:0.5rem;
 }
 
+tbody tr th{
+	background:#DCDCDC;
+}
+
+tbody tr td{
+	background:white;
+}
+
+
 
 
 

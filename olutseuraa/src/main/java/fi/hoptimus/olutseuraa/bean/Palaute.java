@@ -17,7 +17,10 @@ public interface Palaute {
 		public void setSposti(String sposti);
 		
 		public abstract Timestamp getAikaleima();
-		public void setAikaleima(Timestamp aikaleima);		
+		public void setAikaleima(Timestamp aikaleima);	
+		
+		public abstract String getOtsikko();
+		public void setOtsikko(String otsikko);
 		
 	}
 

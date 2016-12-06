@@ -415,12 +415,16 @@ public class OlutseuraaController {
 		String sposti = requestParams.get("sposti");
 		String nimi = requestParams.get("nimi");
 		String palaute = requestParams.get("palaute");
-		
+		String otsikko = requestParams.get("otsikko");
+	
 		if(nimi.equals("")){
 				nimi = "Palautteen antaja ei maininnut nimeään.";
 		}
 		if(sposti.equals("")){
 			sposti = "Palautteen antaja ei maininnut sähköpostiaan.";
+		}
+		if(otsikko.equals("")){
+			otsikko = "Tällä palautteella ei ole otsikkoa.";
 		}
 
 		Palaute p = new PalauteImpl();
@@ -428,10 +432,11 @@ public class OlutseuraaController {
 		p.setPalautteenAntaja(nimi);
 		p.setSposti(sposti);
 		p.setPalaute(palaute);
+		p.setOtsikko(otsikko);
 		
 		dao.tallennaPalaute(p);
 		
-		System.out.println("Sähköposti: " + sposti + ", nimi: " + nimi + ", palaute: " + palaute);
+		System.out.println("Sähköposti: " + sposti + ", nimi: " + nimi + ",otsikko" + otsikko + ", palaute: " + palaute);
 		String success = "A succesful ajax-request!";
 		
 		return success;                                

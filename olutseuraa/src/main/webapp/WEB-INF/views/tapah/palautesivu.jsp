@@ -28,5 +28,5 @@
 	</div>
 </div>
 
-
+<script src="resources/js/palauteajax.js"></script>
 <%@ include file="footer.jsp"%>

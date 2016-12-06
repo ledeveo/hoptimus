@@ -335,8 +335,8 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 	
 	public void tallennaPalaute(Palaute p) {
 		//poistaa yhden tapahtuma osallistumisen henkilöltä
-		String sql = "INSERT INTO palaute (nimi, sposti, palaute) VALUES (?,?,?);";
-		Object[] parametrit = new Object[] { p.getPalautteenAntaja(), p.getSposti(), p.getPalaute() };
+		String sql = "INSERT INTO palaute (nimi, sposti, palaute, otsikko) VALUES (?,?,?,?);";
+		Object[] parametrit = new Object[] { p.getPalautteenAntaja(), p.getSposti(), p.getPalaute(), p.getOtsikko() };
 		jdbcTemplate.update(sql, parametrit);
 	}
 

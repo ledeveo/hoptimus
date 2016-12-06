@@ -6,6 +6,7 @@ public class PalauteImpl implements Palaute{
 
 	private int id;
 	private String palautteenAntaja;
+	private String otsikko;
 	private String palaute;
 	private String sposti;
 	private Timestamp aikaleima;
@@ -21,6 +22,13 @@ public class PalauteImpl implements Palaute{
 	}
 	public void setPalautteenAntaja(String nimi) {
 		this.palautteenAntaja = nimi;
+	}
+	
+	public String getOtsikko() {
+		return otsikko;
+	}
+	public void setOtsikko(String otsikko) {
+		this.otsikko = otsikko;
 	}
 	public String getPalaute() {
 		return palaute;

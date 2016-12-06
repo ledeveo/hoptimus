@@ -4,14 +4,19 @@
   <h4>Kerro, miten voisimme kehittää palveluamme.</h4>
   <form action="palautetta" method="POST" id="palauteform">
   <div class="row">
-    <div class="medium-6 columns">
+    <div class="small-6 columns">
       <label>Sähköposti
         <input type="email" maxlength="50" placeholder="...ei ole pakko täyttää" name="sposti">
       </label>
     </div>
-    <div class="medium-6 columns">
+    <div class="small-6 columns">
       <label>Nimi
         <input type="text" maxlength="50" name="nimi" placeholder="...eikä tätäkään">
+      </label>
+    </div>
+     <div class="small-12 columns">
+      <label>Otsikko
+        <input type="text" maxlength="50" name="otsikko" placeholder="Mitä palautteesi koskee?">
       </label>
     </div>
     <div class="small-12 columns">

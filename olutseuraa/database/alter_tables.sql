@@ -17,3 +17,9 @@ AUTO_INCREMENT = 1;
 
 ALTER TABLE Henkilo
 ADD COLUMN salasana varchar(255) NOT NULL;
+
+ALTER TABLE palaute 
+ADD COLUMN otsikko VARCHAR(30) AFTER sposti;
+
+ALTER TABLE palaute 
+MODIFY COLUMN otsikko VARCHAR (50);

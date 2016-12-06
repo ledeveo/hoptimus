@@ -19,6 +19,7 @@ public class PalauteRowMapper implements RowMapper<Palaute> {
 		p.setPalaute(rs.getString("palaute"));
 		p.setAikaleima(rs.getTimestamp("aikaleima"));
 		p.setSposti(rs.getString("sposti"));
+		p.setOtsikko(rs.getString("otsikko"));
 		
 		return p;
 	}

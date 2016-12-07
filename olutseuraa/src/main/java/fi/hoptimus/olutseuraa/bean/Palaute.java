@@ -22,6 +22,9 @@ public interface Palaute {
 		public abstract String getOtsikko();
 		public void setOtsikko(String otsikko);
 		
+		public abstract boolean isLuettu();
+		public void setLuettu(boolean luettu);
+		
 	}
 
 

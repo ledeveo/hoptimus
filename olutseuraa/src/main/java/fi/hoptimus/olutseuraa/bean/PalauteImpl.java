@@ -8,6 +8,7 @@ public class PalauteImpl implements Palaute{
 	private String palautteenAntaja;
 	private String otsikko;
 	private String palaute;
+	private boolean luettu;
 	private String sposti;
 	private Timestamp aikaleima;
 	
@@ -48,6 +49,14 @@ public class PalauteImpl implements Palaute{
 	public void setAikaleima(Timestamp aikaleima) {
 		this.aikaleima = aikaleima;
 	}
+	public boolean isLuettu() {
+		return luettu;
+	}
+	public void setLuettu(boolean luettu) {
+		this.luettu = luettu;
+	}
+	
+	
 	
 	
 	

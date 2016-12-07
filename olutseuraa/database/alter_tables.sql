@@ -19,7 +19,9 @@ ALTER TABLE Henkilo
 ADD COLUMN salasana varchar(255) NOT NULL;
 
 ALTER TABLE palaute 
-ADD COLUMN otsikko VARCHAR(30) AFTER sposti;
+ADD COLUMN otsikko VARCHAR(50) AFTER sposti;
 
-ALTER TABLE palaute 
-MODIFY COLUMN otsikko VARCHAR (50);
+
+ALTER TABLE palaute
+ADD COLUMN luettu BOOLEAN DEFAULT false
+AFTER palaute;

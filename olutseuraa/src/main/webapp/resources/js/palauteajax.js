@@ -16,14 +16,17 @@ $(function() {
 										
 										var date = (DateFormat.format.date(palaute.aikaleima, "dd.MM.yyyy  HH.mm"));
 										//Haetaan luettu-muuttujaan luettu-boolean palaute-taulusta
-										var luettu = "";
-										var otsikkorivi = "<a href='#'class='accordion-title'><h5>" + palaute.otsikko + "</h5><small style='font-size:1.2rem;'>" + date + "</small></a>";
-										if(luettu.length == 0){
-											otsikkorivi = "<a href='#'class='accordion-title'><i class='fi-alert small'></i><h5>" + palaute.otsikko + "</h5><small style='font-size:1.2rem;'>" + date + "</small></a>";
+										var otsikkorivi;
+										
+										
+										if(palaute.luettu){
+										 otsikkorivi = "<a href='#'class='accordion-title'><h5>" + palaute.otsikko + "</h5><small style='font-size:1.2rem;'>" + date + "</small></a>";
+										}else{
+											otsikkorivi = "<a href='#'class='accordion-title'><i class='fi-alert mediumicon'></i><h5>" + palaute.otsikko + "</h5><small style='font-size:1.2rem;'>" + date + "</small></a>";
 										}
 									
 										
-									$("#listitem").append("<li class='accordion-item' data-accordion-item >" 
+									$("#listitem").append("<li class='accordion-item' data-accordion-item id='" + palaute.id +"'>" 
 										+	otsikkorivi
 										+	"<div class='accordion-content' data-tab-content><table>"
 										+	"<tbody><tr><th>Palautteen antaja</th></tr>"
@@ -73,10 +76,18 @@ $("#kaikkip, #five").click(function() {
 										
 										var date = (DateFormat.format.date(palaute.aikaleima, "dd.MM.yyyy  HH.mm"));
 										
+										var otsikkorivi;
+					
+										
+										if(palaute.luettu){
+										 otsikkorivi = "<a href='#'class='accordion-title'><h5>" + palaute.otsikko + "</h5><small style='font-size:1.2rem;'>" + date + "</small></a>";
+										}else{
+											otsikkorivi = "<a href='#'class='accordion-title'><i class='fi-alert mediumicon'></i><h5>" + palaute.otsikko + "</h5><small style='font-size:1.2rem;'>" + date + "</small></a>";
+										}
 										
 										
-									$("#listitem").append("<li class='accordion-item' data-accordion-item >" 
-										+	"<a href='#'class='accordion-title'><h5>" + palaute.otsikko + "</h5><small style='font-size:1.2rem;'>" + date + "</a>"
+									$("#listitem").append("<li class='accordion-item' data-accordion-item id='" + palaute.id +"'>" 
+										+	otsikkorivi
 										+	"<div class='accordion-content' data-tab-content><table>"
 										+	"<tbody><tr><th>Palautteen antaja</th></tr>"
 										+	"<tr><td>" +palaute.palautteenAntaja+"</td></tr><tr><th>Sähköposti</th></tr>"
@@ -92,3 +103,29 @@ $("#kaikkip, #five").click(function() {
 				}				
 			})		
 })
+
+
+ $(window).on('down.zf.accordion', function(){
+	 alert($("li.is-active").attr("id"));
+	 var id = $("li.is-active").attr("id");
+	 
+	 
+	 $.ajax({
+			type : "post",
+			url : "merkkaaLuetuksi",
+			data : { id: id },
+			//contentType : "application/x-www-form-urlencoded",
+			accepts : "json",
+			success : function(responseData, textStatus,
+					jqXHR) {
+				console.log(responseData);
+			
+
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				console.log(errorThrown);
+			
+			}
+	 })
+ })
+

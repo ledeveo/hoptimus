@@ -465,6 +465,16 @@ public class OlutseuraaController {
 		
 		return palautteet;
 	}
+	
+	@RequestMapping(value = "merkkaaLuetuksi", method = RequestMethod.POST)
+	public @ResponseBody Palaute tuoLuettu(@RequestParam Map <String, String> requestparams ) {
+		
+		String luettu = requestparams.get("id");
+		System.out.println("Merkataan palaute id:llä: " + luettu + " luetuksi.");
+		
+		Palaute p = new PalauteImpl();
+		return p;
+	}
 	private void tuoKuukaudet(Model model){
 		
 		List<String> kuukaudet = new ArrayList<String>();

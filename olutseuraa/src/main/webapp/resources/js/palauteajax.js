@@ -106,26 +106,29 @@ $("#kaikkip, #five").click(function() {
 
 
  $(window).on('down.zf.accordion', function(){
-	 alert($("li.is-active").attr("id"));
+	 
 	 var id = $("li.is-active").attr("id");
 	 
+	 if($("li.is-active").has("i").length){ 
 	 
 	 $.ajax({
 			type : "post",
 			url : "merkkaaLuetuksi",
 			data : { id: id },
-			//contentType : "application/x-www-form-urlencoded",
 			accepts : "json",
 			success : function(responseData, textStatus,
 					jqXHR) {
 				console.log(responseData);
-			
-
+				$("li.is-active").has("i").remove();
+				
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
 				console.log(errorThrown);
 			
 			}
 	 })
+	 }else{
+		 return false;
+	 }
  })
 

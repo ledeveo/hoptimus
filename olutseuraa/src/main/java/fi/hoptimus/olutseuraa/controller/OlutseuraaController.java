@@ -436,7 +436,7 @@ public class OlutseuraaController {
 		
 		dao.tallennaPalaute(p);
 		
-		System.out.println("Sähköposti: " + sposti + ", nimi: " + nimi + ",otsikko" + otsikko + ", palaute: " + palaute);
+		System.out.println("Sähköposti: " + sposti + ", nimi: " + nimi + ",otsikko: " + otsikko + ", palaute: " + palaute);
 		String success = "A succesful ajax-request!";
 		
 		return success;                                
@@ -469,10 +469,11 @@ public class OlutseuraaController {
 	@RequestMapping(value = "merkkaaLuetuksi", method = RequestMethod.POST)
 	public @ResponseBody Palaute tuoLuettu(@RequestParam Map <String, String> requestparams ) {
 		
-		String luettu = requestparams.get("id");
+		int luettu = Integer.parseInt(requestparams.get("id"));
 		System.out.println("Merkataan palaute id:llä: " + luettu + " luetuksi.");
 		
-		Palaute p = new PalauteImpl();
+		Palaute p = dao.merkkaaLuetuksi(luettu);
+		
 		return p;
 	}
 	private void tuoKuukaudet(Model model){

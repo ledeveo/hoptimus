@@ -340,4 +340,19 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		jdbcTemplate.update(sql, parametrit);
 	}
 
+	public Palaute merkkaaLuetuksi(int luettu){
+		String sql = "UPDATE palaute SET luettu = true WHERE id = ?;";
+		Object[] parametrit = new Object[] { luettu };
+		jdbcTemplate.update(sql, parametrit);
+		Palaute p = haePalaute(luettu);
+		return p;
+	}
+	
+	public Palaute haePalaute(int id){
+		String sql = "SELECT * from palaute WHERE id = ?;";
+		RowMapper<Palaute> mapper = new PalauteRowMapper();
+		Object[] parametrit = new Object[] { id };
+		Palaute p = jdbcTemplate.queryForObject(sql, parametrit, mapper);
+		return p;
+	}
 }

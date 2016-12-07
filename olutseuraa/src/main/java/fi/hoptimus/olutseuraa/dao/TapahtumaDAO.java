@@ -49,4 +49,10 @@ public interface TapahtumaDAO {
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public abstract List<Palaute> haePalautteet(String kaikki);
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	public abstract Palaute merkkaaLuetuksi(int luettu);
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	public abstract Palaute haePalaute(int id);
 }

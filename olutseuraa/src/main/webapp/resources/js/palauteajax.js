@@ -15,10 +15,16 @@ $(function() {
 									function(index, palaute) {
 										
 										var date = (DateFormat.format.date(palaute.aikaleima, "dd.MM.yyyy  HH.mm"));
+										//Haetaan luettu-muuttujaan luettu-boolean palaute-taulusta
+										var luettu = "";
+										var otsikkorivi = "<a href='#'class='accordion-title'><h5>" + palaute.otsikko + "</h5><small style='font-size:1.2rem;'>" + date + "</small></a>";
+										if(luettu.length == 0){
+											otsikkorivi = "<a href='#'class='accordion-title'><i class='fi-alert small'></i><h5>" + palaute.otsikko + "</h5><small style='font-size:1.2rem;'>" + date + "</small></a>";
+										}
 									
 										
 									$("#listitem").append("<li class='accordion-item' data-accordion-item >" 
-										+	"<a href='#'class='accordion-title'><h5>" + palaute.otsikko + "</h5><small style='font-size:1.2rem;'>" + date + "</small></a>"
+										+	otsikkorivi
 										+	"<div class='accordion-content' data-tab-content><table>"
 										+	"<tbody><tr><th>Palautteen antaja</th></tr>"
 										+	"<tr><td>" +palaute.palautteenAntaja +"</td></tr><tr><th>Sähköposti</th></tr>"

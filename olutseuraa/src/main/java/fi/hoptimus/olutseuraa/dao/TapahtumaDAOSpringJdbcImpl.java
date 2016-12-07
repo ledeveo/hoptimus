@@ -18,6 +18,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import fi.hoptimus.olutseuraa.bean.Henkilo;
+import fi.hoptimus.olutseuraa.bean.Palaute;
 import fi.hoptimus.olutseuraa.bean.Tapahtuma;
 import fi.hoptimus.olutseuraa.helper.Helpperi;
 
@@ -99,6 +100,19 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		}
 
 		return tapahtumat;
+	}
+	
+	public List<Palaute> haePalautteet(String kaikki){
+		String sql;
+		if(kaikki == ""){
+		sql = "SELECT * FROM palaute ORDER BY aikaleima DESC LIMIT 5;";
+		}
+		else{
+		sql = "SELECT * FROM palaute ORDER BY aikaleima DESC;";
+		}
+		RowMapper<Palaute> mapper = new PalauteRowMapper();
+		List<Palaute> palautteet = jdbcTemplate.query(sql, mapper);
+		return palautteet;
 	}
 
 	public List<Henkilo> haeAktivoidutOsallistujat(int tapId) {
@@ -318,5 +332,27 @@ public class TapahtumaDAOSpringJdbcImpl implements TapahtumaDAO {
 		jdbcTemplate.update(sql, parametrit);
 		
 	}
+	
+	public void tallennaPalaute(Palaute p) {
+		//poistaa yhden tapahtuma osallistumisen henkilöltä
+		String sql = "INSERT INTO palaute (nimi, sposti, palaute, otsikko) VALUES (?,?,?,?);";
+		Object[] parametrit = new Object[] { p.getPalautteenAntaja(), p.getSposti(), p.getPalaute(), p.getOtsikko() };
+		jdbcTemplate.update(sql, parametrit);
+	}
 
+	public Palaute merkkaaLuetuksi(int luettu){
+		String sql = "UPDATE palaute SET luettu = true WHERE id = ?;";
+		Object[] parametrit = new Object[] { luettu };
+		jdbcTemplate.update(sql, parametrit);
+		Palaute p = haePalaute(luettu);
+		return p;
+	}
+	
+	public Palaute haePalaute(int id){
+		String sql = "SELECT * from palaute WHERE id = ?;";
+		RowMapper<Palaute> mapper = new PalauteRowMapper();
+		Object[] parametrit = new Object[] { id };
+		Palaute p = jdbcTemplate.queryForObject(sql, parametrit, mapper);
+		return p;
+	}
 }

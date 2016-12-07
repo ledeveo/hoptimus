@@ -5,7 +5,9 @@
 
 	<%@ include file="header.jsp"%>
 
+
 	<div class="row">
+	
 		<!-- Joko modaaleihin tai alertteihin -->
 		<div class="columns small-12 medium-11 center" style="margin-bottom: 15px;">
 		
@@ -44,6 +46,7 @@
 		</div>
 	</div>
 
+
 	<div class="row align-middle">
 	
 		<div class="column small-12 medium-4 center" data-sticky-container>
@@ -73,12 +76,17 @@
 
 		</div>
 
+	
+	<!-- Dynaaminen pohja-ankkuri instafeedille eli mihin kohtaan se pysähtyy alaspäin scrollattaessa -->
+		<c:set var="ankkuri" scope="page" value="${fn:length(tapahtumat)*415}"></c:set>
+		 
+	<div class="column small-12 medium-3 center" data-sticky-container>
+    	<div id="instafeed" class="sticky" data-sticky data-sticky-on="medium" data-top-anchor="stickyanchor" data-btm-anchor="${ankkuri}"><img border="0" alt="ig" src="resources/img/instagram_logo.png" width="150" height="150"></div>
 
-	<div class="column small-12 medium-3" data-sticky-container>
-    	<div id="instafeed" class="sticky" data-sticky data-sticky-on="medium" data-anchor="stickyanchor"><img border="0" alt="ig" src="resources/img/instagram_logo.png" width="150" height="150"></div>
     	
 
 	</div>
+
 	
 	</div>
 	

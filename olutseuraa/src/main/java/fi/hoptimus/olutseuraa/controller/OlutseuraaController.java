@@ -1,9 +1,9 @@
 package fi.hoptimus.olutseuraa.controller;
 
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +11,6 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 
 import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
@@ -24,9 +23,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import fi.hoptimus.olutseuraa.bean.Henkilo;
 import fi.hoptimus.olutseuraa.bean.HenkiloImpl;
+import fi.hoptimus.olutseuraa.bean.Palaute;
+import fi.hoptimus.olutseuraa.bean.PalauteImpl;
 import fi.hoptimus.olutseuraa.bean.Tapahtuma;
 import fi.hoptimus.olutseuraa.bean.TapahtumaImpl;
 import fi.hoptimus.olutseuraa.dao.TapahtumaDAO;
@@ -405,6 +407,75 @@ public class OlutseuraaController {
 		}
 	}
 	
+	
+	@PostMapping("/palautetta")
+	@ResponseBody
+		public String tallennaPalaute(@RequestParam Map<String, String> requestParams){
+		
+		String sposti = requestParams.get("sposti");
+		String nimi = requestParams.get("nimi");
+		String palaute = requestParams.get("palaute");
+		String otsikko = requestParams.get("otsikko");
+	
+		if(nimi.equals("")){
+				nimi = "Palautteen antaja ei maininnut nimeään.";
+		}
+		if(sposti.equals("")){
+			sposti = "Palautteen antaja ei maininnut sähköpostiaan.";
+		}
+		if(otsikko.equals("")){
+			otsikko = "Tällä palautteella ei ole otsikkoa.";
+		}
+
+		Palaute p = new PalauteImpl();
+		
+		p.setPalautteenAntaja(nimi);
+		p.setSposti(sposti);
+		p.setPalaute(palaute);
+		p.setOtsikko(otsikko);
+		
+		dao.tallennaPalaute(p);
+		
+		System.out.println("Sähköposti: " + sposti + ", nimi: " + nimi + ",otsikko: " + otsikko + ", palaute: " + palaute);
+		String success = "A succesful ajax-request!";
+		
+		return success;                                
+	}
+	
+	@RequestMapping(value = "palautteet", method = RequestMethod.GET)
+	public String naytaPalauteSivu() {
+
+		return "tapah/palautesivu";
+	}
+	
+	@RequestMapping(value = "kaikkiPalautteet", method = RequestMethod.GET)
+	public @ResponseBody List<Palaute> haePalautteet() {
+		
+		String kaikki = "kaikki";
+		List<Palaute> palautteet = dao.haePalautteet(kaikki);	
+		
+		return palautteet;
+	}
+	
+	@RequestMapping(value = "viimeisetViisi", method = RequestMethod.GET)
+	public @ResponseBody List<Palaute> haeViimeisetViisi(Model model) {
+		
+		String kaikki = "";
+		List<Palaute> palautteet = dao.haePalautteet(kaikki);
+		
+		return palautteet;
+	}
+	
+	@RequestMapping(value = "merkkaaLuetuksi", method = RequestMethod.POST)
+	public @ResponseBody Palaute tuoLuettu(@RequestParam Map <String, String> requestparams ) {
+		
+		int luettu = Integer.parseInt(requestparams.get("id"));
+		System.out.println("Merkataan palaute id:llä: " + luettu + " luetuksi.");
+		
+		Palaute p = dao.merkkaaLuetuksi(luettu);
+		
+		return p;
+	}
 	private void tuoKuukaudet(Model model){
 		
 		List<String> kuukaudet = new ArrayList<String>();

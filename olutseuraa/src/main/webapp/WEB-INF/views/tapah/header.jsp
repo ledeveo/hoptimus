@@ -5,23 +5,26 @@
 	</h1>
 	<ul class="header-subnav">
 		<li class="small-offset-1">
-			<a href="tapahtumat" id="kaikki"><i class="step fi-marker size-36"></i> Tapahtumat</a></li>
+			<a href="tapahtumat" id="kaikki"><i class="step fi-marker size-36"></i> <span class="hide-for-small-only">Tapahtumat</span></a></li>
 		
 			<sec:authorize access="hasRole('ROLE_ADMIN')">
-				<li><a href="uusi" id="uusi"> <i class="step fi-pencil size-36"></i> Luo uusi tapahtuma</a></li>
+				<li><a href="uusi" id="uusi"> <i class="step fi-pencil size-36"></i> <span class="hide-for-small-only">Luo uusi tapahtuma</span></a></li>
 			</sec:authorize>
 			
+			<sec:authorize access="hasRole('ROLE_ADMIN')">
+				<li><a href="palautteet"><i class="fi-comments size-36"></i> <span class="hide-for-small-only">Palaute</span></a></li>
+			</sec:authorize>
 			
 			<sec:authorize access="!hasRole('ROLE_USER')">
-				<li><a href="login"><i class="fi-arrow-right"></i> Kirjaudu sisään</a></li>
+				<li><a href="login"><i class="fi-wheelchair size-36"></i> <span class="hide-for-small-only">Kirjaudu sisään</span></a></li>
 			</sec:authorize>
 			
 			<sec:authorize access="hasRole('ROLE_USER') && !hasRole('ROLE_ADMIN')">
-				<li style="color: white;"><a href="userpage"><i class="step fi-bookmark size-36"></i> Osallistumiset</a></li>
+				<li style="color: white;"><a href="userpage"><i class="step fi-bookmark size-36"></i> <span class="hide-for-small-only">Osallistumiset</span></a></li>
 			</sec:authorize>
 			
 			<sec:authorize access="hasRole('ROLE_USER')">
-				<li><a href="j_spring_security_logout"><i class="fi-arrow-right"></i> Kirjaudu ulos</a></li>
+				<li><a href="j_spring_security_logout"><i class="fi-eject size-36"></i> <span class="hide-for-small-only">Kirjaudu ulos</span></a></li>
 			</sec:authorize>
 
 	</ul>

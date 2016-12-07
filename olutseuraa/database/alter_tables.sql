@@ -17,3 +17,11 @@ AUTO_INCREMENT = 1;
 
 ALTER TABLE Henkilo
 ADD COLUMN salasana varchar(255) NOT NULL;
+
+ALTER TABLE palaute 
+ADD COLUMN otsikko VARCHAR(50) AFTER sposti;
+
+
+ALTER TABLE palaute
+ADD COLUMN luettu BOOLEAN DEFAULT false
+AFTER palaute;

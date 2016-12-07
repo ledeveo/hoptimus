@@ -29,6 +29,11 @@
 <link rel="stylesheet" href="resources/styles/foundation-icons/foundation-icons.css">
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+<script src="resources/js/form-validation.js"></script>
  
   
 <title>Olutseuraa</title>

@@ -65,9 +65,39 @@
 	/* text-shadow: 1px 1px 3px black; */
 }
 
+
 .header, .footer{
 	background-image: url("../img/blue1.jpg");
 }
+
+/*
+::-webkit-scrollbar{
+	display:none;
+}*/
+
+/*K‰ytet‰‰n footerin ikonit sis‰lt‰vill‰ riveill‰*/
+.lineheight{
+	padding-top:0.5rem;
+	padding-bottom:0.5rem;
+}
+
+tbody tr th{
+	background:#DCDCDC;
+}
+
+tbody tr td{
+	background:white;
+}
+
+.mediumicon{
+	font-size:1.5rem;
+}
+
+
+
+
+
+
 
 /* HUOM! id body, ei tag-elementti body */
 /*

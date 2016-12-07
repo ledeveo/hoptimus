@@ -22,7 +22,7 @@ $(function() {
 										if(palaute.luettu){
 										 otsikkorivi = "<a href='#'class='accordion-title'><h5>" + palaute.otsikko + "</h5><small style='font-size:1.2rem;'>" + date + "</small></a>";
 										}else{
-											otsikkorivi = "<a href='#'class='accordion-title'><i class='fi-alert mediumicon'></i><h5>" + palaute.otsikko + "</h5><small style='font-size:1.2rem;'>" + date + "</small></a>";
+											otsikkorivi = "<a href='#'class='accordion-title'><i class='fi-alert mediumicon' id='" + palaute.id + "ico'></i><h5>" + palaute.otsikko + "</h5><small style='font-size:1.2rem;'>" + date + "</small></a>";
 										}
 									
 										
@@ -82,7 +82,7 @@ $("#kaikkip, #five").click(function() {
 										if(palaute.luettu){
 										 otsikkorivi = "<a href='#'class='accordion-title'><h5>" + palaute.otsikko + "</h5><small style='font-size:1.2rem;'>" + date + "</small></a>";
 										}else{
-											otsikkorivi = "<a href='#'class='accordion-title'><i class='fi-alert mediumicon'></i><h5>" + palaute.otsikko + "</h5><small style='font-size:1.2rem;'>" + date + "</small></a>";
+											otsikkorivi = "<a href='#'class='accordion-title'><i class='fi-alert mediumicon' id='" + palaute.id + "ico'></i><h5>" + palaute.otsikko + "</h5><small style='font-size:1.2rem;'>" + date + "</small></a>";
 										}
 										
 										
@@ -119,7 +119,8 @@ $("#kaikkip, #five").click(function() {
 			success : function(responseData, textStatus,
 					jqXHR) {
 				console.log(responseData);
-				$("li.is-active").has("i").remove();
+				$("#" + id + "ico").remove();
+				
 				
 			},
 			error : function(jqXHR, textStatus, errorThrown) {

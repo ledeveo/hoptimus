@@ -78,7 +78,7 @@
 
 	
 	<!-- Dynaaminen pohja-ankkuri instafeedille eli mihin kohtaan se pysähtyy alaspäin scrollattaessa -->
-		<c:set var="ankkuri" scope="page" value="${fn:length(tapahtumat)*415}"></c:set>
+		<c:set var="ankkuri" scope="page" value="${fn:length(tapahtumat)*440}"></c:set>
 		 
 	<div class="column small-12 medium-3 center" data-sticky-container>
     	<div style="min-height:550px;" id="instafeed" class="sticky" data-sticky data-sticky-on="medium" data-top-anchor="stickyanchor" data-btm-anchor="${ankkuri}"><img border="0" alt="ig" src="resources/img/instagram_logo.png" width="150" height="150"></div>

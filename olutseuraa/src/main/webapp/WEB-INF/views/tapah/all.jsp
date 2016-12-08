@@ -52,6 +52,7 @@
 		<div class="column small-12 medium-4 center" data-sticky-container>
 	    	<div class="sticky small-12 medium-12" data-sticky data-sticky-on="medium" data-anchor="stickyanchor" >
 				<%@ include file="tapahtumalistaus.jsp"%>
+				<a class="twitter-timeline" href="https://twitter.com/Hoptimusprimet1">Tweets by Hoptimusprimeteam</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 			</div>
 		</div>
 	

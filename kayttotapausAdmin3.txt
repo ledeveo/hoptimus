@@ -1,0 +1,35 @@
+Olutseuraa-palvelun käyttötapaus
+Admin lukee palutetta.
+
+
+
+Toimija				Admin
+Esiehto				Admin on kirjautunut sisään & käyttäjä on antanut palautetta.
+Lopputulos			Admin on lukenut palutteet
+Käyttötiheys		n. 10/pv
+
+1.	Käyttötapaus näyttää tulevat tapahtumat
+2.	Toimija siirtyy lukemaan palautetta painamalla "palaute"-nappulaa.
+3.	Käyttötapaus näyttää palutteiden otsikot.
+4.	Toimija siirtyy lukemaan palautteen klikkaamalla kyseistä palautetta.
+5.	Käyttötapaus näyttää valitun palautteen.
+6.	Käyttötapaus päättyy
+
+
+Variaatiot
+V2	Toimija ei haluakaan lukea palautteita. Käyttötapaus päättyy.
+V4	Toimija ei haluakaan lukea palautteita. Käyttötapaus päättyy.
+V6	Toimija haluaa lukea lisää palautteita -> 2.
+
+
+Poikkeukset
+P1, P3, P5
+	Tekninen virhe, käyttötapaus antaa virheilmoituksen.
+
+
+
+
+
+Tulevia käyttötapauksia:
+
+-	Toimija on unohtanut salasanansa ja haluaa uuden.

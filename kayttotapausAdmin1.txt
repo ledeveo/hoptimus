@@ -1,0 +1,35 @@
+Olutseuraa-palvelun käyttötapaus
+Admin luo tapahtuman
+
+
+
+Toimija				Admin
+Esiehto				Admin on kirjautunut sisään
+Lopputulos			Admin on luonut yhden tai useamman tapahtuman
+Käyttötiheys		n. 10/pv
+
+1.	Käyttötapaus näyttää tulevat tapahtumat
+2.	Toimija siirtyy luomaan tapahtumaa painamalla "luo uusi tapahtuma" nappulaa.
+3.	Käyttötapaus pyytää toimijalta tapahtumantiedot.
+4.	Toimija täyttää tiedot ja painaa Luo Tapahtuma-nappulaa.
+5.	Käyttötapaus näyttää tulevat tapahtumat.
+6.	Käyttötapaus päättyy
+
+
+Variaatiot
+V2	Toimija ei haluakaan luoda tapahtumaa. Käyttötapaus päättyy.
+V4	Toimija ei anna tietoja. Käyttötapaus päättyy.
+V6	Toimija haluaa lisätä toisen tapahtuman -> 2
+
+
+Poikkeukset
+P1, P3, P5
+	Tekninen virhe, käyttötapaus antaa virheilmoituksen.
+
+
+
+
+
+Tulevia käyttötapauksia:
+
+-	Toimija on unohtanut salasanansa ja haluaa uuden.

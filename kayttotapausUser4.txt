@@ -1,0 +1,34 @@
+Olutseuraa-palvelun käyttötapaus
+Rekisteröitynyt käyttäjä antaa palautetta.
+
+
+
+Toimija				Käyttäjä
+Esiehto				Käyttäjä on kirjautunut sisään.
+Lopputulos			Käyttäjä on antanut palautetta.
+Käyttötiheys			n. 10/pv
+
+1.	Käyttötapaus näyttää aloitus-sivun. Footerissa on "Anna palautetta"-painike.
+2.	Toimija painaa "Anna palautetta"-painiketta. 
+3.	Käyttötapaus näyttää palaute-lomakkeen.
+4.	Toimija täyttää vaaditut tiedot, ja painaa "Lähetä"-painiketta.
+5.	Käyttötapaus näyttää "kiitos palautteesta"-tekstin "Anna palutetta"-painikkeen tilalla hetken aikaa.
+6.	Käyttötapaus päättyy	
+
+
+Variaatiot
+V2	Toimija ei haluakaan antaa palautetta. Käyttötapaus päättyy.
+V4	Toimija ei halua antaa tietoja. Käyttötapaus päättyy.
+
+
+Poikkeukset
+P1, P3, P5
+	Tekninen virhe, käyttötapaus antaa virheilmoituksen.
+
+
+
+
+
+Tulevia käyttötapauksia:
+
+-	Toimija on unohtanut salasanansa ja haluaa uuden.

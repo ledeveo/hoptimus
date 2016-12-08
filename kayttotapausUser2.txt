@@ -1,0 +1,35 @@
+Olutseuraa-palvelun käyttötapaus
+Rekisteröitynyt käyttäjä ilmoittautuu tapahtumiin yksin tai avec.
+
+
+
+Toimija				Käyttäjä
+Esiehto				Palveluun on luotu yksi tai useampia tapahtumia, Käyttäjä on kirjautunut sisään
+Lopputulos			Käyttäjä on ilmoittautunut yhteen tai useampaan tapahtumaan
+Käyttötiheys			n. 10/pv
+
+1.	Käyttötapaus näyttää tulevat tapahtumat
+2.	Toimija tutkii tapahtumia ja ilmoittautuu valitsemaansa tapahtumaan valitsemalla oikean osallistuja 
+	lukumäärän, ja painamalla "Count me in" nappulaa.
+3.	Käyttötapaus lisää käyttäjän tapahtujan osallistujaksi ja lähettää käyttäjälle tiedon ilmoittautumisesta sähköpostiin.
+4.	Käyttötapaus näyttää käyttäjäsivun, missä näkyy tapahtumat joihin käyttäjä on ilmoittautunut.
+5.	Käyttötapaus päättyy	
+
+
+Variaatiot
+V2	Toimija ei haluakaan liittyä tapahtumaa. Käyttötapaus päättyy.
+V4	Toimija muuttaa tapahtumansa henkilö lukumäärää tai perua osallistumisensa painamalla "+" tai "-" nappulaa-> 4
+V5	Toimija haluaa ilmoittautua toiseen tapahtumaan joten painaa "tapahtumat" nappulaa -> 1.
+
+
+Poikkeukset
+P1, P3, P4
+	Tekninen virhe, käyttötapaus antaa virheilmoituksen.
+
+
+
+
+
+Tulevia käyttötapauksia:
+
+-	Toimija on unohtanut salasanansa ja haluaa uuden.

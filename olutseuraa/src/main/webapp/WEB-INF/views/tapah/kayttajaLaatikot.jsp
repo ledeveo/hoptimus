@@ -81,19 +81,16 @@
 		</div>
 	
 		<div class="small-12 columns">
-			<h4 class="text-center" style="margin: 0; padding: 0;">"<c:out value="${event.kuvaus}" />"
+			<h4 class="text-center" style="margin: 0; padding: 0;">"<c:out value="${event.kuvaus}"/>"
 			</h4>
 		</div>
 	
 		<div class="row">
-			<article class="expandable small-12 columns"
-				id="<c:out value="${'exp'}${iteration.count}"/>">
+			<article class="expandable small-12 columns" id="<c:out value="${'exp'}${iteration.count}"/>">
 				<hr>
 				<h5>Ilmoittaudu tapahtumaan</h5>
-				<form:form method="POST" action="liity" modelAttribute="henkilo"
-					id="liityform${iteration.count}">
+				<form:form method="POST" action="liity" modelAttribute="henkilo" id="liityform${iteration.count}">
 					<fieldset>
-	
 	
 						<div class="small-6 columns">
 	
@@ -101,7 +98,7 @@
 								<spring:message code="henk.create.firstname" />
 							</form:label>
 	
-							<form:input path="etunimi" id="etunimi" />
+							<form:input path="etunimi"/>
 	
 						</div>
 	
@@ -111,7 +108,7 @@
 								<spring:message code="henk.create.lastname" />
 							</form:label>
 	
-							<form:input path="sukunimi" id="sukunimi" />
+							<form:input path="sukunimi"/>
 	
 	
 						</div>
@@ -123,10 +120,10 @@
 								<spring:message code="henk.create.email" />
 							</form:label>
 	
-							<form:input path="sahkoposti" id="sahkoposti" />
-							<label path="osallistujamaara"><spring:message code="henk.create.osallistujat" /></label>
+							<form:input path="sahkoposti"/>
+							<label><spring:message code="henk.create.osallistujat" /></label>
 							
-							<input path="osallistujamaara" type="number" name="osallistujamaara" min="1" max="${event.maxOsallistujamaara - osallistujat}" value="1">
+							<input type="number" name="osallistujamaara" min="1" max="${event.maxOsallistujamaara - osallistujat}" value="1">
 							
 							<input type="hidden" name="eventid"
 								value="<c:out value="${event.id}"/>" />
@@ -136,9 +133,7 @@
 					</fieldset>
 	
 					<br>
-					<button type="submit" class="button success float-center"
-						id="<c:out value="${iteration.count}" /> ">
-						Ilmoittaudu <i class="fi-check"></i>
+					<button type="submit" class="button success float-center"> Ilmoittaudu <i class="fi-check"></i>
 					</button>
 				</form:form>
 	

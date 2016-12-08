@@ -2,8 +2,6 @@ package fi.hoptimus.olutseuraa.helper;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 

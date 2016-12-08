@@ -38,7 +38,7 @@
 								<td class="center">
 									<form action="PoistaLiittyminen" method="POST">
 										<input type="hidden" name="tapahtumaId" value="${t.id}"/>
-										<a type="button" onclick="Poista(this,${t.id})" id="poistaSubmit" data-tooltip title="Pienemmät bileet?" class="button alert">-</a>
+										<a onclick="Poista(this,${t.id})" data-tooltip title="Pienemmät bileet?" class="button alert">-</a>
 									</form>
 								</td>
 								<td class="center">
@@ -48,7 +48,7 @@
 									<c:if test="${t.maxOsallistujamaara > fn:length(t.osallistujat)}">
 										<form action="LisaaLiittyminen" method="POST">
 											<input type="hidden" name="tapahtumaId" value="${t.id}"/>
-											<a type="button" onclick="Lisaa(this,${t.id})" id="lisaaSubmit" data-tooltip title="Lisää kavereita! Kippis!" class="button success">+</a>
+											<a onclick="Lisaa(this,${t.id})" data-tooltip title="Lisää kavereita! Kippis!" class="button success">+</a>
 										</form>
 									</c:if>
 								</td>

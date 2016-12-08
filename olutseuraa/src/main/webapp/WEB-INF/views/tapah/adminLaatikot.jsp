@@ -12,9 +12,9 @@
 			</div>
 	
 			<div class="event-desc">
-				<h4 class="event-desc-header">
-					<input type="text" name="nimi" path="nimi" value="${event.nimi}"/>
-				</h4>
+				
+					<input type="text" name="nimi" value="${event.nimi}"/>
+				
 				<p class="event-desc-detail">
 					<i class="step fi-marker size-36"></i> <span class="event-desc-time"></span>${event.paikka}
 				</p>
@@ -25,7 +25,7 @@
 		<div class="small-12 medium-6 columns">
 			<h5>
 				<i class="step fi-calendar size-24"></i> P‰iv‰m‰‰r‰:
-				<input type="date" name="pvm" id="datepicker" path="pvm" value="${pvm}"/>
+				<input type="date" name="pvm" id="datepicker" value="${pvm}"/>
 			</h5>
 			<h5>
 				<i class="step fi-clock size-24"></i> Kellonaika:

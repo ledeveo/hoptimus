@@ -26,7 +26,7 @@
 				class="fi-social-linkedin"></i></a> <a href="#"><i
 				class="fi-social-github"></i></a>>-->
 				<a href="whatsapp://send" data-text="Olutseuraa" 
-				data-href="" class="wa_btn wa_btn_s show-for-small-only"><img src="resources/img/whatsapp.png"></a>
+				data-href="" class="wa_btn wa_btn_s show-for-small-only"><img src="resources/img/whatsapp.png" alt="whatsapp image"></a>
 		</span>
 		
 		
@@ -35,7 +35,7 @@
 			
 <div class="text-center columns small-12 medium-8 lineheight" id="contactbtndiv">
 
-		</span><button data-toggle="contact" onClick="bodyOffset()" class="button center small warning" id="contactbtn">Anna palautetta <i class="fi-megaphone small" ></i></button>
+		<button data-toggle="contact" onClick="bodyOffset()" class="button center small warning" id="contactbtn">Anna palautetta <i class="fi-megaphone small" ></i></button>
 <!--  <div class="text-center columns small-12 medium-8 lineheight"><button data-toggle="contact" class="button center small success">Kiitos palautteesta! <i class="fi-like small" ></i></button>-->
 
 </div>

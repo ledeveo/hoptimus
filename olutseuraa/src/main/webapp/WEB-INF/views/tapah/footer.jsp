@@ -1,3 +1,5 @@
+<%@ include file="contact.jsp"%>
+
 </div>
 
 <div id="audioklipit" style="display: none;">

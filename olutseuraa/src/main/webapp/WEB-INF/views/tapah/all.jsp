@@ -91,6 +91,4 @@
 	
 	</div>
 	
-		<%@ include file="contact.jsp"%>
-	
 	<%@ include file="footer.jsp"%>

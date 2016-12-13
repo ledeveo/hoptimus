@@ -20,6 +20,8 @@ mail_connection.properties with text:
   mail.username=YOUR_MAIL_ADDRESS@gmail.com
   mail.password=YOUR_MAIL_PASSWORD
   ```
+  
+  Also add tables to database. Create tables can be found from: olutseuraa/database/create_table_mysql.sql
 
 # Screencaps
 

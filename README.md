@@ -21,7 +21,8 @@ mail_connection.properties with text:
   mail.password=YOUR_MAIL_PASSWORD
   ```
   
-  Also add tables to database. Create tables can be found from: olutseuraa/database/create_table_mysql.sql
+  Also add tables to database. Create tables can be found from: olutseuraa/database/create_table_mysql.sql and login_taulut.sql,
+  add admin webuser with login_lauseita.sql
 
 # Screencaps
 

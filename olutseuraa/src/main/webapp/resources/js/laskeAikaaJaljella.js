@@ -38,7 +38,7 @@ function laskeAikaaJaljella(aika, element){
 	
   var t = Date.parse(aika) - Date.parse(new Date());
   var minutes = Math.floor( (t/1000/60) % 60 );
-  var hours = Math.floor( (t/(1000*60*60)) % 24 );
+  var hours = Math.floor( (t/(1000*60*60)) % 24 ) - 2; //pois 2h = suomen aika
   var days = Math.floor( t/(1000*60*60*24) );
   
   var tekstirimpsu = "";
